@@ -15,6 +15,7 @@
         "tabWidth": 2,
         "trailingComma": "all"
       }
-    ]
+    ],
+    "no-unused-vars": "error"
   }
 }
