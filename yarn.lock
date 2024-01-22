@@ -836,7 +836,7 @@
   dependencies:
     clsx "^1.2.1"
 
-"@nextui-org/system@2.0.15":
+"@nextui-org/system@2.0.15", "@nextui-org/system@^2.0.15":
   version "2.0.15"
   resolved "https://registry.yarnpkg.com/@nextui-org/system/-/system-2.0.15.tgz#b0a532f0b3a27e911c076d2ac180d38c72d64952"
   integrity sha512-WFDq+Rx6D+gmK1YGEG2RBARPK9EOYonQDt5Tq2tUchzOOqj3kXXcM5Z0F3fudM59eIncLa/tX/ApJSTLry+hsw==
@@ -887,7 +887,7 @@
     "@react-types/tabs" "^3.3.3"
     scroll-into-view-if-needed "3.0.10"
 
-"@nextui-org/theme@2.1.17":
+"@nextui-org/theme@2.1.17", "@nextui-org/theme@^2.1.17":
   version "2.1.17"
   resolved "https://registry.yarnpkg.com/@nextui-org/theme/-/theme-2.1.17.tgz#e5e625486225fab15a60ae774988c71c4f91b66b"
   integrity sha512-/WeHcMrAcWPGsEVn9M9TnvxKkaYkCocBH9JrDYCEFQoJgleUzHd4nVk7MWtpSOYJXLUzUMY1M9AqAK3jBkw+5g==
@@ -1896,6 +1896,11 @@
   dependencies:
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
+
+"@types/humps@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@types/humps/-/humps-2.0.6.tgz#a358688fe092e40b5f50261e0a55e2fa6d68cabe"
+  integrity sha512-Fagm1/a/1J9gDKzGdtlPmmTN5eSw/aaTzHtj740oSfo+MODsSY2WglxMmhTdOglC8nxqUhGGQ+5HfVtBvxo3Kg==
 
 "@types/json5@^0.0.29":
   version "0.0.29"
@@ -3286,6 +3291,11 @@ human-signals@^5.0.0:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-5.0.0.tgz#42665a284f9ae0dade3ba41ebc37eb4b852f3a28"
   integrity sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==
 
+humps@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/humps/-/humps-2.0.1.tgz#dd02ea6081bd0568dc5d073184463957ba9ef9aa"
+  integrity sha512-E0eIbrFWUhwfXJmsbdjRQFQPrl5pTEoKlz163j1mTqqUnU9PgR4AgB8AIITzuB3vLBdxZXyZ9TDIrwB2OASz4g==
+
 husky@^8.0.3:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.3.tgz#4936d7212e46d1dea28fef29bb3a108872cd9184"
@@ -3889,6 +3899,11 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
+
+next-themes@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.2.1.tgz#0c9f128e847979daf6c67f70b38e6b6567856e45"
+  integrity sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==
 
 next@13.5.6:
   version "13.5.6"
