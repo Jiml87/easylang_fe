@@ -1,17 +1,12 @@
 import { FC } from 'react';
-import {
-  Listbox,
-  ListboxSection,
-  ListboxItem,
-  Spinner,
-} from '@nextui-org/react';
+import { Listbox, ListboxItem, Spinner } from '@nextui-org/react';
 
 import { useFetchWords } from '../../queries';
 
 const ListWords: FC = () => {
-  const { isLoading, data: response, error } = useFetchWords();
+  const { isLoading, data: response } = useFetchWords();
   const data = response?.data;
-  console.log(isLoading, data, error);
+  // console.log(isLoading, data, error);
 
   return (
     <div>
