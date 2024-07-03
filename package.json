@@ -10,7 +10,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --write --ignore-unknown",
+    "**/*.ts|*.tsx": "eslint --fix & tsc-files --noEmit"
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
@@ -42,6 +43,7 @@
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.3.6",
+    "tsc-files": "^1.1.4",
     "typescript": "^5"
   }
 }
