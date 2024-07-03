@@ -11,7 +11,7 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
-    "**/*.ts|*.tsx": "eslint --fix & tsc-files --noEmit"
+    "**/*.ts|**/*.tsx": "eslint --fix & tsc-files --noEmit"
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
