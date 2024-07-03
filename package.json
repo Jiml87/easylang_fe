@@ -11,7 +11,10 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
-    "**/*.ts|**/*.tsx": "eslint --fix & tsc-files --noEmit"
+    "**/*.{ts,tsx}": [
+      "eslint --fix",
+      "tsc-files --noEmit"
+    ]
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
@@ -19,12 +22,14 @@
     "@nextui-org/theme": "^2.1.17",
     "autoprefixer": "^10.4.19",
     "axios": "^1.6.2",
+    "final-form": "^4.20.10",
     "framer-motion": "^10.16.16",
     "humps": "^2.0.1",
     "next": "13.5.6",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-final-form": "^6.5.9",
     "react-query": "^3.39.3",
     "react-redux": "^8.1.3",
     "recoil": "^0.7.7"
@@ -38,8 +43,9 @@
     "eslint-config-next": "13.5.6",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "husky": "^8.0.3",
+    "husky": "^9.0.1",
     "lint-staged": "^15.2.0",
+    "pinst": "^3.0.0",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.3.6",
