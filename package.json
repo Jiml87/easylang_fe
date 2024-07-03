@@ -10,12 +10,14 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --write --ignore-unknown",
+    "**/*.ts|*.tsx": "eslint --fix & tsc-files --noEmit"
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
     "@nextui-org/system": "^2.0.15",
     "@nextui-org/theme": "^2.1.17",
+    "autoprefixer": "^10.4.19",
     "axios": "^1.6.2",
     "framer-motion": "^10.16.16",
     "humps": "^2.0.1",
@@ -38,8 +40,10 @@
     "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "prettier": "3.1.0",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.3.6",
+    "tsc-files": "^1.1.4",
     "typescript": "^5"
   }
 }
