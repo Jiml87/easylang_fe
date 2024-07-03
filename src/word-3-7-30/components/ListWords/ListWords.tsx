@@ -11,7 +11,7 @@ import { useFetchWords } from '../../queries';
 const ListWords: FC = () => {
   const { isLoading, data: response, error } = useFetchWords();
   const data = response?.data;
-  console.log(isLoading, data, error);
+  // console.log(isLoading, data, error);
 
   return (
     <div>
