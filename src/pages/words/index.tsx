@@ -1,7 +1,7 @@
-import ListWords from '../../word-3-7-30/components/ListWords/ListWords';
+// import ListWords from '@/features/ListWords/ListWords';
 
-const List = () => {
-  return <ListWords />;
+const ListWords = () => {
+  return <div>ListWords</div>;
 };
 
-export default List;
+export default ListWords;

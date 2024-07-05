@@ -1,20 +1,19 @@
 import React from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-import { NextUIProvider } from '@nextui-org/react';
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
-const MyApp = ({ Component, pageProps }) => {
+interface MyAppProps {
+  Component: any;
+  pageProps: any;
+}
+
+const MyApp = ({ Component, pageProps }: MyAppProps) => {
   const [queryClient] = React.useState(() => new QueryClient());
 
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <NextUIProvider>
-            <NextThemesProvider attribute="class" defaultTheme="light">
-              <Component {...pageProps} />
-            </NextThemesProvider>
-          </NextUIProvider>
+          <Component {...pageProps} />
         </Hydrate>
       </QueryClientProvider>
     </React.StrictMode>
