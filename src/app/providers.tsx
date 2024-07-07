@@ -1,19 +1,30 @@
 'use client';
-
-// import { NextUIProvider } from '@nextui-org/react';
-// import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import React from 'react';
 import { PrimeReactProvider } from 'primereact/api';
 import Tailwind from 'primereact/passthrough/tailwind';
-// import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { twMerge } from 'tailwind-merge';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
+  const [queryClient] = React.useState(() => new QueryClient());
+
   return (
-    // <QueryClientProvider client={queryClient}>
-    //   <Hydrate state={pageProps.dehydratedState}>
-    <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
-      {children}
-    </PrimeReactProvider>
-    //   </Hydrate>
-    // </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      {/* //   <Hydrate state={pageProps.dehydratedState}> */}
+      <PrimeReactProvider
+        value={{
+          unstyled: true,
+          pt: Tailwind,
+          ptOptions: {
+            mergeSections: true,
+            mergeProps: true,
+            classNameMergeFunction: twMerge,
+          },
+        }}
+      >
+        {children}
+      </PrimeReactProvider>
+      {/* //   </Hydrate> */}
+    </QueryClientProvider>
   );
 }
