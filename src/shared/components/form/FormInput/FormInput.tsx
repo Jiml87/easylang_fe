@@ -1,14 +1,14 @@
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 import { useField } from 'react-final-form';
 import { InputText } from 'primereact/inputtext';
 
 interface FormInputProps {
   name: string;
-  label?: string;
+  label: string;
+  subLabel?: string | ReactElement;
   placeholder?: string;
   inputClassName?: string;
   type?: 'text' | 'password';
-  required?: boolean;
 }
 
 const FormInput: FC<FormInputProps> = ({
@@ -17,14 +17,14 @@ const FormInput: FC<FormInputProps> = ({
   placeholder,
   inputClassName,
   type = 'text',
-  required = true,
+  subLabel,
 }) => {
   const { input } = useField(name);
   return (
     <div className="mb-5">
       <label htmlFor={name}>
         {label}
-        <small> {required ? '*' : '(you can add later)'}</small>
+        {subLabel}
       </label>
       <InputText
         className={inputClassName}

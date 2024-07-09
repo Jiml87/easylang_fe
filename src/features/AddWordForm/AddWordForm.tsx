@@ -29,16 +29,17 @@ const AddWordForm = () => {
             <FormInput
               name="nativePhrase"
               label="Native phrase"
+              subLabel={<small>*</small>}
               inputClassName="w-full"
             />
             <FormInput
               name="nativePhrase"
               label="Translation"
+              subLabel={<small>(you can add later)</small>}
               inputClassName="w-full"
-              required={false}
             />
           </div>
-          <Button label="Submit" />
+          <Button label="Save" />
         </form>
       )}
     />
