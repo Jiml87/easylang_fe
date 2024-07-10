@@ -9,15 +9,17 @@ interface FormInputProps {
   placeholder?: string;
   inputClassName?: string;
   type?: 'text' | 'password';
+  disabled?: boolean;
 }
 
 const FormInput: FC<FormInputProps> = ({
   name,
   label,
+  subLabel,
   placeholder,
   inputClassName,
   type = 'text',
-  subLabel,
+  disabled = false,
 }) => {
   const { input } = useField(name);
   return (
@@ -34,6 +36,7 @@ const FormInput: FC<FormInputProps> = ({
         onChange={input.onChange}
         type={type}
         id={name}
+        disabled={disabled}
       />
     </div>
   );

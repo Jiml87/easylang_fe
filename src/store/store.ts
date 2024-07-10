@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import newPhrase from '@/app/add-phrase/addPhraseSlice';
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: {
+      newPhrase,
+    },
   });
 };
 

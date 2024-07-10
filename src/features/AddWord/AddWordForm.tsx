@@ -2,6 +2,8 @@
 import { Form } from 'react-final-form';
 import { Button } from 'primereact/button';
 
+import { createPhrase, selectNewPhrase } from '@/app/add-phrase/addPhraseSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import FormInput from '@/shared/components/form/FormInput/FormInput';
 
 interface InitialValues {
@@ -10,9 +12,15 @@ interface InitialValues {
 }
 
 const AddWordForm = () => {
+  const newPhraseState = useAppSelector(selectNewPhrase);
+  const dispatch = useAppDispatch();
+
   const onSubmit = (values: InitialValues) => {
-    console.log(values);
+    dispatch(createPhrase(values));
   };
+
+  const isLoading = newPhraseState.status === 'loading';
+
   return (
     <Form<InitialValues>
       onSubmit={onSubmit}
@@ -31,15 +39,17 @@ const AddWordForm = () => {
               label="Native phrase"
               subLabel={<small>*</small>}
               inputClassName="w-full"
+              disabled={isLoading}
             />
             <FormInput
-              name="nativePhrase"
+              name="translatedPhrase"
               label="Translation"
               subLabel={<small>(you can add later)</small>}
               inputClassName="w-full"
+              disabled={isLoading}
             />
           </div>
-          <Button label="Save" />
+          <Button label="Save" loading={isLoading} />
         </form>
       )}
     />

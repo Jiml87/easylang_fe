@@ -1,4 +1,4 @@
-import AddWordForm from '@/features/AddWordForm/AddWordForm';
+import AddWordForm from '@/features/AddWord/AddWordForm';
 
 const Component = () => {
   return (

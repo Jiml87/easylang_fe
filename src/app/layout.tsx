@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import Providers from '@/app/providers';
+
 import '../styles/global.css';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/lara-light-teal/theme.css';
@@ -20,7 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
