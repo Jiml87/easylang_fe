@@ -1,9 +1,25 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
 
-const makeEnvVariablesAsPublic = require('./src/utils/makeEnvVariablesAsPublic');
+const API_HOST = process.env.API_HOST || '';
 
-makeEnvVariablesAsPublic(['API_SERVER_WORD_PATH']);
+const nextConfig = {
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(path.resolve(), './src'),
+    };
 
-const nextConfig = {};
+    return config;
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${API_HOST}/api/:path*`,
+      },
+    ];
+  },
+};
 
 module.exports = nextConfig;
