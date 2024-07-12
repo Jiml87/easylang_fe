@@ -1,11 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import newPhrase from '@/app/add-phrase/addPhraseSlice';
+import messages from '@/features/MessagesBar/messagesBarSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       newPhrase,
+      messages,
     },
+    devTools: process.env.NODE_ENV !== 'production',
   });
 };
 

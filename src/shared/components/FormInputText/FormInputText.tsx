@@ -33,6 +33,8 @@ const FormInputText: FC<FormInputTextProps> = ({
         onChange={input.onChange}
         type={type}
         id={name}
+        invalid={meta.submitFailed && meta.invalid}
+        aria-labelledby={label}
         {...rest}
       />
       <div className="min-h-5 text-sm text-red-600">

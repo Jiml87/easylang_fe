@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios';
 
-import axios, { KnownError } from '@/queries/axiosInstance';
+import axios from '@/queries/axiosInstance';
 import { ApiRequestStatus } from '@/types/general';
 import { RootState } from '@/store/store';
+import { addSuccessMessage } from '@/features/MessagesBar/messagesBarSlice';
+import { catchErrorInAsyncAction } from '@/store/storeUtils';
+import { AppDispatch } from '@/store/store';
 
 type CreatePhraseBody = {
   nativePhrase: string;
@@ -12,18 +14,20 @@ type CreatePhraseBody = {
 
 export const createPhrase = createAsyncThunk(
   'prase/create',
-  async (body: CreatePhraseBody, { rejectWithValue }) => {
-    try {
-      const response = await axios.post('/v1/words', body);
-      return response.data;
-    } catch (err) {
-      const error: AxiosError<KnownError> = err as any;
-
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
-    }
+  async (body: CreatePhraseBody, { rejectWithValue, dispatch }) => {
+    return catchErrorInAsyncAction(
+      rejectWithValue,
+      dispatch as AppDispatch,
+      async () => {
+        const response = await axios.post('/v1/words', body);
+        dispatch(
+          addSuccessMessage({
+            detail: 'The phrase is saved',
+          }),
+        );
+        return response.data;
+      },
+    );
   },
 );
 
@@ -38,7 +42,7 @@ const initialState: InitialState = {
 };
 
 const newPhraseSlice = createSlice({
-  name: 'posts',
+  name: 'newPhrase',
   initialState,
   reducers: {
     // omit existing reducers here
