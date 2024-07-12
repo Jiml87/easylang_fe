@@ -1,45 +1,45 @@
 import { FC, ReactElement } from 'react';
-import { useField } from 'react-final-form';
+import { FieldRenderProps } from 'react-final-form';
 import { InputText } from 'primereact/inputtext';
 
-interface FormInputProps {
+type FormInputTextProps = FieldRenderProps<string, HTMLElement> & {
   name: string;
   label: string;
   subLabel?: string | ReactElement;
-  placeholder?: string;
   inputClassName?: string;
   type?: 'text' | 'password';
-  disabled?: boolean;
-}
+};
 
-const FormInput: FC<FormInputProps> = ({
-  name,
+const FormInputText: FC<FormInputTextProps> = ({
+  input,
+  meta,
   label,
   subLabel,
-  placeholder,
   inputClassName,
+  name,
   type = 'text',
-  disabled = false,
+  ...rest
 }) => {
-  const { input } = useField(name);
   return (
-    <div className="mb-5">
-      <label htmlFor={name}>
+    <div className="mb-2">
+      <label className="text-sm text-gray-500" htmlFor={name}>
         {label}
         {subLabel}
       </label>
       <InputText
         className={inputClassName}
-        placeholder={placeholder}
         name={input.name}
         value={input.value}
         onChange={input.onChange}
         type={type}
         id={name}
-        disabled={disabled}
+        {...rest}
       />
+      <div className="min-h-5 text-sm text-red-600">
+        {meta.submitFailed && meta.invalid && meta.error}
+      </div>
     </div>
   );
 };
 
-export default FormInput;
+export default FormInputText;
