@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import axios from '@/queries/axiosInstance';
+import axios from '@/api/axiosInstance';
 import { ApiRequestStatus } from '@/types/general';
 import { RootState } from '@/store/store';
 import { addSuccessMessage } from '@/features/MessagesBar/messagesBarSlice';

@@ -1,3 +1,5 @@
+'use client';
+import React from 'react';
 import AddWordForm from '@/features/AddWord/AddWordForm';
 
 const Component = () => {

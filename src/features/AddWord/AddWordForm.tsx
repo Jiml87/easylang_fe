@@ -1,10 +1,11 @@
 'use client';
+import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Button } from 'primereact/button';
 
 import { createPhrase, selectNewPhrase } from '@/app/add-phrase/addPhraseSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import FormInputText from '@/shared/components/FormInputText/FormInputText';
+import FormInputText from '@/components/FormInputText/FormInputText';
 import {
   composeValidators,
   required,
@@ -18,11 +19,16 @@ interface InitialValues {
 }
 
 const AddWordForm = () => {
-  const newPhraseState = useAppSelector(selectNewPhrase);
   const dispatch = useAppDispatch();
+  const newPhraseState = useAppSelector(selectNewPhrase);
 
-  const onSubmit = (values: InitialValues) => {
-    dispatch(createPhrase(values));
+  const onSubmit = (values: InitialValues, form: any) => {
+    dispatch(createPhrase(values)).then((res: any) => {
+      console.log('res', res);
+      if (!res.error) {
+        form.reset();
+      }
+    });
   };
 
   const isLoading = newPhraseState.status === 'loading';

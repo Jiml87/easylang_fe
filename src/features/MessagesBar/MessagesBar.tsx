@@ -12,7 +12,7 @@ const MessagesBar = () => {
   const msg = useRef<Messages>(null);
   const messages = useAppSelector(selectMessages);
   const dispatch = useAppDispatch();
-  console.log('messages', messages);
+
   useEffect(() => {
     if (messages.length) {
       msg.current?.show(messages);

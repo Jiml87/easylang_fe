@@ -1,5 +1,5 @@
 // import ListWords from '@/features/ListWords/ListWords';
-import { useFetchWords } from '@/queries/words';
+import { useFetchWords } from '@/api/words';
 
 const ListWords = () => {
   const { data } = useFetchWords();

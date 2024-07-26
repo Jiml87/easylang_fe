@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import newPhrase from '@/app/add-phrase/addPhraseSlice';
 import messages from '@/features/MessagesBar/messagesBarSlice';
+import loginState from '@/app/login/loginSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       newPhrase,
       messages,
+      loginState,
     },
     devTools: process.env.NODE_ENV !== 'production',
   });

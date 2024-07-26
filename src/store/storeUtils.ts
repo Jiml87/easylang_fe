@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { KnownError } from '@/queries/axiosInstance';
+import { KnownError } from '@/api/axiosInstance';
 import { addErrorMessage } from '@/features/MessagesBar/messagesBarSlice';
 import { AppDispatch } from '@/store/store';
 
