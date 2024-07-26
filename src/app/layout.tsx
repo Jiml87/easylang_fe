@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import Providers from '@/app/providers';
+import MessagesBar from '@/features/MessagesBar/MessagesBar';
 
 import '../styles/global.css';
 import 'primereact/resources/primereact.min.css';
@@ -23,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <MessagesBar />
+        </Providers>
       </body>
     </html>
   );

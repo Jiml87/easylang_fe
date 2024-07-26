@@ -1,5 +1,10 @@
-// import Image from 'next/image';
+import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
 
-export default function Home() {
-  return <main>Home</main>;
+export default function HomePage() {
+  return (
+    <main>
+      <MainPageHeader />
+      Home
+    </main>
+  );
 }

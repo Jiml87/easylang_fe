@@ -4,6 +4,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import Tailwind from 'primereact/passthrough/tailwind';
 import { twMerge } from 'tailwind-merge';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import StoreProvider from '@/store/StoreProvider';
 
@@ -25,7 +26,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             },
           }}
         >
-          {children}
+          <GoogleOAuthProvider clientId={process.env.OAUTH_GOOGLE_ID as string}>
+            {children}
+          </GoogleOAuthProvider>
         </PrimeReactProvider>
         {/* //   </Hydrate> */}
       </QueryClientProvider>

@@ -2,6 +2,8 @@
 import React from 'react';
 import Providers from '@/app/providers';
 
+import 'primereact/resources/themes/lara-light-teal/theme.css';
+
 interface MyAppProps {
   Component: any;
   pageProps: any;
