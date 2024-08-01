@@ -1,29 +1,75 @@
 'use client';
-import React from 'react';
-import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
+import { twMerge } from 'tailwind-merge';
 import { Card } from 'primereact/card';
-import { GoogleLogin, GoogleCredentialResponse } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { useRouter } from 'next/navigation';
 
-// import { useAppDispatch, useAppSelector } from '@/store/hooks';
-// import { googleLoginRequest, selectLoginState } from '@/app/login/loginSlice';
+import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { googleLoginRequest, selectLoginState } from '@/app/login/loginSlice';
+
+import './login.css';
 
 const LoginPage = () => {
-  // const dispatch = useAppDispatch();
-  // const loginState = useAppSelector(selectLoginState);
-  const responseMessage = (response: GoogleCredentialResponse) => {
-    console.log(response);
-    // dispatch(googleLoginRequest(response));
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { isLoading } = useAppSelector(selectLoginState);
+
+  const responseMessage = (response: { code: string }) => {
+    dispatch(googleLoginRequest(response)).then((data) => {
+      if (data.payload.id) {
+        router.push('/init-profile');
+      }
+    });
   };
-  const errorMessage = () => {
-    console.log('error');
+  const errorMessage = (error: any) => {
+    console.log('error', error);
   };
+
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: responseMessage,
+    onError: errorMessage,
+    flow: 'auth-code',
+  });
+
   return (
-    <div className="h-dvh flex flex-col">
+    <div className="flex h-dvh flex-col">
       <MainPageHeader />
       <div className="flex grow items-center justify-center px-4">
-        <Card className="w-full">
-          <h1 className="flex justify-center">Login</h1>
-          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+        <Card
+          className={twMerge(
+            'w-full max-w-md',
+            isLoading && 'pointer-events-none',
+          )}
+        >
+          <h1 className="prose-headings:h1 prose mb-7 flex justify-center text-2xl font-bold">
+            Sign In
+          </h1>
+          <div>
+            <div
+              role="button"
+              onClick={handleGoogleLogin}
+              className="socialBtn googleBtn mt-5 flex w-full justify-center p-2 align-middle"
+            >
+              Google
+            </div>
+            <FacebookLogin
+              appId="1257511625239605"
+              callback={(resp: any) => console.log(resp)}
+              responseType="code"
+              fields="name,email,picture"
+              render={(renderProps: any) => (
+                <div
+                  role="button"
+                  onClick={renderProps.onClick}
+                  className="socialBtn facebookBtn mt-4 flex w-full justify-center p-2 align-middle"
+                >
+                  Facebook
+                </div>
+              )}
+            />
+          </div>
         </Card>
       </div>
     </div>

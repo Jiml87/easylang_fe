@@ -17,7 +17,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         {/* //   <Hydrate state={pageProps.dehydratedState}> */}
         <PrimeReactProvider
           value={{
-            unstyled: true,
+            unstyled: false,
             pt: Tailwind,
             ptOptions: {
               mergeSections: true,

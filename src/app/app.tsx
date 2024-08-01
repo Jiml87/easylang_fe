@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import { StrictMode } from 'react';
 import Providers from '@/app/providers';
 
 import 'primereact/resources/themes/lara-light-teal/theme.css';
@@ -11,11 +11,11 @@ interface MyAppProps {
 
 const MyApp = ({ Component, pageProps }: MyAppProps) => {
   return (
-    <React.StrictMode>
+    <StrictMode>
       <Providers>
         <Component {...pageProps} />
       </Providers>
-    </React.StrictMode>
+    </StrictMode>
   );
 };
 

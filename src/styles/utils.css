@@ -5,3 +5,7 @@
 .min-h-5 {
   min-height: 1.25rem; /* 20px */
 }
+
+h1 {
+  @apply mb-7 flex justify-center text-2xl font-bold;
+}

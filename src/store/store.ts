@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import newPhrase from '@/app/add-phrase/addPhraseSlice';
 import messages from '@/features/MessagesBar/messagesBarSlice';
 import loginState from '@/app/login/loginSlice';
+import initProfile from '@/app/init-profile/initProfileSlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
       newPhrase,
       messages,
       loginState,
+      initProfile,
     },
     devTools: process.env.NODE_ENV !== 'production',
   });
