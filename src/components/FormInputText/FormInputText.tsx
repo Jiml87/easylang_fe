@@ -21,7 +21,7 @@ const FormInputText: FC<FormInputTextProps> = ({
   ...rest
 }) => {
   return (
-    <div className="mb-2">
+    <div className="mt-2">
       <label className="text-sm text-gray-500" htmlFor={name}>
         {label}
         {subLabel}

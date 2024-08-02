@@ -2,25 +2,24 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from '@/api/axiosInstance';
 import { RootState } from '@/store/store';
-// import { addSuccessMessage } from '@/features/MessagesBar/messagesBarSlice';
 import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { AppDispatch } from '@/store/store';
-// import { GoogleCredentialResponse } from '@react-oauth/google';
+import { AvailableLangs } from '@/types/langs';
 
-// type LoginBody = {
-//   token: string;
-// };
+type ProfileBody = {
+  firstName: string;
+  nativeLang: AvailableLangs;
+  targetLang: AvailableLangs;
+};
 
-export const googleLoginRequest = createAsyncThunk(
-  'login/google',
-  async (body: { code: string }, { rejectWithValue, dispatch }) => {
+export const initProfileRequest = createAsyncThunk(
+  'initProfileRequest',
+  async (body: ProfileBody, { rejectWithValue, dispatch }) => {
     return catchErrorInAsyncAction(
       rejectWithValue,
       dispatch as AppDispatch,
       async () => {
-        const response = await axios.get(
-          `/v1/auth/google/login?access_token=${body.code}`,
-        );
+        const response = await axios.post('/v1/users/setup-profile', body);
         return response.data;
       },
     );
@@ -37,27 +36,27 @@ const initialState: InitialState = {
   error: null,
 };
 
-const loginSlice = createSlice({
-  name: 'loginPageState',
+const slice = createSlice({
+  name: 'initProfile',
   initialState,
   reducers: {
     // omit existing reducers here
   },
   extraReducers(builder) {
     builder
-      .addCase(googleLoginRequest.pending, (state) => {
+      .addCase(initProfileRequest.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(googleLoginRequest.fulfilled, (state) => {
+      .addCase(initProfileRequest.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(googleLoginRequest.rejected, (state, action) => {
+      .addCase(initProfileRequest.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       });
   },
 });
 
-export const selectLoginState = (state: RootState) => state.loginState;
+export const selectInitProfileState = (state: RootState) => state.initProfile;
 
-export default loginSlice.reducer;
+export default slice.reducer;

@@ -1,0 +1,19 @@
+.socialBtn {
+  user-select: none;
+  color: #ffffff;
+}
+
+.facebookBtn {
+  background-color: #1977f3;
+}
+
+.facebookBtn:active {
+  background-color: #0453ba;
+}
+
+.googleBtn {
+  background-color: #df3f30;
+}
+.googleBtn:active {
+  background-color: #bb1809;
+}
