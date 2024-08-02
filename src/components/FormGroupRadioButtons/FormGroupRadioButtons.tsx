@@ -47,7 +47,7 @@ export default function FormGroupRadioButtons({
         ))}
       </div>
       <div className="min-h-5 text-sm text-red-600">
-        {meta.invalid && meta.error}
+        {meta.submitFailed && meta.invalid && meta.error}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ type ProfileBody = {
 };
 
 export const initProfileRequest = createAsyncThunk(
-  'login/google',
+  'initProfileRequest',
   async (body: ProfileBody, { rejectWithValue, dispatch }) => {
     return catchErrorInAsyncAction(
       rejectWithValue,

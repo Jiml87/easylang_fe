@@ -4,7 +4,8 @@ import { Button } from 'primereact/button';
 
 import FormGroupRadioButtons from '@/components/FormGroupRadioButtons/FormGroupRadioButtons';
 import FormInputText from '@/components/FormInputText/FormInputText';
-// import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useAppDispatch } from '@/store/hooks'; //useAppSelector
+import { useRouter } from 'next/navigation';
 import {
   composeValidators,
   required,
@@ -13,7 +14,7 @@ import {
 } from '@/utils/validators';
 import { AvailableLangs } from '@/types/langs';
 import { AVAILABLE_LANGS_OPTIONS } from '@/constants/langs';
-import { getUserLanguage } from '@/utils/getUserLanguage';
+import { initProfileRequest } from '@/app/init-profile/initProfileSlice';
 
 interface InitialValues {
   firstName: string;
@@ -22,21 +23,29 @@ interface InitialValues {
 }
 
 const InitProfileForm = () => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
   const onSubmit = (data: any) => {
-    console.log(data);
+    dispatch(initProfileRequest(data)).then((response) => {
+      response.payload.id && router.push('/add-phrase');
+    });
   };
   const isLoading = false;
 
   return (
     <div className="flex justify-center">
       <div className="max-w-4xl">
-        <h1>Welcome! Let&apos;s set up your profile.</h1>
+        <h1>
+          Welcome!
+          <div>Let&apos;s set up your profile.</div>
+        </h1>
         <article className="prose prose-xl">Hello</article>
         <Form<InitialValues>
           onSubmit={onSubmit}
           initialValues={{
             firstName: '',
-            nativeLang: getUserLanguage(),
+            nativeLang: 'en',
             targetLang: null,
           }}
           render={({ handleSubmit, submitting, values, form }) => (
