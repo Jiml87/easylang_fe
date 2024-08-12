@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { Provider } from 'react-redux';
 import { makeStore, AppStore } from '@/store/store';
 import { UserProfile } from '@/types/auth';
-import { initProfileInfo } from '@/app/myapp/init-profile/initProfileSlice';
+import { initProfileInfo } from '@/features/InitProfilePage/initProfileSlice';
 
 interface ProvidersProps {
   children: React.ReactNode;

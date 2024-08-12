@@ -4,7 +4,7 @@ import { Button } from 'primereact/button';
 
 import FormGroupRadioButtons from '@/components/FormGroupRadioButtons/FormGroupRadioButtons';
 import FormInputText from '@/components/FormInputText/FormInputText';
-import { useAppDispatch } from '@/store/hooks'; //useAppSelector
+import { useAppDispatch, useAppSelector } from '@/store/hooks'; //useAppSelector
 import { useRouter } from 'next/navigation';
 import {
   composeValidators,
@@ -14,7 +14,9 @@ import {
 } from '@/utils/validators';
 import { AvailableLangs } from '@/types/langs';
 import { AVAILABLE_LANGS_OPTIONS } from '@/constants/langs';
-import { initProfileRequest } from '@/app/myapp/init-profile/initProfileSlice';
+import { initProfileRequest } from '@/features/InitProfilePage/initProfileSlice';
+import { addNewPhrasePage } from '@/config/routes';
+import { selectInitProfileState } from '../initProfileSlice';
 
 interface InitialValues {
   firstName: string;
@@ -25,10 +27,11 @@ interface InitialValues {
 const InitProfileForm = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { userProfile } = useAppSelector(selectInitProfileState);
 
   const onSubmit = (data: any) => {
     dispatch(initProfileRequest(data)).then((response) => {
-      response.payload.id && router.push('/add-phrase');
+      response.payload.id && router.push(addNewPhrasePage.path);
     });
   };
   const isLoading = false;
@@ -43,7 +46,7 @@ const InitProfileForm = () => {
         <Form<InitialValues>
           onSubmit={onSubmit}
           initialValues={{
-            firstName: '',
+            firstName: userProfile?.firstName,
             nativeLang: 'en',
             targetLang: null,
           }}
