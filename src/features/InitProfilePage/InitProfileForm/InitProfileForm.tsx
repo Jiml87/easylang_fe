@@ -4,7 +4,7 @@ import { Button } from 'primereact/button';
 
 import FormGroupRadioButtons from '@/components/FormGroupRadioButtons/FormGroupRadioButtons';
 import FormInputText from '@/components/FormInputText/FormInputText';
-import { useAppDispatch, useAppSelector } from '@/store/hooks'; //useAppSelector
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useRouter } from 'next/navigation';
 import {
   composeValidators,
@@ -16,7 +16,7 @@ import { AvailableLangs } from '@/types/langs';
 import { AVAILABLE_LANGS_OPTIONS } from '@/constants/langs';
 import { initProfileRequest } from '@/features/InitProfilePage/initProfileSlice';
 import { addNewPhrasePage } from '@/config/routes';
-import { selectInitProfileState } from '../initProfileSlice';
+import { selectInitProfileState } from '@/features/InitProfilePage/initProfileSlice';
 
 interface InitialValues {
   firstName: string;
