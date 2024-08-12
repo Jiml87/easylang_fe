@@ -17,7 +17,7 @@ class RouterPath {
 }
 
 // /myapp - is privet routes
-export const login = new RouterPath('/login');
-export const addNewPhrase = new RouterPath('/myapp/add-phrase');
-export const dictionary = new RouterPath('/myapp/dictionary');
-export const initProfile = new RouterPath('/myapp/init-profile');
+export const loginPage = new RouterPath('/login');
+export const addNewPhrasePage = new RouterPath('/myapp/add-phrase');
+export const dictionaryPage = new RouterPath('/myapp/dictionary');
+export const initProfilePage = new RouterPath('/myapp/init-profile');

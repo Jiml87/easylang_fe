@@ -4,10 +4,11 @@ import { headers } from 'next/headers';
 
 import fetchAuthInfo from '@/api/authInfo';
 import { UserProfile } from '@/types/auth';
-import { initProfile } from '@/config/routes';
+import { initProfilePage } from '@/config/routes';
 
 export async function getAuthInfo(): Promise<UserProfile | null> {
   const user = await fetchAuthInfo();
+  console.log('user', user);
 
   // User is not registered
   if (!user.id) {
@@ -21,9 +22,9 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
     const pathname = headerList.get('x-current-path');
     if (
       pathname?.indexOf('/myapp/') === 0 &&
-      pathname?.indexOf(initProfile.path) === -1
+      pathname?.indexOf(initProfilePage.path) === -1
     ) {
-      redirect(initProfile.path);
+      redirect(initProfilePage.path);
     }
     return null;
   }
