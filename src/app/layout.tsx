@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-
 import Providers from '@/app/providers';
 import MessagesBar from '@/features/MessagesBar/MessagesBar';
+import { getAuthInfo } from './actions';
 
-import '../styles/global.css';
-// import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/lara-light-teal/theme.css';
+// import 'primereact/resources/themes/lara-dark-teal/theme.css';
 import 'primeicons/primeicons.css';
+import '../styles/global.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,11 +16,13 @@ export const metadata: Metadata = {
   description: 'Mywords helps to learn new language efficiently',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const authInfo = await getAuthInfo();
+
   return (
     <html lang="en">
       <head>
@@ -36,7 +38,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-slate-50`}>
-        <Providers>
+        <Providers authInfo={authInfo}>
           {children}
           <MessagesBar />
         </Providers>

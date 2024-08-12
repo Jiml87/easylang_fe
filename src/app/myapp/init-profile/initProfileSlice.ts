@@ -5,6 +5,7 @@ import { RootState } from '@/store/store';
 import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { AppDispatch } from '@/store/store';
 import { AvailableLangs } from '@/types/langs';
+import { UserProfile } from '@/types/auth';
 
 type ProfileBody = {
   firstName: string;
@@ -27,11 +28,15 @@ export const initProfileRequest = createAsyncThunk(
 );
 
 interface InitialState {
+  userProfile: null | UserProfile;
+  isAuth: boolean;
   isLoading: boolean;
   error: any;
 }
 
 const initialState: InitialState = {
+  userProfile: null,
+  isAuth: false,
   isLoading: false,
   error: null,
 };
@@ -40,15 +45,26 @@ const slice = createSlice({
   name: 'initProfile',
   initialState,
   reducers: {
-    // omit existing reducers here
+    initProfileInfo: (state, { payload }) => {
+      state.userProfile = payload;
+      state.isAuth = true;
+    },
+    resetAuthState: (state) => {
+      state.userProfile = initialState.userProfile;
+      state.isAuth = initialState.isAuth;
+      state.isLoading = initialState.isLoading;
+      state.error = initialState.error;
+    },
   },
   extraReducers(builder) {
     builder
       .addCase(initProfileRequest.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(initProfileRequest.fulfilled, (state) => {
+      .addCase(initProfileRequest.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+        state.userProfile = payload;
+        state.isAuth = true;
       })
       .addCase(initProfileRequest.rejected, (state, action) => {
         state.isLoading = false;
@@ -58,5 +74,6 @@ const slice = createSlice({
 });
 
 export const selectInitProfileState = (state: RootState) => state.initProfile;
+export const { initProfileInfo } = slice.actions;
 
 export default slice.reducer;

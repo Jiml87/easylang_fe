@@ -1,4 +1,5 @@
 @import url('./utils.css');
+@import url('../features/HomePage/HomePage.css');
 /* @import url('primereact/resources/themes/lara-light-teal/theme.css'); */
 
 @layer tailwind-base, tailwind-utilities;
@@ -12,6 +13,7 @@
 
 @layer tailwind-utilities {
   @tailwind utilities;
+  @tailwind components;
 }
 
 :root {

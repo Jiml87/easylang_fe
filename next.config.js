@@ -7,6 +7,8 @@ const nextConfig = {
   env: {
     OAUTH_GOOGLE_ID: process.env.OAUTH_GOOGLE_ID,
     OAUTH_GOOGLE_REDIRECT_URL: process.env.OAUTH_GOOGLE_REDIRECT_URL,
+    AUTH_JWT_SECRET: process.env.AUTH_JWT_SECRET,
+    API_HOST: API_HOST,
   },
   webpack: (config) => {
     config.resolve.alias = {

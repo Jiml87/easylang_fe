@@ -3,18 +3,19 @@ import React from 'react';
 import { PrimeReactProvider } from 'primereact/api';
 import Tailwind from 'primereact/passthrough/tailwind';
 import { twMerge } from 'tailwind-merge';
-// import { QueryClient, QueryClientProvider } from 'react-query';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import StoreProvider from '@/store/StoreProvider';
+import { UserProfile } from '@/types/auth';
 
-export default function Providers({ children }: { children: React.ReactNode }) {
-  // const [queryClient] = React.useState(() => new QueryClient());
+interface ProvidersProps {
+  children: React.ReactNode;
+  authInfo: UserProfile | null;
+}
 
+export default function Providers({ children, authInfo }: ProvidersProps) {
   return (
-    <StoreProvider>
-      {/* <QueryClientProvider client={queryClient}> */}
-      {/* //   <Hydrate state={pageProps.dehydratedState}> */}
+    <StoreProvider authInfo={authInfo}>
       <PrimeReactProvider
         value={{
           unstyled: false,
@@ -30,8 +31,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           {children}
         </GoogleOAuthProvider>
       </PrimeReactProvider>
-      {/* //   </Hydrate> */}
-      {/* </QueryClientProvider> */}
     </StoreProvider>
   );
 }
