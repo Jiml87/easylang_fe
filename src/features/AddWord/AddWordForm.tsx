@@ -3,7 +3,10 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Button } from 'primereact/button';
 
-import { createPhrase, selectNewPhrase } from '@/app/add-phrase/addPhraseSlice';
+import {
+  createPhrase,
+  selectNewPhrase,
+} from '@/app/myapp/add-phrase/addPhraseSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import FormInputText from '@/components/FormInputText/FormInputText';
 import {

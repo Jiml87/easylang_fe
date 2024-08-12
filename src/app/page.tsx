@@ -1,10 +1,5 @@
-import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
+import HomePage from '@/features/HomePage/HomePage';
 
-export default function HomePage() {
-  return (
-    <main>
-      <MainPageHeader />
-      Home
-    </main>
-  );
+export default async function Page() {
+  return <HomePage />;
 }
