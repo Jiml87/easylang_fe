@@ -12,7 +12,7 @@ const MainPageHeader = () => {
       <div>
         <Link href="/">Logo</Link>
       </div>
-      <div>{userProfile && <Link href="/login">Login</Link>}</div>
+      <div>{!userProfile && <Link href="/login">Login</Link>}</div>
     </header>
   );
 };
