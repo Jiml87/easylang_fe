@@ -6,7 +6,7 @@ import { Button } from 'primereact/button';
 import {
   createPhrase,
   selectNewPhrase,
-} from '@/app/myapp/add-phrase/addPhraseSlice';
+} from '@/features/AddWordPage/addWordSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import FormInputText from '@/components/FormInputText/FormInputText';
 import {
@@ -46,7 +46,7 @@ const AddWordForm = () => {
       render={({ handleSubmit, submitting }) => (
         <form
           onSubmit={handleSubmit}
-          className="flex h-dvh flex-col justify-between p-2"
+          className="flex grow flex-col justify-between p-2 sm:grow-0 sm:justify-center"
         >
           <div>
             <h1 className="my-3 text-2xl font-semibold">New phrase</h1>
@@ -69,7 +69,11 @@ const AddWordForm = () => {
               validate={composeValidators(required, minLen(2), maxLen(30))}
             />
           </div>
-          <Button label="Save" loading={isLoading} />
+          <Button
+            label="Save"
+            loading={isLoading}
+            className="sm:self-center sm:px-14"
+          />
         </form>
       )}
     />

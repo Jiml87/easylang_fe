@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import newPhrase from '@/app/myapp/add-phrase/addPhraseSlice';
+import newPhrase from '@/features/AddWordPage/addWordSlice';
 import messages from '@/features/MessagesBar/messagesBarSlice';
 import loginState from '@/features/LoginPage/loginSlice';
 import initProfile from '@/features/InitProfilePage/initProfileSlice';
