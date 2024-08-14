@@ -1,15 +1,9 @@
 'use client';
 
-import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
-import InitProfileForm from '@/features/InitProfilePage/InitProfileForm/InitProfileForm';
+import InitProfilePage from '@/features/InitProfilePage/InitProfilePage';
 
-const InitProfile = () => {
-  return (
-    <div>
-      <MainPageHeader />
-      <InitProfileForm />
-    </div>
-  );
+const Page = () => {
+  return <InitProfilePage />;
 };
 
-export default InitProfile;
+export default Page;
