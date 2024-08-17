@@ -7,11 +7,15 @@ import { UserProfile } from '@/types/auth';
 import { initProfilePage, addNewPhrasePage } from '@/config/routes';
 
 export async function getAuthInfo(): Promise<UserProfile | null> {
-  const user = await fetchAuthInfo();
-  console.log('user', user);
+  const resp = await fetchAuthInfo();
+
+  // valid user
+  if (resp.nativeLang) {
+    return resp;
+  }
 
   // User is not registered
-  if (!user.id) {
+  if (!resp.id) {
     return null;
   }
 
@@ -20,18 +24,17 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
   //TODO: Move this this logic to UI. Remove header x-current-path in middleware
   // User is registered but profile has not been finished
   if (
-    !user.nativeLang &&
+    resp.id &&
+    !resp.nativeLang &&
     pathname?.indexOf('/myapp/') === 0 &&
     pathname !== initProfilePage.path
   ) {
     redirect(initProfilePage.path);
-    return user;
   }
 
-  if (user.nativeLang && pathname === initProfilePage.path) {
+  if (resp.id && resp.nativeLang && pathname === initProfilePage.path) {
     redirect(addNewPhrasePage.path);
-    return user;
   }
 
-  return user;
+  return resp;
 }

@@ -8,7 +8,7 @@ import {
   selectNewPhrase,
 } from '@/features/AddWordPage/addWordSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import FormInputText from '@/components/FormInputText/FormInputText';
+import FormTextArea from '@/components/FormTextArea/FormTextArea';
 import {
   composeValidators,
   required,
@@ -18,7 +18,7 @@ import {
 
 interface InitialValues {
   nativePhrase: string;
-  translatedPhrase: string;
+  targetPhrase: string;
 }
 
 const AddWordForm = () => {
@@ -27,7 +27,6 @@ const AddWordForm = () => {
 
   const onSubmit = (values: InitialValues, form: any) => {
     dispatch(createPhrase(values)).then((res: any) => {
-      console.log('res', res);
       if (!res.error) {
         form.reset();
       }
@@ -41,7 +40,7 @@ const AddWordForm = () => {
       onSubmit={onSubmit}
       initialValues={{
         nativePhrase: '',
-        translatedPhrase: '',
+        targetPhrase: '',
       }}
       render={({ handleSubmit, submitting }) => (
         <form
@@ -49,20 +48,20 @@ const AddWordForm = () => {
           className="flex grow flex-col justify-between p-2 sm:grow-0 sm:justify-center"
         >
           <div>
-            <h1 className="my-3 text-2xl font-semibold">New phrase</h1>
+            <h1 className="my-3 text-2xl font-semibold">Add word or phrase</h1>
             <Field
-              component={FormInputText}
-              name="nativePhrase"
-              label="Native phrase"
+              component={FormTextArea}
+              name="targetPhrase"
+              label="Target word"
               subLabel={<small>*</small>}
               inputClassName="w-full"
               disabled={isLoading || submitting}
               validate={composeValidators(required, minLen(2), maxLen(30))}
             />
             <Field
-              component={FormInputText}
-              name="translatedPhrase"
-              label="Translation"
+              component={FormTextArea}
+              name="nativePhrase"
+              label="Native word"
               subLabel={<small>*</small>}
               inputClassName="w-full"
               disabled={isLoading || submitting}
@@ -72,7 +71,7 @@ const AddWordForm = () => {
           <Button
             label="Save"
             loading={isLoading}
-            className="sm:self-center sm:px-14"
+            className="pb-6 sm:self-center sm:px-14"
           />
         </form>
       )}

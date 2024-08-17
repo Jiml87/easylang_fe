@@ -6,15 +6,26 @@ import { RootState } from '@/store/store';
 import { addSuccessMessage } from '@/features/MessagesBar/messagesBarSlice';
 import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { AppDispatch } from '@/store/store';
+import {
+  selectNativeLanguage,
+  selectCurrentTargetLanguage,
+} from '@/features/InitProfilePage/userProfileSlice';
 
-type CreatePhraseBody = {
+type CreatePhraseValues = {
   nativePhrase: string;
-  translatedPhrase: string;
+  targetPhrase: string;
 };
 
 export const createPhrase = createAsyncThunk(
   'prase/create',
-  async (body: CreatePhraseBody, { rejectWithValue, dispatch }) => {
+  async (
+    values: CreatePhraseValues,
+    { rejectWithValue, dispatch, getState },
+  ) => {
+    const nativeLang = selectNativeLanguage(getState() as RootState);
+    const targetLang = selectCurrentTargetLanguage(getState() as RootState);
+    const body = { ...values, nativeLang, targetLang };
+
     return catchErrorInAsyncAction(
       rejectWithValue,
       dispatch as AppDispatch,

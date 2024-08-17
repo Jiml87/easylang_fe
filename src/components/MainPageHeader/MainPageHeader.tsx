@@ -1,13 +1,13 @@
 'use client';
 import Link from 'next/link';
-import { useAppSelector } from '@/store/hooks';
 
-import { selectInitProfileState } from '@/features/InitProfilePage/initProfileSlice';
+import { useAppSelector } from '@/store/hooks';
+import { selectUserProfile } from '@/features/InitProfilePage/userProfileSlice';
 import Logo from '@/components/Logo/Logo';
 import { loginPage } from '@/config/routes';
 
 const MainPageHeader = () => {
-  const { userProfile } = useAppSelector(selectInitProfileState);
+  const userProfile = useAppSelector(selectUserProfile);
   return (
     <header className="flex justify-between px-4 py-4">
       <div>

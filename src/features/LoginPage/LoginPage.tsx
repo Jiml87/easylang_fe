@@ -4,7 +4,7 @@ import { Card } from 'primereact/card';
 import { useGoogleLogin } from '@react-oauth/google';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { useRouter } from 'next/navigation';
-import { initProfilePage } from '@/config/routes';
+import { initProfilePage, addNewPhrasePage } from '@/config/routes';
 
 import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -20,7 +20,11 @@ const LoginPage = () => {
   const responseMessage = (response: { code: string }) => {
     dispatch(googleLoginRequest(response)).then((data) => {
       if (data.payload.id) {
-        router.push(initProfilePage.path);
+        // user is set up
+        const path = data.payload.nativeLang
+          ? addNewPhrasePage.path
+          : initProfilePage.path;
+        router.push(path);
       }
     });
   };

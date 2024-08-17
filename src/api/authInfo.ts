@@ -17,5 +17,6 @@ export default async function getAuthInfo() {
       },
     },
   );
+
   return res.json();
 }
