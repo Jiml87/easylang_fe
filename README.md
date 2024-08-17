@@ -1,4 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Goal
+
+User should have an opportunity to learn new words to efficient way.
+Simply add any word you want to learn, and the app will
+schedule reminders to review it on the 1st, 3rd, 7th, and 30th
+day. Plus, with smart AI-driven tasks, user'll practice
+using the word in context, making it easier to retain and
+understand.
+
+## Motivation
+
+User should have an opportunity to save a new word as soon as possible.
+Any new features should not negatively impact this capability!!!.
 
 ## Getting Started
 
@@ -15,8 +27,6 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
