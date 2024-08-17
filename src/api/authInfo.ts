@@ -10,7 +10,7 @@ export default async function getAuthInfo() {
   const res = await fetch(
     `${process.env.API_HOST}/api/v1/users/user-by-credentials`,
     {
-      // credentials: 'include',
+      credentials: 'include',
       cache: 'no-store',
       headers: {
         Cookie: `access_token=${access_token};`,
