@@ -50,6 +50,9 @@ const slice = createSlice({
   reducers: {
     userProfileInfo: (state, { payload }) => {
       state.user = payload;
+      state.currentTargetLang =
+        payload?.targetLangs?.find(({ isPrimary }: any) => isPrimary)?.lang ||
+        null;
       state.isAuth = true;
     },
     resetAuthState: (state) => {
@@ -69,7 +72,8 @@ const slice = createSlice({
         state.isLoading = false;
         state.user = payload;
         state.currentTargetLang =
-          payload.targetLangs?.find(({ isPrimary }) => isPrimary)?.lang || null;
+          payload?.targetLangs?.find(({ isPrimary }) => isPrimary)?.lang ||
+          null;
         state.isAuth = true;
       })
       .addCase(initProfileRequest.rejected, (state, action) => {
@@ -99,6 +103,15 @@ export const selectNativeLanguage = createSelector(
 
 export const selectCurrentTargetLanguage = (state: RootState) =>
   state.userProfile.currentTargetLang;
+
+export const selectUserLangs = createSelector(
+  selectNativeLanguage,
+  selectCurrentTargetLanguage,
+  (nativeLang, targetLang) => ({
+    nativeLang,
+    targetLang,
+  }),
+);
 
 export const { userProfileInfo } = slice.actions;
 

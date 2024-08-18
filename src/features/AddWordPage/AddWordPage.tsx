@@ -1,6 +1,5 @@
 'use client';
-import React from 'react';
-import { Form, Field } from 'react-final-form';
+import { Form, Field, FormSpy } from 'react-final-form';
 import { Button } from 'primereact/button';
 
 import {
@@ -15,6 +14,9 @@ import {
   minLen,
   maxLen,
 } from '@/utils/validators';
+import AutoTranslation from './components/AutoTranslation/AutoTranslation';
+import { selectUserLangs } from '@/features/InitProfilePage/userProfileSlice';
+import { LANG_BY_CODE } from '@/constants/langs';
 
 interface InitialValues {
   nativePhrase: string;
@@ -24,6 +26,7 @@ interface InitialValues {
 const AddWordForm = () => {
   const dispatch = useAppDispatch();
   const newPhraseState = useAppSelector(selectNewPhrase);
+  const { targetLang, nativeLang } = useAppSelector(selectUserLangs);
 
   const onSubmit = (values: InitialValues, form: any) => {
     dispatch(createPhrase(values)).then((res: any) => {
@@ -37,10 +40,11 @@ const AddWordForm = () => {
 
   return (
     <Form<InitialValues>
+      subscription={{ submitting: true, pristine: true }}
       onSubmit={onSubmit}
       initialValues={{
-        nativePhrase: '',
         targetPhrase: '',
+        nativePhrase: '',
       }}
       render={({ handleSubmit, submitting }) => (
         <form
@@ -52,7 +56,7 @@ const AddWordForm = () => {
             <Field
               component={FormTextArea}
               name="targetPhrase"
-              label="Target word"
+              label={LANG_BY_CODE[targetLang!]}
               subLabel={<small>*</small>}
               inputClassName="w-full"
               disabled={isLoading || submitting}
@@ -61,12 +65,21 @@ const AddWordForm = () => {
             <Field
               component={FormTextArea}
               name="nativePhrase"
-              label="Native word"
+              label={LANG_BY_CODE[nativeLang!]}
               subLabel={<small>*</small>}
               inputClassName="w-full"
               disabled={isLoading || submitting}
               validate={composeValidators(required, minLen(2), maxLen(30))}
             />
+            <FormSpy
+              subscription={{
+                values: true,
+              }}
+            >
+              {(props: { values: InitialValues }) => (
+                <AutoTranslation targetPhrase={props.values.targetPhrase} />
+              )}
+            </FormSpy>
           </div>
           <Button
             label="Save"

@@ -13,14 +13,14 @@ const HomePage = () => {
       <div className="glass_container">
         <div>
           <MainPageHeader />
-          <main className="p-4 md:grid md:grid-cols-2">
+          <main className="px-4 py-2 sm:py-4 md:grid md:grid-cols-2">
             <div className="justify-center md:flex md:flex-col">
               <div className="text-green-700 md:max-w-lg">
                 <b className="text-xl sm:text-2xl">
                   Struggling to remember new words while learning a foreign
                   language?
                 </b>
-                <div>
+                <div className="pt-2 text-sm sm:text-base">
                   Simply add any word you want to learn, and the app will
                   schedule reminders to review it on the 1st, 3rd, 7th, and 30th
                   day. Plus, with smart AI-driven tasks, you&lsquo;ll practice
