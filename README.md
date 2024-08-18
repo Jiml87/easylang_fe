@@ -9,7 +9,7 @@ understand.
 
 ## Motivation
 
-User should have an opportunity to save a new word as soon as possible.
+The user should be able to save a new word very quickly without long loading times of the application.
 Any new features should not negatively impact this capability!!!.
 
 
