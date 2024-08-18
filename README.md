@@ -12,6 +12,12 @@ understand.
 User should have an opportunity to save a new word as soon as possible.
 Any new features should not negatively impact this capability!!!.
 
+
+
+https://github.com/user-attachments/assets/446ef8a8-83ae-4f78-828e-8ab836b6dfa7
+
+
+
 ## Getting Started
 
 First, run the development server:
