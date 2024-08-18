@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { Provider } from 'react-redux';
 import { makeStore, AppStore } from '@/store/store';
 import { UserProfile } from '@/types/auth';
-import { initProfileInfo } from '@/features/InitProfilePage/initProfileSlice';
+import { userProfileInfo } from '@/features/InitProfilePage/userProfileSlice';
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ export default function StoreProvider({ children, authInfo }: ProvidersProps) {
     storeRef.current = makeStore();
     // console.log('authInfo', authInfo);
 
-    storeRef.current.dispatch(initProfileInfo(authInfo));
+    storeRef.current.dispatch(userProfileInfo(authInfo));
   }
 
   return <Provider store={storeRef.current}>{children}</Provider>;

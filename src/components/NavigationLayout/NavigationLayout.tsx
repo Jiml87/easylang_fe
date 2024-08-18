@@ -39,7 +39,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
         </div>
       </header>
       {children}
-      <nav className="flex justify-between px-2 py-1 text-slate-500 sm:hidden">
+      <nav className="flex justify-between px-6 py-1 text-slate-500 sm:hidden">
         <Button
           icon="pi pi-list text-xl"
           rounded

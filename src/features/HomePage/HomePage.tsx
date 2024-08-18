@@ -1,26 +1,46 @@
+'use client';
 import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
-import Link from 'next/link';
+// import Link from 'next/link';
 import Image from 'next/image';
+import { Button } from 'primereact/button';
+import { useRouter } from 'next/navigation';
 
-import { addNewPhrasePage } from '@/config/routes';
+import { useAppSelector } from '@/store/hooks';
+import { addNewPhrasePage, loginPage, initProfilePage } from '@/config/routes';
+import { selectUserProfile } from '../InitProfilePage/userProfileSlice';
 import bannerImage from '@/assets/images/banner/home_banner_v1.svg';
 
 import './HomePage.css';
 
 const HomePage = () => {
+  const router = useRouter();
+  const user = useAppSelector(selectUserProfile);
+  const handleGetStarted = () => {
+    let path = '/';
+    if (!user) {
+      path = loginPage.path;
+    } else if (!user.nativeLang) {
+      path = initProfilePage.path;
+    } else {
+      path = addNewPhrasePage.path;
+    }
+
+    router.push(path);
+  };
+
   return (
     <div className="home_page">
       <div className="glass_container">
         <div>
           <MainPageHeader />
-          <main className="p-4 md:grid md:grid-cols-2">
+          <main className="px-4 py-2 sm:py-4 md:grid md:grid-cols-2">
             <div className="justify-center md:flex md:flex-col">
               <div className="text-green-700 md:max-w-lg">
                 <b className="text-xl sm:text-2xl">
                   Struggling to remember new words while learning a foreign
                   language?
                 </b>
-                <div>
+                <div className="pt-2 text-sm sm:text-base">
                   Simply add any word you want to learn, and the app will
                   schedule reminders to review it on the 1st, 3rd, 7th, and 30th
                   day. Plus, with smart AI-driven tasks, you&lsquo;ll practice
@@ -29,13 +49,16 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="pt-6 md:pt-10">
-                <Link
+                <Button severity="warning" onClick={handleGetStarted}>
+                  Get Started
+                </Button>
+                {/* <Link
                   rel="noopener noreferrer"
                   className="p-button p-button-warning font-bold text-white"
                   href={addNewPhrasePage.path}
                 >
                   Get Started
-                </Link>
+                </Link> */}
               </div>
             </div>
             <div className="flex justify-center pt-6">

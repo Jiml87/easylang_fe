@@ -1,5 +1,5 @@
 'use client';
-import { Form, Field } from 'react-final-form';
+import { Field, Form } from 'react-final-form';
 import { Button } from 'primereact/button';
 
 import FormGroupRadioButtons from '@/components/FormGroupRadioButtons/FormGroupRadioButtons';
@@ -14,24 +14,28 @@ import {
 } from '@/utils/validators';
 import { AvailableLangs } from '@/types/langs';
 import { AVAILABLE_LANGS_OPTIONS } from '@/constants/langs';
-import { initProfileRequest } from '@/features/InitProfilePage/initProfileSlice';
 import { addNewPhrasePage } from '@/config/routes';
-import { selectInitProfileState } from '@/features/InitProfilePage/initProfileSlice';
+import {
+  selectUserProfile,
+  initProfileRequest,
+} from '@/features/InitProfilePage/userProfileSlice';
+import { UserProfile } from '@/types/auth';
 
 interface InitialValues {
   firstName: string;
-  targetLang: AvailableLangs | null;
-  nativeLang: AvailableLangs | null;
+  targetLang: AvailableLangs;
+  nativeLang: AvailableLangs;
 }
 
 const InitProfileForm = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { userProfile } = useAppSelector(selectInitProfileState);
+  const userProfile = useAppSelector(selectUserProfile);
 
-  const onSubmit = (data: any) => {
-    dispatch(initProfileRequest(data)).then((response) => {
-      response.payload.id && router.push(addNewPhrasePage.path);
+  const onSubmit = (values: InitialValues) => {
+    dispatch(initProfileRequest(values)).then((response) => {
+      (response.payload as UserProfile)?.id &&
+        router.push(addNewPhrasePage.path);
     });
   };
   const isLoading = false;
@@ -39,7 +43,7 @@ const InitProfileForm = () => {
   return (
     <div className="flex justify-center">
       <div className="max-w-4xl">
-        <h1 className="flex-wrap">
+        <h1 className="flex-wrap pt-6">
           <span>Welcome!</span>
           <span>Let&apos;s set up your profile.</span>
         </h1>
@@ -48,7 +52,7 @@ const InitProfileForm = () => {
           initialValues={{
             firstName: userProfile?.firstName,
             nativeLang: 'en',
-            targetLang: null,
+            targetLang: undefined,
           }}
           render={({ handleSubmit, submitting, values, form }) => (
             <form onSubmit={handleSubmit} className="p-2">
@@ -69,7 +73,7 @@ const InitProfileForm = () => {
                   options={AVAILABLE_LANGS_OPTIONS}
                   customOnChange={(newVal: string) =>
                     newVal === values.targetLang &&
-                    form.change('targetLang', null)
+                    form.change('targetLang', undefined)
                   }
                 />
 

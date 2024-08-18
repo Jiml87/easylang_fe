@@ -2,14 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from '@/api/axiosInstance';
 import { RootState } from '@/store/store';
-// import { addSuccessMessage } from '@/features/MessagesBar/messagesBarSlice';
 import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { AppDispatch } from '@/store/store';
-// import { GoogleCredentialResponse } from '@react-oauth/google';
-
-// type LoginBody = {
-//   token: string;
-// };
+import { userProfileInfo } from '@/features/InitProfilePage/userProfileSlice';
 
 export const googleLoginRequest = createAsyncThunk(
   'login/google',
@@ -21,6 +16,9 @@ export const googleLoginRequest = createAsyncThunk(
         const response = await axios.get(
           `/v1/auth/google/login?access_token=${body.code}`,
         );
+
+        dispatch(userProfileInfo(response.data));
+
         return response.data;
       },
     );
