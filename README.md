@@ -9,8 +9,9 @@ understand.
 
 ## Motivation
 
-The user should be able to save a new word very quickly without long loading times of the application.
-Any new features should not negatively impact this capability!!!.
+* A user should be able to save a new word very quickly without long loading times of the application.
+Any new features should not negatively impact this capability!!!
+* Keep an eye on mobile version
 
 
 
