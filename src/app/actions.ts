@@ -10,7 +10,7 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
   const resp = await fetchAuthInfo();
   const headerList = headers();
   const pathname = headerList.get('x-current-path');
-  console.log('resp', resp);
+  console.log('resp', resp, pathname);
 
   // valid user
   if (resp.id && resp.nativeLang) {

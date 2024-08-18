@@ -17,6 +17,7 @@ class RouterPath {
 }
 
 // /myapp - is privet routes
+export const rootPage = new RouterPath('/');
 export const loginPage = new RouterPath('/login');
 export const addNewPhrasePage = new RouterPath('/myapp/add-word');
 export const dictionaryPage = new RouterPath('/myapp/dictionary');

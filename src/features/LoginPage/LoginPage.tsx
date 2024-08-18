@@ -24,12 +24,14 @@ const LoginPage = () => {
         const path = data.payload.nativeLang
           ? addNewPhrasePage.path
           : initProfilePage.path;
+
         router.push(path);
       }
     });
   };
+
   const errorMessage = (error: any) => {
-    console.log('error', error);
+    console.error('error', error);
   };
 
   const handleGoogleLogin = useGoogleLogin({
