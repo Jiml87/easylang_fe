@@ -46,7 +46,7 @@ const AddWordForm = () => {
         targetPhrase: '',
         nativePhrase: '',
       }}
-      render={({ handleSubmit, submitting }) => (
+      render={({ handleSubmit, submitting, form }) => (
         <form
           onSubmit={handleSubmit}
           className="flex grow flex-col justify-between p-2 sm:grow-0 sm:justify-center"
@@ -70,6 +70,16 @@ const AddWordForm = () => {
               inputClassName="w-full"
               disabled={isLoading || submitting}
               validate={composeValidators(required, minLen(2), maxLen(30))}
+            />
+            <FormSpy
+              subscription={{
+                values: true,
+              }}
+              onChange={({ values }) => {
+                if (!values.targetPhrase) {
+                  form.change('nativePhrase', '');
+                }
+              }}
             />
             <FormSpy
               subscription={{

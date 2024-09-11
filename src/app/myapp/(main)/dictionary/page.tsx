@@ -1,8 +1,8 @@
 'use client';
-// import ListWords from '@/features/ListWords/ListWords';
+import DictionaryPage from '@/features/DictionaryPage/DictionaryPage';
 
 const Page = () => {
-  return <div>dictionary</div>;
+  return <DictionaryPage />;
 };
 
 export default Page;
