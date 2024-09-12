@@ -3,6 +3,7 @@ import newPhrase from '@/features/AddWordPage/addWordSlice';
 import messages from '@/features/MessagesBar/messagesBarSlice';
 import loginState from '@/features/LoginPage/loginSlice';
 import userProfile from '@/features/InitProfilePage/userProfileSlice';
+import dictionary from '@/features/DictionaryPage/dictionarySlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -11,6 +12,7 @@ export const makeStore = () => {
       messages,
       loginState,
       userProfile,
+      dictionary,
     },
     devTools: process.env.NODE_ENV !== 'production',
   });

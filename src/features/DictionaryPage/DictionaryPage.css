@@ -1,0 +1,11 @@
+.empty_list {
+  @apply text-center text-sm text-gray-400;
+}
+
+.tab_view {
+  @apply flex grow flex-col;
+
+  &.p-tabview .p-tabview-panels {
+    @apply grow;
+  }
+}
