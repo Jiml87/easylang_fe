@@ -19,8 +19,8 @@ import { selectUserLangs } from '@/features/InitProfilePage/userProfileSlice';
 import { LANG_BY_CODE } from '@/constants/langs';
 
 interface InitialValues {
-  nativePhrase: string;
-  targetPhrase: string;
+  nativeText: string;
+  targetText: string;
 }
 
 const AddWordForm = () => {
@@ -43,8 +43,8 @@ const AddWordForm = () => {
       subscription={{ submitting: true, pristine: true }}
       onSubmit={onSubmit}
       initialValues={{
-        targetPhrase: '',
-        nativePhrase: '',
+        targetText: '',
+        nativeText: '',
       }}
       render={({ handleSubmit, submitting, form }) => (
         <form
@@ -55,7 +55,7 @@ const AddWordForm = () => {
             <h1 className="my-3 text-2xl font-semibold">Add word or phrase</h1>
             <Field
               component={FormTextArea}
-              name="targetPhrase"
+              name="targetText"
               label={LANG_BY_CODE[targetLang!]}
               subLabel={<small>*</small>}
               inputClassName="w-full"
@@ -64,7 +64,7 @@ const AddWordForm = () => {
             />
             <Field
               component={FormTextArea}
-              name="nativePhrase"
+              name="nativeText"
               label={LANG_BY_CODE[nativeLang!]}
               subLabel={<small>*</small>}
               inputClassName="w-full"
@@ -76,8 +76,8 @@ const AddWordForm = () => {
                 values: true,
               }}
               onChange={({ values }) => {
-                if (!values.targetPhrase) {
-                  form.change('nativePhrase', '');
+                if (!values.targetText) {
+                  form.change('nativeText', '');
                 }
               }}
             />
@@ -87,7 +87,7 @@ const AddWordForm = () => {
               }}
             >
               {(props: { values: InitialValues }) => (
-                <AutoTranslation targetPhrase={props.values.targetPhrase} />
+                <AutoTranslation targetText={props.values.targetText} />
               )}
             </FormSpy>
           </div>

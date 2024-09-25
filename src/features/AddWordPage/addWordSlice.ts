@@ -12,8 +12,8 @@ import {
 } from '@/features/InitProfilePage/userProfileSlice';
 
 type CreatePhraseValues = {
-  nativePhrase: string;
-  targetPhrase: string;
+  nativeText: string;
+  targetText: string;
 };
 
 export const createPhrase = createAsyncThunk(

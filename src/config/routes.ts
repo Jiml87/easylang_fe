@@ -2,17 +2,22 @@ interface PathParams {
   queries?: Record<string, string>;
 }
 
-class RouterPath {
+class ProtoRouterPath {
   readonly path: string = '';
-  constructor(path: string) {
-    this.path = path;
-  }
+
   getPath({ queries }: PathParams) {
     let newPath = this.path;
     if (queries) {
       newPath += `?${new URLSearchParams(queries).toString()}`;
     }
     return newPath;
+  }
+}
+class RouterPath extends ProtoRouterPath {
+  readonly path: string = '';
+  constructor(path: string) {
+    super();
+    this.path = path;
   }
 }
 
