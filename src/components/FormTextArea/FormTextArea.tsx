@@ -11,7 +11,7 @@ type FormInputTextProps = FieldRenderProps<string, HTMLElement> & {
   autoResize?: boolean;
 };
 
-const FormTextArea: FC<FormInputTextProps> = ({
+export const FormTextArea: FC<FormInputTextProps> = ({
   input,
   meta,
   label,

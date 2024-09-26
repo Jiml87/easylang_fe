@@ -19,7 +19,7 @@ export const LearnTodayTab = () => {
           <li
             key={word.id}
             className={twMerge(
-              'flex justify-between px-2 py-2',
+              'flex cursor-pointer items-center justify-between px-2 py-2 sm:pr-10',
               index % 2 === 0 && 'bg-slate-100',
             )}
           >
