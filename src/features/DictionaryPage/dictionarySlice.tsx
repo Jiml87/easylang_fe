@@ -16,8 +16,6 @@ interface InitialState {
   countLearningWordsForToday: number;
   limitLearningWordsForToday: number;
   offsetLearningWordsForToday: number;
-  //   learningWords: Word[];
-  //   countLearningWords: number;
   status: ApiRequestStatusV2;
   error: any;
 }
@@ -27,8 +25,6 @@ const initialState: InitialState = {
   countLearningWordsForToday: 0,
   limitLearningWordsForToday: 50,
   offsetLearningWordsForToday: 0,
-  //   learningWords: [],
-  //   countLearningWords: 0,
   status: 'idle',
   error: null,
 };
@@ -65,7 +61,6 @@ const dictionarySlice = createSlice({
         state.status = 'pending';
       })
       .addCase(getLearningWordsForToday.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.learningWordsForToday = payload[0];
         state.countLearningWordsForToday = payload[1];
         state.status = 'succeeded';

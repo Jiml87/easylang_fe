@@ -9,8 +9,10 @@ import { isDevelopment } from '@/constants/env';
 
 const AutoTranslation = memo(function Transl({
   targetText,
+  setLoading,
 }: {
   targetText: string;
+  setLoading(_loading: boolean): void;
 }) {
   const { current: controller } = useRef(new AbortController());
   const form = useForm();
@@ -24,16 +26,20 @@ const AutoTranslation = memo(function Transl({
         return;
       }
       try {
+        setLoading(true);
         const results = await axios.post(
           `/v1/translate`,
           { q: targetText.trim(), target: nativeLang, source: targetLang },
           { signal: controller.signal },
         );
+        setLoading(false);
 
         if (results.data.translatedText) {
           form.change('nativeText', results.data.translatedText);
+          form.change('nativeCustomText', results.data.translatedText);
         }
       } catch (error) {
+        setLoading(false);
         console.error(error);
       }
     }, 600),

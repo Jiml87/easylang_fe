@@ -13,7 +13,7 @@ interface WordIconStatusProps {
 const getTitleByStatus = (status: WordLearningDay): string => {
   switch (status) {
     case 0:
-      return 'No Passed';
+      return 'Not Passed Yet';
     case 1:
       return 'Passed 1st Day';
     case 3:
@@ -23,7 +23,7 @@ const getTitleByStatus = (status: WordLearningDay): string => {
     case 30:
       return 'Finished';
     default:
-      return 'No Passed';
+      return 'Status is not available';
   }
 };
 

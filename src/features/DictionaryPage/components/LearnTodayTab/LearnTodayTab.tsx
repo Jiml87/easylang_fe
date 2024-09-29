@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 
 import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
+import { learningPage } from '@/config/routes';
 
 export const LearnTodayTab = () => {
   const learningWordsForToday = useAppSelector(selectLearningWordsForToday);
@@ -37,8 +38,8 @@ export const LearnTodayTab = () => {
       {!!learningWordsForToday.length && (
         <div className="sticky bottom-0 mt-5 flex sm:justify-center">
           <Link
-            href="/"
-            className="p-button w-full justify-center font-bold shadow-md shadow-teal-700 sm:w-auto sm:px-20"
+            href={learningPage.path}
+            className="p-button w-full justify-center font-bold sm:w-auto sm:px-20"
           >
             Upload To The Brain
           </Link>

@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { Form, Field, FormSpy } from 'react-final-form';
 import { Button } from 'primereact/button';
 
@@ -19,7 +20,8 @@ import { selectUserLangs } from '@/features/InitProfilePage/userProfileSlice';
 import { LANG_BY_CODE } from '@/constants/langs';
 
 interface InitialValues {
-  nativeText: string;
+  nativeText: string; // provided by translator
+  nativeCustomText: string;
   targetText: string;
 }
 
@@ -27,6 +29,7 @@ const AddWordForm = () => {
   const dispatch = useAppDispatch();
   const newPhraseState = useAppSelector(selectNewPhrase);
   const { targetLang, nativeLang } = useAppSelector(selectUserLangs);
+  const [translationLoading, setTranslationLoading] = useState<boolean>();
 
   const onSubmit = (values: InitialValues, form: any) => {
     dispatch(createPhrase(values)).then((res: any) => {
@@ -45,11 +48,12 @@ const AddWordForm = () => {
       initialValues={{
         targetText: '',
         nativeText: '',
+        nativeCustomText: '',
       }}
       render={({ handleSubmit, submitting, form }) => (
         <form
           onSubmit={handleSubmit}
-          className="flex grow flex-col justify-between p-2 sm:grow-0 sm:justify-center"
+          className="flex h-full grow flex-col justify-between p-2 sm:grow-0 sm:justify-center"
         >
           <div>
             <h1 className="my-3 text-2xl font-semibold">Add word or phrase</h1>
@@ -64,12 +68,13 @@ const AddWordForm = () => {
             />
             <Field
               component={FormTextArea}
-              name="nativeText"
+              name="nativeCustomText"
               label={LANG_BY_CODE[nativeLang!]}
               subLabel={<small>*</small>}
               inputClassName="w-full"
               disabled={isLoading || submitting}
               validate={composeValidators(required, minLen(2), maxLen(30))}
+              loading={translationLoading}
             />
             <FormSpy
               subscription={{
@@ -77,7 +82,7 @@ const AddWordForm = () => {
               }}
               onChange={({ values }) => {
                 if (!values.targetText) {
-                  form.change('nativeText', '');
+                  form.change('nativeCustomText', '');
                 }
               }}
             />
@@ -87,7 +92,10 @@ const AddWordForm = () => {
               }}
             >
               {(props: { values: InitialValues }) => (
-                <AutoTranslation targetText={props.values.targetText} />
+                <AutoTranslation
+                  targetText={props.values.targetText}
+                  setLoading={setTranslationLoading}
+                />
               )}
             </FormSpy>
           </div>

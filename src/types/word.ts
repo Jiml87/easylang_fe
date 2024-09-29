@@ -38,6 +38,8 @@ export type UserWordFromAPI = {
   learningDate: string;
   learningDay: WordLearningDay;
   targetWord: TargetWord;
+  nativeCustomText: string;
+  nativeLang: AvailableLangs;
 };
 
 export type Word = UserWordFromAPI & {

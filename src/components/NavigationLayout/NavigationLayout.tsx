@@ -3,8 +3,11 @@ import { addNewPhrasePage, dictionaryPage } from '@/config/routes';
 import { Button } from 'primereact/button';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Badge } from 'primereact/badge';
 
+import { useAppSelector } from '@/store/hooks';
 import Logo from '@/components/Logo/Logo';
+import { selectCountLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 
 interface NavigationLayoutProps {
   children: ReactNode;
@@ -13,6 +16,7 @@ interface NavigationLayoutProps {
 const NavigationLayout = ({ children }: NavigationLayoutProps) => {
   const router = useRouter();
   const handleOpenMobileFooterPopup = () => null;
+  const countLearningWords = useAppSelector(selectCountLearningWordsForToday);
   return (
     <section className="mx-auto flex h-dvh max-w-4xl flex-col">
       <div className="-z-1 fixed left-0 right-0 flex justify-center">
@@ -38,7 +42,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
           </Link>
         </div>
       </header>
-      {children}
+      <div className="grow">{children}</div>
       <nav className="flex justify-between border-t bg-white px-6 py-1 text-slate-500 sm:hidden">
         <Button
           icon="pi pi-list text-xl"
@@ -48,7 +52,16 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
           aria-label="Dictionary"
           link
           onClick={() => router.push(dictionaryPage.path)}
-        />
+          className="relative"
+        >
+          {!!countLearningWords && (
+            <Badge
+              value={countLearningWords}
+              severity="danger"
+              className="absolute right-1 top-1"
+            />
+          )}
+        </Button>
         <Button
           icon="pi pi-plus text-xl"
           rounded
