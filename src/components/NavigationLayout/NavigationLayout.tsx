@@ -58,7 +58,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
             <Badge
               value={countLearningWords}
               severity="danger"
-              className="absolute right-1 top-2"
+              className="absolute right-2 top-2"
             />
           )}
         </Button>
