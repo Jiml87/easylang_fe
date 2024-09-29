@@ -1,22 +1,24 @@
 import { TabView, TabPanel } from 'primereact/tabview';
-import './DictionaryPage.css';
+
+import { useAppSelector } from '@/store/hooks';
+import { selectCountLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import { LearnTodayTab } from './components/LearnTodayTab/LearnTodayTab';
+import './DictionaryPage.css';
 
 const DictionaryPage = () => {
+  const countLearningWords = useAppSelector(selectCountLearningWordsForToday);
   return (
-    <div className="flex grow flex-col">
-      <TabView className="tab_view">
-        <TabPanel header="Learn Today">
-          <LearnTodayTab />
-        </TabPanel>
-        <TabPanel header="Learn Soon">
-          <div className="empty_list">No words to learn soon</div>
-        </TabPanel>
-        <TabPanel header="Finished Words">
-          <div className="empty_list">No finished words yet</div>
-        </TabPanel>
-      </TabView>
-    </div>
+    <TabView className="DictionaryPage">
+      <TabPanel header={`Learn Today (${countLearningWords})`}>
+        <LearnTodayTab />
+      </TabPanel>
+      <TabPanel header="Learn Soon">
+        <div className="empty-list">No words to learn soon</div>
+      </TabPanel>
+      <TabPanel header="Finished Words">
+        <div className="empty_list">No finished words yet</div>
+      </TabPanel>
+    </TabView>
   );
 };
 

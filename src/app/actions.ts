@@ -4,16 +4,16 @@ import { headers } from 'next/headers';
 
 import fetchAuthInfo from '@/api/authInfo';
 import { UserProfile } from '@/types/auth';
-import { initProfilePage, addNewPhrasePage, loginPage } from '@/config/routes';
+import { initProfilePage, addNewPhrasePage, rootPage } from '@/config/routes';
 
 export async function getAuthInfo(): Promise<UserProfile | null> {
   const resp = await fetchAuthInfo();
   const headerList = headers();
   const pathname = headerList.get('x-current-path');
-  console.log('resp', resp, pathname);
 
-  // valid user
+  //  User is valid
   if (resp.id && resp.nativeLang) {
+    // User tries opening initial user account page
     if (pathname === initProfilePage.path) {
       redirect(addNewPhrasePage.path);
     }
@@ -22,14 +22,13 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
 
   // User is not registered
   if (!resp.id) {
-    // TODO: fix validation jwt in middleware and remove this condition
+    // User is not unauthorized
     if (resp.statusCode === 401 && pathname?.indexOf('/myapp/') === 0) {
-      redirect(loginPage.path);
+      redirect(rootPage.path);
     }
     return null;
   }
 
-  //TODO: Move this this logic to UI. Remove header x-current-path in middleware
   // User is registered but profile has not been finished
   if (
     resp.id &&

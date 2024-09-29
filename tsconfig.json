@@ -24,10 +24,11 @@
   },
   "include": [
     "next-env.d.ts",
+    "src/types/custom.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "./src/**/*.svg"
+    ".next/types/**/*.ts"
+    // "./src/**/*.svg"
   ],
   "exclude": ["node_modules"]
 }

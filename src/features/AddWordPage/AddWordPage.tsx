@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { Form, Field, FormSpy } from 'react-final-form';
 import { Button } from 'primereact/button';
 
@@ -19,14 +20,16 @@ import { selectUserLangs } from '@/features/InitProfilePage/userProfileSlice';
 import { LANG_BY_CODE } from '@/constants/langs';
 
 interface InitialValues {
-  nativePhrase: string;
-  targetPhrase: string;
+  nativeText: string; // provided by translator
+  nativeCustomText: string;
+  targetText: string;
 }
 
 const AddWordForm = () => {
   const dispatch = useAppDispatch();
   const newPhraseState = useAppSelector(selectNewPhrase);
   const { targetLang, nativeLang } = useAppSelector(selectUserLangs);
+  const [translationLoading, setTranslationLoading] = useState<boolean>();
 
   const onSubmit = (values: InitialValues, form: any) => {
     dispatch(createPhrase(values)).then((res: any) => {
@@ -43,19 +46,20 @@ const AddWordForm = () => {
       subscription={{ submitting: true, pristine: true }}
       onSubmit={onSubmit}
       initialValues={{
-        targetPhrase: '',
-        nativePhrase: '',
+        targetText: '',
+        nativeText: '',
+        nativeCustomText: '',
       }}
       render={({ handleSubmit, submitting, form }) => (
         <form
           onSubmit={handleSubmit}
-          className="flex grow flex-col justify-between p-2 sm:grow-0 sm:justify-center"
+          className="flex h-full grow flex-col justify-between p-2 sm:grow-0 sm:justify-center"
         >
           <div>
             <h1 className="my-3 text-2xl font-semibold">Add word or phrase</h1>
             <Field
               component={FormTextArea}
-              name="targetPhrase"
+              name="targetText"
               label={LANG_BY_CODE[targetLang!]}
               subLabel={<small>*</small>}
               inputClassName="w-full"
@@ -64,20 +68,21 @@ const AddWordForm = () => {
             />
             <Field
               component={FormTextArea}
-              name="nativePhrase"
+              name="nativeCustomText"
               label={LANG_BY_CODE[nativeLang!]}
               subLabel={<small>*</small>}
               inputClassName="w-full"
               disabled={isLoading || submitting}
               validate={composeValidators(required, minLen(2), maxLen(30))}
+              loading={translationLoading}
             />
             <FormSpy
               subscription={{
                 values: true,
               }}
               onChange={({ values }) => {
-                if (!values.targetPhrase) {
-                  form.change('nativePhrase', '');
+                if (!values.targetText) {
+                  form.change('nativeCustomText', '');
                 }
               }}
             />
@@ -87,7 +92,10 @@ const AddWordForm = () => {
               }}
             >
               {(props: { values: InitialValues }) => (
-                <AutoTranslation targetPhrase={props.values.targetPhrase} />
+                <AutoTranslation
+                  targetText={props.values.targetText}
+                  setLoading={setTranslationLoading}
+                />
               )}
             </FormSpy>
           </div>

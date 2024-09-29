@@ -2,11 +2,9 @@ interface PathParams {
   queries?: Record<string, string>;
 }
 
-class RouterPath {
+class ProtoRouterPath {
   readonly path: string = '';
-  constructor(path: string) {
-    this.path = path;
-  }
+
   getPath({ queries }: PathParams) {
     let newPath = this.path;
     if (queries) {
@@ -15,10 +13,18 @@ class RouterPath {
     return newPath;
   }
 }
+class RouterPath extends ProtoRouterPath {
+  readonly path: string = '';
+  constructor(path: string) {
+    super();
+    this.path = path;
+  }
+}
 
-// /myapp - is privet routes
+// /myapp/ - is privet route
 export const rootPage = new RouterPath('/');
 export const loginPage = new RouterPath('/login');
+export const initProfilePage = new RouterPath('/myapp/init-profile');
 export const addNewPhrasePage = new RouterPath('/myapp/add-word');
 export const dictionaryPage = new RouterPath('/myapp/dictionary');
-export const initProfilePage = new RouterPath('/myapp/init-profile');
+export const learningPage = new RouterPath('/myapp/learning');

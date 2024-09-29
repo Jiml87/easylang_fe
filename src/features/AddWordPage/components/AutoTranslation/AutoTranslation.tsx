@@ -8,9 +8,11 @@ import { selectUserLangs } from '@/features/InitProfilePage/userProfileSlice';
 import { isDevelopment } from '@/constants/env';
 
 const AutoTranslation = memo(function Transl({
-  targetPhrase,
+  targetText,
+  setLoading,
 }: {
-  targetPhrase: string;
+  targetText: string;
+  setLoading(_loading: boolean): void;
 }) {
   const { current: controller } = useRef(new AbortController());
   const form = useForm();
@@ -19,22 +21,25 @@ const AutoTranslation = memo(function Transl({
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChangeHandler = useCallback(
-    debounce(async (targetPhrase: string) => {
-      if (!targetPhrase || targetPhrase.length < 2) {
+    debounce(async (targetText: string) => {
+      if (!targetText || targetText.length < 2) {
         return;
       }
       try {
+        setLoading(true);
         const results = await axios.post(
           `/v1/translate`,
-          { q: targetPhrase.trim(), target: nativeLang, source: targetLang },
+          { q: targetText.trim(), target: nativeLang, source: targetLang },
           { signal: controller.signal },
         );
-        console.log('controller', form);
+        setLoading(false);
 
         if (results.data.translatedText) {
-          form.change('nativePhrase', results.data.translatedText);
+          form.change('nativeText', results.data.translatedText);
+          form.change('nativeCustomText', results.data.translatedText);
         }
       } catch (error) {
+        setLoading(false);
         console.error(error);
       }
     }, 600),
@@ -42,13 +47,13 @@ const AutoTranslation = memo(function Transl({
   );
 
   useEffect(() => {
-    debouncedChangeHandler(targetPhrase);
+    debouncedChangeHandler(targetText);
 
     return () => {
       !isDevelopment && controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetPhrase]);
+  }, [targetText]);
 
   return null;
 });

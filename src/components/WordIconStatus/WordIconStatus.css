@@ -1,0 +1,9 @@
+.roundStatusIcon {
+  width: 1rem;
+  height: 1rem;
+
+  @apply relative overflow-hidden rounded-full border;
+}
+.roundStatusIcon_quarter {
+  @apply absolute h-2/4 w-2/4;
+}

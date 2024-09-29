@@ -1,6 +1,7 @@
 import { FC, ReactElement } from 'react';
 import { FieldRenderProps } from 'react-final-form';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 type FormInputTextProps = FieldRenderProps<string, HTMLElement> & {
   name: string;
@@ -9,9 +10,10 @@ type FormInputTextProps = FieldRenderProps<string, HTMLElement> & {
   inputClassName?: string;
   rows?: number;
   autoResize?: boolean;
+  loading?: boolean;
 };
 
-const FormTextArea: FC<FormInputTextProps> = ({
+export const FormTextArea: FC<FormInputTextProps> = ({
   input,
   meta,
   label,
@@ -20,6 +22,7 @@ const FormTextArea: FC<FormInputTextProps> = ({
   name,
   rows = 2,
   autoResize = true,
+  loading,
   ...rest
 }) => {
   return (
@@ -28,18 +31,25 @@ const FormTextArea: FC<FormInputTextProps> = ({
         {label}
         {subLabel}
       </label>
-      <InputTextarea
-        className={inputClassName}
-        name={input.name}
-        value={input.value}
-        onChange={input.onChange}
-        id={name}
-        invalid={meta.submitFailed && meta.invalid}
-        aria-labelledby={label}
-        rows={rows}
-        autoResize={autoResize}
-        {...rest}
-      />
+      <div className="relative">
+        {loading && (
+          <div className="absolute right-1 top-1">
+            <ProgressSpinner style={{ width: '16px', height: '16px' }} />
+          </div>
+        )}
+        <InputTextarea
+          className={inputClassName}
+          name={input.name}
+          value={input.value}
+          onChange={input.onChange}
+          id={name}
+          invalid={meta.submitFailed && meta.invalid}
+          aria-labelledby={label}
+          rows={rows}
+          autoResize={autoResize}
+          {...rest}
+        />
+      </div>
       <div className="min-h-5 text-sm text-red-600">
         {meta.submitFailed && meta.invalid && meta.error}
       </div>

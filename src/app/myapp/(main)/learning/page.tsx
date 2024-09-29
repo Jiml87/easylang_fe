@@ -1,16 +1,15 @@
 'use client';
-
 import dynamic from 'next/dynamic';
 
-const DictionaryPage = dynamic(
-  () => import('@/features/DictionaryPage/DictionaryPage'),
+const LearningPage = dynamic(
+  () => import('@/features/LearningPage/LearningPage'),
   {
     ssr: false,
   },
 );
 
 const Page = () => {
-  return <DictionaryPage />;
+  return <LearningPage />;
 };
 
 export default Page;
