@@ -32,7 +32,7 @@ const initialState: InitialState = {
 };
 
 export const getLearningWordsForToday = createAsyncThunk(
-  'word/learning',
+  'word/learning-words',
   async (_: void, { rejectWithValue, dispatch, getState }) => {
     const targetLang = selectCurrentTargetLanguage(getState() as RootState);
 
@@ -55,6 +55,14 @@ const dictionarySlice = createSlice({
   reducers: {
     resetStatus: (state) => {
       state.status = 'idle';
+    },
+    removeById: (state, { payload }: { payload: { id: string } }) => {
+      if (state.learningWordsForToday.length) {
+        state.learningWordsForToday = state.learningWordsForToday.filter(
+          ({ id }) => id !== payload.id,
+        );
+        state.countLearningWordsForToday = state.countLearningWordsForToday - 1;
+      }
     },
   },
   extraReducers(builder) {
@@ -89,5 +97,7 @@ export const selectCountLearningWordsForToday = createSelector(
     return reducerState.countLearningWordsForToday;
   },
 );
+
+export const { removeById } = dictionarySlice.actions;
 
 export default dictionarySlice.reducer;

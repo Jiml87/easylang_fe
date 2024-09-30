@@ -4,6 +4,7 @@ import messages from '@/features/MessagesBar/messagesBarSlice';
 import loginState from '@/features/LoginPage/loginSlice';
 import userProfile from '@/features/InitProfilePage/userProfileSlice';
 import dictionary from '@/features/DictionaryPage/dictionarySlice';
+import learning from '@/features/LearningPage/learningSlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -13,6 +14,7 @@ export const makeStore = () => {
       loginState,
       userProfile,
       dictionary,
+      learning,
     },
     devTools: process.env.NODE_ENV !== 'production',
   });

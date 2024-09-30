@@ -34,17 +34,17 @@ export type TargetWord = {
 
 export type UserWordFromAPI = {
   id: string;
-  lastPassedDate: null | string;
-  learningDate: string;
-  learningDay: WordLearningDay;
+  lastLearningDate: null | string;
+  nextLearningDate: string;
+  passedLearningDay: WordLearningDay;
   targetWord: TargetWord;
   nativeCustomText: string;
   nativeLang: AvailableLangs;
 };
 
 export type Word = UserWordFromAPI & {
-  lastPassedDate: null | Date;
-  learningDate: Date;
+  lastLearningDate: null | Date;
+  nextLearningDate: Date;
 };
 
 export type LearningWordForToday = Word & {

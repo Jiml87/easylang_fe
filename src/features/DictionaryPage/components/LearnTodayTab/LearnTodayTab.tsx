@@ -13,7 +13,7 @@ export const LearnTodayTab: FC = () => {
   return (
     <Fragment>
       {!learningWordsForToday.length && (
-        <div className="empty_list">Nothing learn today</div>
+        <div className="empty-list">There&apos;s nothing to learn today</div>
       )}
       <ul>
         {learningWordsForToday.map((word, index) => (
@@ -29,8 +29,8 @@ export const LearnTodayTab: FC = () => {
               {word.targetWord.targetText}
             </div>
             <WordIconStatus
-              status={word.learningDay}
-              isOverdue={word.learningDate < new Date()}
+              status={word.passedLearningDay}
+              isOverdue={word.nextLearningDate < new Date()}
             />
           </li>
         ))}

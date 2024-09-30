@@ -2,18 +2,21 @@ import { FC, useState, useMemo } from 'react';
 import { InputOtp } from 'primereact/inputotp';
 import { Button } from 'primereact/button';
 
-import { useAppSelector } from '@/store/hooks';
 import { selectLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import { generateRandomKey } from '@/utils/generateRandomKey';
 import { CustomInput } from './components/CustomInput/CustomInput';
 import { HelpersList } from './components/TargetWordHelpers/HelpersList';
+import { learnWordForToday, selectLearningWordStatus } from './learningSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 import './LearningPage.css';
 
 const LearningPage: FC = () => {
+  const dispatch = useAppDispatch();
   const [tokens, setTokens] = useState<Record<number, string>>({});
 
   const learningWordsForToday = useAppSelector(selectLearningWordsForToday);
+  const isPending = useAppSelector(selectLearningWordStatus) === 'pending';
 
   const oneLearningItem = learningWordsForToday.length
     ? learningWordsForToday[learningWordsForToday.length - 1]
@@ -41,10 +44,27 @@ const LearningPage: FC = () => {
     return !splitText.every(({ text }, index) => text === tokens[index]);
   };
 
-  if (!learningWordsForToday.length) {
-    <div className="LearningPage">
-      <div className="default-text">Nothing learn today</div>
-    </div>;
+  const saveResult = () => {
+    if (!oneLearningItem) {
+      return;
+    }
+    dispatch(
+      learnWordForToday({
+        id: oneLearningItem.id,
+        prevDay: oneLearningItem.passedLearningDay,
+      }),
+    );
+  };
+  console.log('learningWordsForToday', learningWordsForToday);
+
+  if (learningWordsForToday.length === 0) {
+    return (
+      <div className="LearningPage">
+        <div className="default-text mt-10">
+          There&apos;s nothing to learn today
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -82,9 +102,11 @@ const LearningPage: FC = () => {
       </div>
       <div className="flex justify-center sm:mt-10">
         <Button
-          label="Save"
-          className="w-auto pb-6 sm:w-fit sm:self-center sm:px-24"
+          onClick={saveResult}
           disabled={validateAnswer()}
+          loading={isPending}
+          label="Save"
+          className="w-full pb-6 sm:w-auto sm:self-center sm:px-24"
         />
       </div>
     </div>
