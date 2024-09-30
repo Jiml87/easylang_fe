@@ -11,6 +11,8 @@ import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { selectCurrentTargetLanguage } from '@/features/InitProfilePage/userProfileSlice';
 import { LearningWordForToday } from '@/types/word';
 
+import { generateAdditionalData } from './utils/generateAdditionalData';
+
 interface InitialState {
   learningWordsForToday: LearningWordForToday[];
   countLearningWordsForToday: number;
@@ -30,7 +32,7 @@ const initialState: InitialState = {
 };
 
 export const getLearningWordsForToday = createAsyncThunk(
-  'word/learning',
+  'word/learning-words',
   async (_: void, { rejectWithValue, dispatch, getState }) => {
     const targetLang = selectCurrentTargetLanguage(getState() as RootState);
 
@@ -39,7 +41,7 @@ export const getLearningWordsForToday = createAsyncThunk(
       dispatch as AppDispatch,
       async () => {
         const response = await axios.get(
-          `/v1/words/learning-words?targetLang=${targetLang}&learnToday=true&sentences=true&limit=50`,
+          `/v1/words/learning-words?targetLang=${targetLang}&learnToday=true&examples=true&limit=50`,
         );
         return response.data;
       },
@@ -54,6 +56,14 @@ const dictionarySlice = createSlice({
     resetStatus: (state) => {
       state.status = 'idle';
     },
+    removeById: (state, { payload }: { payload: { id: string } }) => {
+      if (state.learningWordsForToday.length) {
+        state.learningWordsForToday = state.learningWordsForToday.filter(
+          ({ id }) => id !== payload.id,
+        );
+        state.countLearningWordsForToday = state.countLearningWordsForToday - 1;
+      }
+    },
   },
   extraReducers(builder) {
     builder
@@ -61,7 +71,7 @@ const dictionarySlice = createSlice({
         state.status = 'pending';
       })
       .addCase(getLearningWordsForToday.fulfilled, (state, { payload }) => {
-        state.learningWordsForToday = payload[0];
+        state.learningWordsForToday = generateAdditionalData(payload[0]);
         state.countLearningWordsForToday = payload[1];
         state.status = 'succeeded';
       })
@@ -87,5 +97,7 @@ export const selectCountLearningWordsForToday = createSelector(
     return reducerState.countLearningWordsForToday;
   },
 );
+
+export const { removeById } = dictionarySlice.actions;
 
 export default dictionarySlice.reducer;

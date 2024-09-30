@@ -13,10 +13,10 @@ const DictionaryPage = () => {
         <LearnTodayTab />
       </TabPanel>
       <TabPanel header="Learn Soon">
-        <div className="empty-list">No words to learn soon</div>
+        <div className="empty-list">There&apos;s nothing to learn soon</div>
       </TabPanel>
       <TabPanel header="Finished Words">
-        <div className="empty_list">No finished words yet</div>
+        <div className="empty_list">There&apos;s not finished words yet</div>
       </TabPanel>
     </TabView>
   );

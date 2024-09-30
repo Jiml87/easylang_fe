@@ -1,3 +1,4 @@
+import { FC, Fragment } from 'react';
 import { useAppSelector } from '@/store/hooks';
 import { selectLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import Link from 'next/link';
@@ -6,14 +7,13 @@ import { twMerge } from 'tailwind-merge';
 import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
 import { learningPage } from '@/config/routes';
 
-export const LearnTodayTab = () => {
+export const LearnTodayTab: FC = () => {
   const learningWordsForToday = useAppSelector(selectLearningWordsForToday);
-  console.log('learningWordsForToday', learningWordsForToday);
 
   return (
-    <>
+    <Fragment>
       {!learningWordsForToday.length && (
-        <div className="empty_list">Nothing learn today</div>
+        <div className="empty-list">There&apos;s nothing to learn today</div>
       )}
       <ul>
         {learningWordsForToday.map((word, index) => (
@@ -29,8 +29,8 @@ export const LearnTodayTab = () => {
               {word.targetWord.targetText}
             </div>
             <WordIconStatus
-              status={word.learningDay}
-              isOverdue={word.learningDate < new Date()}
+              status={word.passedLearningDay}
+              isOverdue={word.nextLearningDate < new Date()}
             />
           </li>
         ))}
@@ -45,6 +45,6 @@ export const LearnTodayTab = () => {
           </Link>
         </div>
       )}
-    </>
+    </Fragment>
   );
 };

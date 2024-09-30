@@ -53,7 +53,7 @@ const AddWordForm = () => {
       render={({ handleSubmit, submitting, form }) => (
         <form
           onSubmit={handleSubmit}
-          className="flex h-full grow flex-col justify-between p-2 sm:grow-0 sm:justify-center"
+          className="flex h-full grow flex-col justify-between p-5 sm:grow-0 sm:justify-center"
         >
           <div>
             <h1 className="my-3 text-2xl font-semibold">Add word or phrase</h1>

@@ -9,3 +9,8 @@
 h1 {
   @apply mb-7 flex justify-center text-2xl font-bold;
 }
+
+h5 {
+  @apply mb-1 mt-3 text-lg font-bold;
+  color: #6b7280;
+}

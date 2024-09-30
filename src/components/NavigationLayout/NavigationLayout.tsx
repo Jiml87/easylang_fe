@@ -8,6 +8,7 @@ import { Badge } from 'primereact/badge';
 import { useAppSelector } from '@/store/hooks';
 import Logo from '@/components/Logo/Logo';
 import { selectCountLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
+import './NavigationLayout.css';
 
 interface NavigationLayoutProps {
   children: ReactNode;
@@ -58,7 +59,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
             <Badge
               value={countLearningWords}
               severity="danger"
-              className="absolute right-2 top-2"
+              className="notifications"
             />
           )}
         </Button>

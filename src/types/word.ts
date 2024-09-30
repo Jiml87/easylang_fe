@@ -9,7 +9,7 @@ export interface TargetWordExamples {
     text: string;
     audioUrl: string;
   } | null;
-  sentences: Array<{
+  examples: Array<{
     translations: Partial<Record<AvailableLangs, string>>;
     text: string;
     audioUrl: string;
@@ -28,25 +28,27 @@ export type TargetWord = {
   id: string;
   targetLang: AvailableLangs;
   targetText: string;
-  examples: TargetWordExamples;
+  practice: TargetWordExamples;
   translations: TargetWordTranslations;
 };
 
 export type UserWordFromAPI = {
   id: string;
-  lastPassedDate: null | string;
-  learningDate: string;
-  learningDay: WordLearningDay;
+  lastLearningDate: null | string;
+  nextLearningDate: string;
+  passedLearningDay: WordLearningDay;
   targetWord: TargetWord;
   nativeCustomText: string;
   nativeLang: AvailableLangs;
 };
 
 export type Word = UserWordFromAPI & {
-  lastPassedDate: null | Date;
-  learningDate: Date;
+  lastLearningDate: null | Date;
+  nextLearningDate: Date;
 };
 
 export type LearningWordForToday = Word & {
-  // sentences: Array<{ s: string }>;
+  descriptionWithHiddenTarget?: string;
+  sentencesWithHiddenTarget?: string[];
+  // examples: Array<{ s: string }>;
 };
