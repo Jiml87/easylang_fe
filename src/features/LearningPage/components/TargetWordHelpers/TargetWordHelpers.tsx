@@ -11,7 +11,7 @@ interface HelperComponentProps {
 
 export const TargetWordSentences: FC<HelperComponentProps> = ({ data }) => {
   return (
-    <ul>
+    <ul className="mt-5">
       {data.sentencesWithHiddenTarget?.map((text, index) => (
         <li key={index} className="py-4">
           {index + 1}. {text}
@@ -24,17 +24,17 @@ export const TargetWordSentences: FC<HelperComponentProps> = ({ data }) => {
 export const TargetWordAntonymSynonyms: FC<HelperComponentProps> = ({
   data,
 }) => {
-  const { synonyms, antonym } = data.targetWord.examples;
+  const { synonyms, antonym } = data.targetWord.practice;
 
   return (
-    <div>
+    <div className="mt-5">
       {antonym && (
         <div className="my-2">
           <h5>
             Antonym <i className="text-xs">(the opposite meaning)</i>:
           </h5>
           <div>
-            {data.targetWord.examples.antonym?.text.toLocaleUpperCase()}
+            {data.targetWord.practice.antonym?.text.toLocaleUpperCase()}
           </div>
         </div>
       )}
@@ -58,7 +58,7 @@ export const TargetWordAntonymSynonyms: FC<HelperComponentProps> = ({
 
 export const TargetWordTranslation: FC<HelperComponentProps> = ({ data }) => {
   return (
-    <div className="my-2 text-center">
+    <div className="mt-5 text-center">
       {data.nativeCustomText.toLocaleUpperCase()}
     </div>
   );
@@ -72,7 +72,7 @@ export const WordListToLearnToday: FC<HelperComponentProps> = () => {
     );
   }, [learningWordsForToday]);
   return (
-    <ul className="my-2">
+    <ul className="mt-5">
       {wordList.map((item, index) => (
         <li key={index}>
           {index + 1}. {item}

@@ -38,7 +38,7 @@ export const HelpersList: FC<HelpersListProps> = ({ data }) => {
   const [showedHelper, setShowedHelper] = useState<HelperState | null>();
 
   useEffect(() => {
-    const { synonyms, antonym } = data.targetWord.examples;
+    const { synonyms, antonym } = data.targetWord.practice;
     const helpersList: HelperState[] = [];
     helpersList.push({
       available: true,
@@ -48,7 +48,7 @@ export const HelpersList: FC<HelpersListProps> = ({ data }) => {
     if (antonym || synonyms.length) {
       helpersList.push({
         available: false,
-        header: 'More examples',
+        header: 'More practice',
         content: 'TargetWordAntonymSynonyms',
       });
     }

@@ -41,7 +41,7 @@ export const getLearningWordsForToday = createAsyncThunk(
       dispatch as AppDispatch,
       async () => {
         const response = await axios.get(
-          `/v1/words/learning-words?targetLang=${targetLang}&learnToday=true&sentences=true&limit=50`,
+          `/v1/words/learning-words?targetLang=${targetLang}&learnToday=true&examples=true&limit=50`,
         );
         return response.data;
       },

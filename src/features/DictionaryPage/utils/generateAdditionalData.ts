@@ -6,11 +6,11 @@ export const generateAdditionalData = (
 ): LearningWordForToday[] => {
   return data.map((item) => {
     const descriptionWithHiddenTarget = hideTargetText(
-      item.targetWord.examples.description?.text || '',
+      item.targetWord.practice.description?.text || '',
       item.targetWord.targetText,
     );
 
-    const sentencesWithHiddenTarget = item.targetWord.examples.sentences.map(
+    const sentencesWithHiddenTarget = item.targetWord.practice.examples.map(
       (sentence) => hideTargetText(sentence.text, item.targetWord.targetText),
     );
 
