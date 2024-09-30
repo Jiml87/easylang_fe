@@ -11,6 +11,8 @@ import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { selectCurrentTargetLanguage } from '@/features/InitProfilePage/userProfileSlice';
 import { LearningWordForToday } from '@/types/word';
 
+import { generateAdditionalData } from './utils/generateAdditionalData';
+
 interface InitialState {
   learningWordsForToday: LearningWordForToday[];
   countLearningWordsForToday: number;
@@ -61,7 +63,7 @@ const dictionarySlice = createSlice({
         state.status = 'pending';
       })
       .addCase(getLearningWordsForToday.fulfilled, (state, { payload }) => {
-        state.learningWordsForToday = payload[0];
+        state.learningWordsForToday = generateAdditionalData(payload[0]);
         state.countLearningWordsForToday = payload[1];
         state.status = 'succeeded';
       })

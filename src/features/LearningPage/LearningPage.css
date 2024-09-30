@@ -1,0 +1,20 @@
+.LearningPage {
+  @apply flex h-full flex-col p-5;
+
+  & .default-text {
+    @apply text-center text-sm text-gray-400;
+  }
+
+  & .input {
+    &.valid {
+      @apply border-green-500;
+    }
+    &.invalid {
+      @apply border-orange-500;
+    }
+  }
+
+  & .answer-wrapper {
+    @apply mt-5 flex flex-col flex-wrap items-center justify-start;
+  }
+}
