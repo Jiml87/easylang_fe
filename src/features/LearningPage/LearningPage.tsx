@@ -1,43 +1,18 @@
 import { FC, useState, useMemo } from 'react';
 import { InputOtp } from 'primereact/inputotp';
 import { Button } from 'primereact/button';
-import { twMerge } from 'tailwind-merge';
 
 import { useAppSelector } from '@/store/hooks';
 import { selectLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import { generateRandomKey } from '@/utils/generateRandomKey';
+import { CustomInput } from './components/CustomInput/CustomInput';
+import { HelpersList } from './components/TargetWordHelpers/HelpersList';
+
 import './LearningPage.css';
 
-interface LearningPageProps {}
-
-const CustomInput = ({
-  events,
-  props,
-  originalText,
-}: {
-  originalText: string;
-  props: any;
-  events: any;
-}) => {
-  const value = props.value;
-
-  return (
-    <input
-      {...events}
-      {...props}
-      key={props.key}
-      type="text"
-      className={twMerge(
-        'p-inputotp-input p-inputtext p-component p-filled input',
-        value && value !== originalText[props.id] ? 'invalid' : '',
-        value && value === originalText[props.id] ? 'valid' : '',
-      )}
-    />
-  );
-};
-
-const LearningPage: FC<LearningPageProps> = () => {
+const LearningPage: FC = () => {
   const [tokens, setTokens] = useState<Record<number, string>>({});
+
   const learningWordsForToday = useAppSelector(selectLearningWordsForToday);
 
   const oneLearningItem = learningWordsForToday.length
@@ -49,7 +24,7 @@ const LearningPage: FC<LearningPageProps> = () => {
       oneLearningItem?.targetWord.targetText || ''.toLowerCase();
     const splitText = targetText.split(' ');
     const reduced = splitText.reduce(
-      (acc, item, index) => {
+      (acc, _item, index) => {
         acc[index] = '';
         return acc;
       },
@@ -62,38 +37,26 @@ const LearningPage: FC<LearningPageProps> = () => {
     }));
   }, [oneLearningItem]);
 
+  const validateAnswer = () => {
+    return !splitText.every(({ text }, index) => text === tokens[index]);
+  };
+
   if (!learningWordsForToday.length) {
     <div className="LearningPage">
       <div className="default-text">Nothing learn today</div>
     </div>;
   }
 
-  const validateAnswer = () => {
-    return !splitText.every(({ text }, index) => text === tokens[index]);
-  };
-
   return (
     <div className="LearningPage">
-      <div className="grow">
+      <div className="grow sm:grow-0">
         <div>
           <h5>Definition:</h5>
           <div className="text-sm text-gray-800">
             {oneLearningItem?.descriptionWithHiddenTarget}
           </div>
         </div>
-        <div>
-          <h5>Help:</h5>
-          <div className="flex">
-            <Button label="1" size="small" severity="info" className="mr-2" />
-            <Button
-              label="2"
-              disabled
-              size="small"
-              severity="info"
-              className="mr-2"
-            />
-          </div>
-        </div>
+        {oneLearningItem && <HelpersList data={oneLearningItem} />}
         <h5>Enter the answer:</h5>
         <div className="answer-wrapper">
           {splitText.map((item, index) => (
@@ -117,10 +80,10 @@ const LearningPage: FC<LearningPageProps> = () => {
           ))}
         </div>
       </div>
-      <div>
+      <div className="flex justify-center sm:mt-10">
         <Button
           label="Save"
-          className="w-full pb-6 sm:self-center sm:px-14"
+          className="w-auto pb-6 sm:w-fit sm:self-center sm:px-24"
           disabled={validateAnswer()}
         />
       </div>

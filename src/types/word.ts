@@ -45,10 +45,10 @@ export type UserWordFromAPI = {
 export type Word = UserWordFromAPI & {
   lastPassedDate: null | Date;
   learningDate: Date;
-  descriptionWithHiddenTarget?: string;
-  sentencesWithHiddenTarget?: string[];
 };
 
 export type LearningWordForToday = Word & {
+  descriptionWithHiddenTarget?: string;
+  sentencesWithHiddenTarget?: string[];
   // sentences: Array<{ s: string }>;
 };
