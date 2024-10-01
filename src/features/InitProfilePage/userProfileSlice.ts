@@ -23,7 +23,11 @@ export const initProfileRequest = createAsyncThunk<
   CreateAsyncThunkOptions
 >('initProfileRequest', async (body, { rejectWithValue, dispatch }) => {
   return catchErrorInAsyncAction(rejectWithValue, dispatch, async () => {
-    const response = await axios.post('/v1/users/setup-profile', body);
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const response = await axios.post('/v1/users/setup-profile', {
+      ...body,
+      timezone,
+    });
     return response.data;
   });
 });

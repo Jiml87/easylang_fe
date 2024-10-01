@@ -8,6 +8,8 @@ export const AVAILABLE_LANGS_LIST: AvailableLangs[] = [
   'pl',
   'es',
   'it',
+  'ar',
+  'ja',
 ].sort() as AvailableLangs[];
 
 export const LANG_BY_CODE: Record<AvailableLangs, string> = {
@@ -18,6 +20,8 @@ export const LANG_BY_CODE: Record<AvailableLangs, string> = {
   pl: 'Polish',
   es: 'Spanish',
   it: 'Italian',
+  ar: 'Arabic',
+  ja: 'Japanese',
 };
 
 export const AVAILABLE_LANGS_OPTIONS = AVAILABLE_LANGS_LIST.map((lang) => ({

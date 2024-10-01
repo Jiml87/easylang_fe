@@ -55,7 +55,6 @@ const LearningPage: FC = () => {
       }),
     );
   };
-  console.log('learningWordsForToday', learningWordsForToday);
 
   if (learningWordsForToday.length === 0) {
     return (
