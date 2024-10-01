@@ -5,18 +5,22 @@ const getCookie = async (name: string) => {
 };
 
 export default async function getAuthInfo() {
-  const access_token = await getCookie('access_token');
+  try {
+    const access_token = await getCookie('access_token');
 
-  const res = await fetch(
-    `${process.env.API_HOST}/api/v1/users/user-by-credentials`,
-    {
-      credentials: 'include',
-      cache: 'no-store',
-      headers: {
-        Cookie: `access_token=${access_token};`,
+    const res = await fetch(
+      `${process.env.API_HOST}/api/v1/users/user-by-credentials`,
+      {
+        credentials: 'include',
+        cache: 'no-store',
+        headers: {
+          Cookie: `access_token=${access_token};`,
+        },
       },
-    },
-  );
+    );
 
-  return res.json();
+    return res.json();
+  } catch (error) {
+    return null;
+  }
 }

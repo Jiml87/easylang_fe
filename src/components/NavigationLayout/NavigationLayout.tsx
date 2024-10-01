@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
-import { addNewPhrasePage, dictionaryPage } from '@/config/routes';
 import { Button } from 'primereact/button';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Badge } from 'primereact/badge';
 
+import { addNewPhrasePage, dictionaryPage, rootPage } from '@/config/routes';
 import { useAppSelector } from '@/store/hooks';
 import Logo from '@/components/Logo/Logo';
 import { selectCountLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
@@ -29,6 +29,12 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
       <header className="flex justify-between p-2 align-middle">
         <Logo />
         <div className="hidden justify-end align-middle sm:flex">
+          <Link
+            href={rootPage.path}
+            className="px-5 py-2 text-slate-600 hover:underline"
+          >
+            Home
+          </Link>
           <Link
             href={addNewPhrasePage.path}
             className="px-5 py-2 text-slate-600 hover:underline"

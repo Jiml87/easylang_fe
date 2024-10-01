@@ -2,7 +2,6 @@ import axios, { AxiosInstance, AxiosHeaders } from 'axios';
 
 const instance: AxiosInstance = axios.create({
   baseURL: '/api',
-  // headers: {'X-Custom-Header': 'foobar'}
 });
 
 export type KnownError = {
@@ -14,7 +13,7 @@ export type KnownError = {
 interface RequestCallback {
   headers: AxiosHeaders;
   url: string;
-  method: 'POST' | 'GET';
+  method: 'POST' | 'GET' | 'PATCH' | 'PUT' | 'DELETE';
   data: any;
   params: Record<string, string>;
 }
