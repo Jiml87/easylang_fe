@@ -14,3 +14,19 @@ h5 {
   @apply mb-1 mt-3 text-lg font-bold;
   color: #6b7280;
 }
+
+.menu-button {
+  @apply flex w-full items-center px-2 py-2 text-sm text-gray-500;
+
+  &.separated {
+    @apply rounded-md bg-zinc-300 py-3;
+  }
+
+  &:hover {
+    @apply bg-gray-100;
+  }
+
+  &.danger {
+    @apply text-red-500;
+  }
+}

@@ -51,8 +51,8 @@ const InitProfileForm = () => {
           onSubmit={onSubmit}
           initialValues={{
             firstName: userProfile?.firstName,
-            nativeLang: 'en',
-            targetLang: undefined,
+            targetLang: 'en',
+            nativeLang: undefined,
           }}
           render={({ handleSubmit, submitting, values, form }) => (
             <form onSubmit={handleSubmit} className="p-2">
@@ -66,26 +66,25 @@ const InitProfileForm = () => {
                   validate={composeValidators(required, minLen(2), maxLen(30))}
                 />
                 <FormGroupRadioButtons
-                  name="nativeLang"
-                  label="What's your native language?"
-                  disabled={isLoading || submitting}
-                  validate={composeValidators(required)}
-                  options={AVAILABLE_LANGS_OPTIONS}
-                  customOnChange={(newVal: string) =>
-                    newVal === values.targetLang &&
-                    form.change('targetLang', undefined)
-                  }
-                />
-
-                <FormGroupRadioButtons
                   name="targetLang"
                   label="What language are you learning?"
                   disabled={isLoading || submitting}
                   validate={composeValidators(required)}
+                  options={AVAILABLE_LANGS_OPTIONS}
+                />
+                <FormGroupRadioButtons
+                  name="nativeLang"
+                  label="What's your native language?"
+                  disabled={isLoading || submitting}
+                  validate={composeValidators(required)}
                   options={AVAILABLE_LANGS_OPTIONS.map((o) => ({
                     ...o,
-                    disabled: values.nativeLang === o.value,
+                    disabled: values.targetLang === o.value,
                   }))}
+                  customOnChange={(newVal: string) =>
+                    newVal === values.nativeLang &&
+                    form.change('nativeLang', undefined)
+                  }
                 />
               </div>
               <div className="mt-6 flex justify-center">
