@@ -3,10 +3,12 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import { useAppSelector } from '@/store/hooks';
 import { selectCountLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import { LearnTodayTab } from './components/LearnTodayTab/LearnTodayTab';
+
 import './DictionaryPage.css';
 
 const DictionaryPage = () => {
   const countLearningWords = useAppSelector(selectCountLearningWordsForToday);
+
   return (
     <TabView className="DictionaryPage">
       <TabPanel header={`Learn Today (${countLearningWords})`}>

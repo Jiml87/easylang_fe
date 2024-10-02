@@ -1,6 +1,6 @@
 {
-  "name": "My words",
-  "short_name": "My words",
+  "name": "My Words",
+  "short_name": "My Words",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,6 +13,7 @@
       "type": "image/png"
     }
   ],
+  "start_url": "/myapp/add-word",
   "theme_color": "#FFFFFF",
   "background_color": "#FFFFFF",
   "display": "standalone"

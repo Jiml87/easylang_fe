@@ -1,6 +1,8 @@
 'use client';
 import { useRef } from 'react';
 import { Provider } from 'react-redux';
+import { setupListeners } from '@reduxjs/toolkit/query';
+
 import { makeStore, AppStore } from '@/store/store';
 import { UserProfile } from '@/types/auth';
 import { userProfileInfo } from '@/features/InitProfilePage/userProfileSlice';
@@ -15,7 +17,7 @@ export default function StoreProvider({ children, authInfo }: ProvidersProps) {
   if (!storeRef.current) {
     // Create the store instance the first time this renders
     storeRef.current = makeStore();
-    // console.log('authInfo', authInfo);
+    setupListeners(storeRef.current.dispatch);
 
     storeRef.current.dispatch(userProfileInfo(authInfo));
   }

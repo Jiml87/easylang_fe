@@ -10,6 +10,7 @@ import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { CreateAsyncThunkOptions } from '@/store/store';
 import { AvailableLangs } from '@/types/langs';
 import { UserProfile } from '@/types/auth';
+import { rootPage } from '@/config/routes';
 
 export type ProfileBody = {
   firstName: string;
@@ -32,11 +33,24 @@ export const initProfileRequest = createAsyncThunk<
   });
 });
 
+export const logOutRequest = createAsyncThunk<
+  null, // workaround to avoid ts error
+  unknown,
+  CreateAsyncThunkOptions
+>('logOutRequest', async (_body, { rejectWithValue, dispatch }) => {
+  return catchErrorInAsyncAction(rejectWithValue, dispatch, async () => {
+    const response = await axios.post('/v1/auth/logout');
+    location.href = rootPage.path;
+    return response.data;
+  });
+});
+
 interface InitialState {
   user: UserProfile | null;
   currentTargetLang: AvailableLangs | null;
   isAuth: boolean;
   isLoading: boolean;
+  isLogoutLoading: boolean;
   error: any;
 }
 
@@ -45,6 +59,7 @@ const initialState: InitialState = {
   currentTargetLang: null,
   isAuth: false,
   isLoading: false,
+  isLogoutLoading: false,
   error: null,
 };
 
@@ -83,6 +98,18 @@ const slice = createSlice({
       .addCase(initProfileRequest.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(logOutRequest.pending, (state) => {
+        state.isLogoutLoading = true;
+      })
+      .addCase(logOutRequest.fulfilled, (state) => {
+        state.isLogoutLoading = false;
+        state.user = null;
+        state.isAuth = false;
+      })
+      .addCase(logOutRequest.rejected, (state, action) => {
+        state.isLogoutLoading = false;
+        state.error = action.error.message;
       });
   },
 });
@@ -115,6 +142,11 @@ export const selectUserLangs = createSelector(
     nativeLang,
     targetLang,
   }),
+);
+
+export const selectLogoutStatus = createSelector(
+  selectUserProfileState,
+  (userProfile) => userProfile.isLogoutLoading,
 );
 
 export const { userProfileInfo } = slice.actions;

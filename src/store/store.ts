@@ -5,6 +5,7 @@ import loginState from '@/features/LoginPage/loginSlice';
 import userProfile from '@/features/InitProfilePage/userProfileSlice';
 import dictionary from '@/features/DictionaryPage/dictionarySlice';
 import learning from '@/features/LearningPage/learningSlice';
+import { wordApi } from '@/api/queries/words';
 
 export const makeStore = () => {
   return configureStore({
@@ -15,8 +16,11 @@ export const makeStore = () => {
       userProfile,
       dictionary,
       learning,
+      [wordApi.reducerPath]: wordApi.reducer,
     },
     devTools: process.env.NODE_ENV !== 'production',
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(wordApi.middleware),
   });
 };
 
