@@ -2,19 +2,18 @@ import { Fragment } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { twMerge } from 'tailwind-merge';
 
-import { useGetLearningSoonWordsQuery } from '@/api/queries/wordQueries';
+import { useGetFinishedWordsQuery } from '@/api/queries/wordQueries';
 import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
 import { selectCurrentTargetLanguage } from '@/features/InitProfilePage/userProfileSlice';
 import { useAppSelector } from '@/store/hooks';
 
-export const LearnSoonTab = () => {
+export const FinishedWordsTab = () => {
   const targetLang = useAppSelector(selectCurrentTargetLanguage);
-  const response = useGetLearningSoonWordsQuery(
+  const response = useGetFinishedWordsQuery(
     { page: 0, targetLang },
     { skip: !Boolean(targetLang) },
   );
   const { data, isLoading } = response;
-
   return (
     <Fragment>
       {isLoading && (
@@ -23,7 +22,7 @@ export const LearnSoonTab = () => {
         </div>
       )}
       {!isLoading && data && !data.length && (
-        <div className="empty-list">There&apos;s nothing to learn soon</div>
+        <div className="empty-list">There&apos;s not finished words yet</div>
       )}
       <ul>
         {data &&

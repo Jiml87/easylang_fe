@@ -7,7 +7,7 @@ import { Badge } from 'primereact/badge';
 import { addNewPhrasePage, dictionaryPage, rootPage } from '@/config/routes';
 import { useAppSelector } from '@/store/hooks';
 import Logo from '@/components/Logo/Logo';
-import { selectCountLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
+import { selectNumberLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import { HeaderMenuProfile } from '@/components/HeaderMenuProfile/HeaderMenuProfile';
 import { MobileBottomBar } from './components/MobileBottomBar/MobileBottomBar';
 import './NavigationLayout.css';
@@ -20,7 +20,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
   const router = useRouter();
   const [openedMobileBar, setOpenedMobileBar] = useState<boolean>(false);
   const handleOpenMobileFooterPopup = () => setOpenedMobileBar(true);
-  const countLearningWords = useAppSelector(selectCountLearningWordsForToday);
+  const countLearningWords = useAppSelector(selectNumberLearningWordsForToday);
   return (
     <section className="mx-auto flex h-dvh max-w-4xl flex-col">
       <div className="-z-1 fixed left-0 right-0 flex justify-center">
