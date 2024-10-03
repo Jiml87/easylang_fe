@@ -1,24 +1,30 @@
 import { TabView, TabPanel } from 'primereact/tabview';
 
 import { useAppSelector } from '@/store/hooks';
-import { selectCountLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
+import { selectWordCounts } from '@/features/DictionaryPage/dictionarySlice';
 import { LearnTodayTab } from './components/LearnTodayTab/LearnTodayTab';
+import { LearnSoonTab } from './components/LearnSoonTab/LearnSoonTab';
+import { FinishedWordsTab } from './components/FinishedWordsTab/FinishedWordsTab';
 
 import './DictionaryPage.css';
 
 const DictionaryPage = () => {
-  const countLearningWords = useAppSelector(selectCountLearningWordsForToday);
+  const {
+    numberLearningWordsForToday,
+    numberLearningWordsSoon,
+    numberFinishedWords,
+  } = useAppSelector(selectWordCounts);
 
   return (
     <TabView className="DictionaryPage">
-      <TabPanel header={`Learn Today (${countLearningWords})`}>
+      <TabPanel header={`Learn Today (${numberLearningWordsForToday})`}>
         <LearnTodayTab />
       </TabPanel>
-      <TabPanel header="Learn Soon">
-        <div className="empty-list">There&apos;s nothing to learn soon</div>
+      <TabPanel header={`Learn Soon (${numberLearningWordsSoon})`}>
+        <LearnSoonTab />
       </TabPanel>
-      <TabPanel header="Finished Words">
-        <div className="empty_list">There&apos;s not finished words yet</div>
+      <TabPanel header={`Finished Words (${numberFinishedWords})`}>
+        <FinishedWordsTab />
       </TabPanel>
     </TabView>
   );

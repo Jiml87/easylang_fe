@@ -13,26 +13,8 @@ import { LearningWordForToday } from '@/types/word';
 
 import { generateAdditionalData } from './utils/generateAdditionalData';
 
-interface InitialState {
-  learningWordsForToday: LearningWordForToday[];
-  countLearningWordsForToday: number;
-  limitLearningWordsForToday: number;
-  offsetLearningWordsForToday: number;
-  status: ApiRequestStatusV2;
-  error: any;
-}
-
-const initialState: InitialState = {
-  learningWordsForToday: [],
-  countLearningWordsForToday: 0,
-  limitLearningWordsForToday: 50,
-  offsetLearningWordsForToday: 0,
-  status: 'idle',
-  error: null,
-};
-
 export const getLearningWordsForToday = createAsyncThunk(
-  'word/learning-words',
+  'words/learning-words',
   async (_: void, { rejectWithValue, dispatch, getState }) => {
     const targetLang = selectCurrentTargetLanguage(getState() as RootState);
 
@@ -41,13 +23,52 @@ export const getLearningWordsForToday = createAsyncThunk(
       dispatch as AppDispatch,
       async () => {
         const response = await axios.get(
-          `/v1/words/learning-words?targetLang=${targetLang}&learnToday=true&examples=true&limit=50`,
+          `/v1/words/learning-words?targetLang=${targetLang}&learnToday=true&practice=true&limit=50&page=0`,
         );
         return response.data;
       },
     );
   },
 );
+
+export const getNumberWords = createAsyncThunk(
+  'words/counts',
+  async (_: void, { rejectWithValue, dispatch, getState }) => {
+    const targetLang = selectCurrentTargetLanguage(getState() as RootState);
+
+    return catchErrorInAsyncAction(
+      rejectWithValue,
+      dispatch as AppDispatch,
+      async () => {
+        const response = await axios.get(
+          `/v1/words/counts?targetLang=${targetLang}`,
+        );
+        return response.data;
+      },
+    );
+  },
+);
+interface InitialState {
+  learningWordsForToday: LearningWordForToday[];
+  numberLearningWordsForToday: number;
+  numberLearningWordsSoon: number;
+  numberFinishedWords: number;
+  limitLearningWordsForToday: number;
+  offsetLearningWordsForToday: number;
+  status: ApiRequestStatusV2;
+  error: any;
+}
+
+const initialState: InitialState = {
+  learningWordsForToday: [],
+  numberLearningWordsForToday: 0,
+  numberLearningWordsSoon: 0,
+  numberFinishedWords: 0,
+  limitLearningWordsForToday: 50,
+  offsetLearningWordsForToday: 0,
+  status: 'idle',
+  error: null,
+};
 
 const dictionarySlice = createSlice({
   name: 'dictionary',
@@ -61,7 +82,8 @@ const dictionarySlice = createSlice({
         state.learningWordsForToday = state.learningWordsForToday.filter(
           ({ id }) => id !== payload.id,
         );
-        state.countLearningWordsForToday = state.countLearningWordsForToday - 1;
+        state.numberLearningWordsForToday =
+          state.numberLearningWordsForToday - 1;
       }
     },
   },
@@ -71,13 +93,20 @@ const dictionarySlice = createSlice({
         state.status = 'pending';
       })
       .addCase(getLearningWordsForToday.fulfilled, (state, { payload }) => {
-        state.learningWordsForToday = generateAdditionalData(payload[0]);
-        state.countLearningWordsForToday = payload[1];
+        state.learningWordsForToday = generateAdditionalData(payload);
+        // state.numberLearningWordsForToday = payload[1];
         state.status = 'succeeded';
       })
       .addCase(getLearningWordsForToday.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(getNumberWords.fulfilled, (state, { payload }) => {
+        // state.learningWordsForToday = generateAdditionalData(payload[0]);
+        state.numberLearningWordsForToday = payload.numberLearningWordsForToday;
+        state.numberLearningWordsSoon = payload.numberLearningWordsSoon;
+        state.numberFinishedWords = payload.numberFinishedWords;
+        state.status = 'succeeded';
       });
   },
 });
@@ -91,10 +120,25 @@ export const selectLearningWordsForToday = createSelector(
   },
 );
 
-export const selectCountLearningWordsForToday = createSelector(
+export const selectWordCounts = createSelector(
+  selectDictionary,
+  ({
+    numberLearningWordsForToday,
+    numberLearningWordsSoon,
+    numberFinishedWords,
+  }) => {
+    return {
+      numberLearningWordsForToday,
+      numberLearningWordsSoon,
+      numberFinishedWords,
+    };
+  },
+);
+
+export const selectNumberLearningWordsForToday = createSelector(
   selectDictionary,
   (reducerState) => {
-    return reducerState.countLearningWordsForToday;
+    return reducerState.numberLearningWordsForToday;
   },
 );
 

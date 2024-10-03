@@ -5,7 +5,7 @@ import loginState from '@/features/LoginPage/loginSlice';
 import userProfile from '@/features/InitProfilePage/userProfileSlice';
 import dictionary from '@/features/DictionaryPage/dictionarySlice';
 import learning from '@/features/LearningPage/learningSlice';
-import { wordApi } from '@/api/queries/words';
+import { wordApi } from '@/api/queries/wordQueries';
 
 export const makeStore = () => {
   return configureStore({

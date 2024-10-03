@@ -1,17 +1,28 @@
-import { FC, Fragment } from 'react';
+import { Fragment } from 'react';
 import { useAppSelector } from '@/store/hooks';
-import { selectLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
+import {
+  selectLearningWordsForToday,
+  selectDictionary,
+} from '@/features/DictionaryPage/dictionarySlice';
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
 import { learningPage } from '@/config/routes';
 
-export const LearnTodayTab: FC = () => {
+export const LearnTodayTab = () => {
   const learningWordsForToday = useAppSelector(selectLearningWordsForToday);
+  const { status } = useAppSelector(selectDictionary);
+  const isLoading = status === 'pending';
 
   return (
     <Fragment>
+      {isLoading && (
+        <div className="flex grow flex-col items-center justify-center">
+          <ProgressSpinner aria-label="Loading" />
+        </div>
+      )}
       {!learningWordsForToday.length && (
         <div className="empty-list">There&apos;s nothing to learn today</div>
       )}
