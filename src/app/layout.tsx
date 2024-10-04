@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Providers from '@/app/providers';
-import MessagesBar from '@/features/MessagesBar/MessagesBar';
+import { UiLayout } from './uiLayout';
 import { getAuthInfo } from './actions';
 
 import 'primereact/resources/themes/lara-light-teal/theme.css';
@@ -53,8 +53,7 @@ export default async function RootLayout({
       </head>
       <body className={`${inter.className} bg-slate-50`}>
         <Providers authInfo={authInfo}>
-          {children}
-          <MessagesBar />
+          <UiLayout>{children}</UiLayout>
         </Providers>
         {/* <script src="https://unpkg.com/ios-pwa-splash@1.0.0/cdn.min.js"></script>
         <script>iosPWASplash('/apple-touch-icon.png', '#FFFFFF');</script> */}

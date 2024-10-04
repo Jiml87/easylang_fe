@@ -1,0 +1,10 @@
+.CookiesConfirmation {
+  translate: -50% 0;
+  width: clamp(350px, 55vw, 500px);
+
+  @apply fixed bottom-2 left-2/4 z-30;
+
+  &.p-card .p-card-content {
+    padding: 0 !important;
+  }
+}

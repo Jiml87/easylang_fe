@@ -1,41 +1,20 @@
 'use client';
 import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
-// import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from 'primereact/button';
-import { useRouter } from 'next/navigation';
-
-import { useAppSelector } from '@/store/hooks';
-import { addNewPhrasePage, loginPage, initProfilePage } from '@/config/routes';
-import { selectUserProfile } from '../InitProfilePage/userProfileSlice';
+import { addNewPhrasePage } from '@/config/routes';
 import bannerImage from '@/assets/images/banner/home_banner_v1.svg';
 
 import './HomePage.css';
 
 const HomePage = () => {
-  const router = useRouter();
-  const user = useAppSelector(selectUserProfile);
-  const handleGetStarted = () => {
-    let path = '/';
-    if (!user) {
-      path = loginPage.path;
-    } else if (!user.nativeLang) {
-      path = initProfilePage.path;
-    } else {
-      path = addNewPhrasePage.path;
-    }
-
-    router.push(path);
-  };
-
   return (
-    <div className="home_page">
-      <div className="glass_container">
+    <div className="HomePage">
+      <div className="glass-container">
         <div>
           <MainPageHeader />
           <main className="px-4 py-2 sm:py-4 md:grid md:grid-cols-2">
             <div className="justify-center md:flex md:flex-col">
-              <div className="text-green-700 md:max-w-lg">
+              <div className="text-green-800 md:max-w-lg">
                 <b className="text-xl sm:text-2xl">
                   Struggling to remember new words while learning a foreign
                   language?
@@ -49,16 +28,13 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="pt-6 md:pt-10">
-                <Button severity="warning" onClick={handleGetStarted}>
-                  Get Started
-                </Button>
-                {/* <Link
+                <a
                   rel="noopener noreferrer"
-                  className="p-button p-button-warning font-bold text-white"
+                  className="p-button p-button-warning p-button-raised font-bold text-white"
                   href={addNewPhrasePage.path}
                 >
                   Get Started
-                </Link> */}
+                </a>
               </div>
             </div>
             <div className="flex justify-center pt-6">
@@ -66,7 +42,7 @@ const HomePage = () => {
             </div>
           </main>
         </div>
-        <footer className="p-4 text-xs text-slate-200">
+        <footer className="p-4 text-xs text-gray-400">
           <div>
             Developed by&nbsp;
             <a
