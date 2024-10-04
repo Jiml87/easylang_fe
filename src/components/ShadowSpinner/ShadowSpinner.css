@@ -1,0 +1,91 @@
+@property --angle-top {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-top {
+  from {
+    --angle-top: 0deg;
+  }
+  to {
+    --angle-top: 360deg;
+  }
+}
+
+@property --angle-bottom {
+  syntax: '<angle>';
+  initial-value: 180deg;
+  inherits: false;
+}
+
+@keyframes spin-bottom {
+  from {
+    --angle-bottom: 0deg;
+  }
+  to {
+    --angle-bottom: 360deg;
+  }
+}
+
+.shadow-spinner {
+  @apply relative;
+
+  & .top-gradient {
+    z-index: -1;
+    @apply absolute left-0 top-0 h-full w-full;
+  }
+  & .bottom-gradient {
+    z-index: -1;
+    transform: scale(-1, -1);
+
+    @apply absolute left-0 top-0 h-full w-full;
+  }
+
+  & .p-disabled,
+  .p-component:disabled {
+    opacity: 1;
+  }
+}
+
+.top-gradient::after,
+.top-gradient::before,
+.bottom-gradient::after,
+.bottom-gradient::before {
+  content: '';
+  box-sizing: initial;
+  z-index: -1;
+  padding: 2px;
+  border-radius: 7px;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  @apply absolute h-full w-full;
+}
+
+.top-gradient::after,
+.top-gradient::before {
+  background-image: conic-gradient(
+    from var(--angle-top),
+    transparent 70%,
+    #f97316
+  );
+  animation: 2s spin-top linear infinite;
+}
+
+.bottom-gradient::after,
+.bottom-gradient::before {
+  background-image: conic-gradient(
+    from var(--angle-bottom),
+    transparent 70%,
+    #f97316
+  );
+  animation: 2s spin-bottom linear infinite;
+}
+
+.top-gradient:before,
+.bottom-gradient:before {
+  filter: blur(0.5rem);
+  opacity: 1;
+}

@@ -23,7 +23,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
   const countLearningWords = useAppSelector(selectNumberLearningWordsForToday);
   return (
     <section className="mx-auto flex h-dvh max-w-4xl flex-col">
-      <div className="-z-1 fixed left-0 right-0 flex justify-center">
+      <div className="fixed left-0 right-0 -z-10 flex justify-center">
         <div
           className="w-1/4 sm:w-1/5"
           style={{ boxShadow: '0px  0 75px 35px #94ffbf' }}
