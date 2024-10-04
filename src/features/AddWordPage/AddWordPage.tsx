@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Form, Field, FormSpy } from 'react-final-form';
 import { Button } from 'primereact/button';
+import { twMerge } from 'tailwind-merge';
 
 import {
   createPhrase,
@@ -18,6 +19,7 @@ import {
 import AutoTranslation from './components/AutoTranslation/AutoTranslation';
 import { selectUserLangs } from '@/features/InitProfilePage/userProfileSlice';
 import { LANG_BY_CODE } from '@/constants/langs';
+import { ShadowSpinner } from '@/components/ShadowSpinner/ShadowSpinner';
 
 interface InitialValues {
   nativeText: string; // provided by translator
@@ -99,11 +101,16 @@ const AddWordForm = () => {
               )}
             </FormSpy>
           </div>
-          <Button
-            label="Save"
-            loading={isLoading}
-            className="pb-6 sm:self-center sm:px-14"
-          />
+          <ShadowSpinner isLoading={isLoading} className="w-full sm:w-auto">
+            <Button
+              label="Save"
+              disabled={isLoading}
+              className={twMerge(
+                'w-full pb-6 sm:w-auto sm:self-center sm:px-14',
+                isLoading && 'pointer-events-none',
+              )}
+            />
+          </ShadowSpinner>
         </form>
       )}
     />

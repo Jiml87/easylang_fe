@@ -8,6 +8,7 @@ import { CustomInput } from './components/CustomInput/CustomInput';
 import { HelpersList } from './components/TargetWordHelpers/HelpersList';
 import { learnWordForToday, selectLearningWordStatus } from './learningSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { ShadowSpinner } from '@/components/ShadowSpinner/ShadowSpinner';
 
 import './LearningPage.css';
 
@@ -16,7 +17,8 @@ const LearningPage: FC = () => {
   const [tokens, setTokens] = useState<Record<number, string>>({});
 
   const learningWordsForToday = useAppSelector(selectLearningWordsForToday);
-  const isPending = useAppSelector(selectLearningWordStatus) === 'pending';
+  const status = useAppSelector(selectLearningWordStatus);
+  const isPending = status === 'pending';
 
   const oneLearningItem = learningWordsForToday.length
     ? learningWordsForToday[learningWordsForToday.length - 1]
@@ -66,6 +68,8 @@ const LearningPage: FC = () => {
     );
   }
 
+  console.log('isPending', status);
+
   return (
     <div className="LearningPage">
       <div className="grow sm:grow-0">
@@ -100,13 +104,14 @@ const LearningPage: FC = () => {
         </div>
       </div>
       <div className="flex justify-center sm:mt-10">
-        <Button
-          onClick={saveResult}
-          disabled={validateAnswer()}
-          loading={isPending}
-          label="Save"
-          className="w-full pb-6 sm:w-auto sm:self-center sm:px-24"
-        />
+        <ShadowSpinner isLoading={isPending} className="w-full sm:w-auto">
+          <Button
+            onClick={saveResult}
+            disabled={isPending || validateAnswer()}
+            label="Save"
+            className="w-full pb-6 sm:w-auto sm:self-center sm:px-24"
+          />
+        </ShadowSpinner>
       </div>
     </div>
   );
