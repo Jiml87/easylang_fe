@@ -4,7 +4,12 @@ import { headers } from 'next/headers';
 
 import fetchAuthInfo from '@/api/authInfo';
 import { UserProfile } from '@/types/auth';
-import { initProfilePage, addNewPhrasePage, rootPage } from '@/config/routes';
+import {
+  initProfilePage,
+  addNewPhrasePage,
+  rootPage,
+  loginPage,
+} from '@/config/routes';
 
 export async function getAuthInfo(): Promise<UserProfile | null> {
   const data = await fetchAuthInfo();
@@ -32,7 +37,7 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
   if (!data.id) {
     // User is not unauthorized
     if (data.statusCode === 401 && pathname?.indexOf('/myapp/') === 0) {
-      redirect(rootPage.path);
+      redirect(loginPage.path);
     }
     return null;
   }
