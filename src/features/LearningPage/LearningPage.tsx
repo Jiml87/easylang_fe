@@ -68,8 +68,6 @@ const LearningPage: FC = () => {
     );
   }
 
-  console.log('isPending', status);
-
   return (
     <div className="LearningPage">
       <div className="grow sm:grow-0">

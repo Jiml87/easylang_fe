@@ -29,13 +29,13 @@ const HomePage = () => {
   };
 
   return (
-    <div className="home_page">
-      <div className="glass_container">
+    <div className="HomePage">
+      <div className="glass-container">
         <div>
           <MainPageHeader />
           <main className="px-4 py-2 sm:py-4 md:grid md:grid-cols-2">
             <div className="justify-center md:flex md:flex-col">
-              <div className="text-green-700 md:max-w-lg">
+              <div className="text-green-800 md:max-w-lg">
                 <b className="text-xl sm:text-2xl">
                   Struggling to remember new words while learning a foreign
                   language?
@@ -66,7 +66,7 @@ const HomePage = () => {
             </div>
           </main>
         </div>
-        <footer className="p-4 text-xs text-slate-200">
+        <footer className="p-4 text-xs text-gray-400">
           <div>
             Developed by&nbsp;
             <a
