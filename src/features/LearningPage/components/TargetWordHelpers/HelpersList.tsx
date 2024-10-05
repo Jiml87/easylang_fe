@@ -48,7 +48,7 @@ export const HelpersList: FC<HelpersListProps> = ({ data }) => {
     if (antonym || synonyms.length) {
       helpersList.push({
         available: false,
-        header: 'More practice',
+        header: 'More examples',
         content: 'TargetWordAntonymSynonyms',
       });
     }

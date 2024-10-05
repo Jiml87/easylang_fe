@@ -1,5 +1,6 @@
 'use client';
-
+import { Fragment } from 'react';
+import Head from 'next/head';
 import dynamic from 'next/dynamic';
 
 const DictionaryPage = dynamic(
@@ -10,7 +11,14 @@ const DictionaryPage = dynamic(
 );
 
 const Page = () => {
-  return <DictionaryPage />;
+  return (
+    <Fragment>
+      <Head>
+        <title>Dictionary</title>
+      </Head>
+      <DictionaryPage />
+    </Fragment>
+  );
 };
 
 export default Page;

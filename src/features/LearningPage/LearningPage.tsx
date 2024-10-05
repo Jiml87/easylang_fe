@@ -73,7 +73,7 @@ const LearningPage: FC = () => {
       <div className="grow sm:grow-0">
         <div>
           <h5>Definition:</h5>
-          <div className="text-sm text-gray-800">
+          <div className="text-sm text-zinc-700">
             {oneLearningItem?.descriptionWithHiddenTarget}
           </div>
         </div>

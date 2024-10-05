@@ -1,0 +1,14 @@
+.LearnSoonTab {
+  & .list-item {
+    place-self: center;
+    grid-template-columns: 4fr 2fr 0.6fr;
+    @apply grid cursor-pointer gap-1 px-2 py-2 sm:pr-10;
+  }
+
+  & .text {
+    @apply text-sm sm:text-base;
+  }
+  & .date {
+    @apply text-xs sm:text-sm;
+  }
+}

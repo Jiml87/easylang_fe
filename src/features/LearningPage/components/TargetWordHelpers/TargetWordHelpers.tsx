@@ -11,9 +11,9 @@ interface HelperComponentProps {
 
 export const TargetWordSentences: FC<HelperComponentProps> = ({ data }) => {
   return (
-    <ul className="mt-5">
+    <ul>
       {data.sentencesWithHiddenTarget?.map((text, index) => (
-        <li key={index} className="py-4">
+        <li key={index} className="mb-2 py-1">
           {index + 1}. {text}
         </li>
       ))}
@@ -27,25 +27,25 @@ export const TargetWordAntonymSynonyms: FC<HelperComponentProps> = ({
   const { synonyms, antonym } = data.targetWord.practice;
 
   return (
-    <div className="mt-5">
+    <div>
       {antonym && (
-        <div className="my-2">
-          <h5>
+        <div>
+          <h3 className="mt-0">
             Antonym <i className="text-xs">(the opposite meaning)</i>:
-          </h5>
-          <div>
+          </h3>
+          <div className="text-sm">
             {data.targetWord.practice.antonym?.text.toLocaleUpperCase()}
           </div>
         </div>
       )}
       {!!synonyms.length && (
-        <div className="my-2">
-          <h5>
-            Synonyms <i className="text-xs">(the similar meaning):</i>
-          </h5>
+        <div>
+          <h3>
+            Synonyms <i className="text-xs">(the similar meaning)</i>:
+          </h3>
           <ul>
             {synonyms.map((item, index) => (
-              <li key={index} className="py-2">
+              <li key={index} className="pb-2 text-sm">
                 {index + 1}. {item.text.toLocaleUpperCase()}
               </li>
             ))}
@@ -58,7 +58,7 @@ export const TargetWordAntonymSynonyms: FC<HelperComponentProps> = ({
 
 export const TargetWordTranslation: FC<HelperComponentProps> = ({ data }) => {
   return (
-    <div className="mt-5 text-center">
+    <div className="text-center">
       {data.nativeCustomText.toLocaleUpperCase()}
     </div>
   );
@@ -72,7 +72,7 @@ export const WordListToLearnToday: FC<HelperComponentProps> = () => {
     );
   }, [learningWordsForToday]);
   return (
-    <ul className="mt-5">
+    <ul>
       {wordList.map((item, index) => (
         <li key={index}>
           {index + 1}. {item}
