@@ -16,17 +16,20 @@ const DictionaryPage = () => {
   } = useAppSelector(selectWordCounts);
 
   return (
-    <TabView className="DictionaryPage">
-      <TabPanel header={`Learn Today (${numberLearningWordsForToday})`}>
-        <LearnTodayTab />
-      </TabPanel>
-      <TabPanel header={`Learn Soon (${numberLearningWordsSoon})`}>
-        <LearnSoonTab />
-      </TabPanel>
-      <TabPanel header={`Finished Words (${numberFinishedWords})`}>
-        <FinishedWordsTab />
-      </TabPanel>
-    </TabView>
+    <div className="h-full">
+      <h1 className="hidden sm:block">Dictionary</h1>
+      <TabView className="DictionaryPage">
+        <TabPanel header={`Learn Today (${numberLearningWordsForToday})`}>
+          <LearnTodayTab />
+        </TabPanel>
+        <TabPanel header={`Learn Soon (${numberLearningWordsSoon})`}>
+          <LearnSoonTab />
+        </TabPanel>
+        <TabPanel header={`Finished Words (${numberFinishedWords})`}>
+          <FinishedWordsTab />
+        </TabPanel>
+      </TabView>
+    </div>
   );
 };
 
