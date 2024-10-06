@@ -13,8 +13,29 @@ export const googleLoginRequest = createAsyncThunk(
       rejectWithValue,
       dispatch as AppDispatch,
       async () => {
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         const response = await axios.get(
-          `/v1/auth/google/login?access_token=${body.code}`,
+          `/v1/auth/google/login?access_token=${body.code}&timezone=${timezone}`,
+        );
+
+        dispatch(userProfileInfo(response.data));
+
+        return response.data;
+      },
+    );
+  },
+);
+
+export const facebookLoginRequest = createAsyncThunk(
+  'login/google',
+  async (body: { code: string }, { rejectWithValue, dispatch }) => {
+    return catchErrorInAsyncAction(
+      rejectWithValue,
+      dispatch as AppDispatch,
+      async () => {
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const response = await axios.get(
+          `/v1/auth/facebook/login?access_token=${body.code}&timezone=${timezone}`,
         );
 
         dispatch(userProfileInfo(response.data));

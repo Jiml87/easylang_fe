@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useCallback, useState } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { twMerge } from 'tailwind-merge';
 
@@ -6,14 +6,21 @@ import { useGetFinishedWordsQuery } from '@/api/queries/wordQueries';
 import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
 import { selectCurrentTargetLanguage } from '@/features/InitProfilePage/userProfileSlice';
 import { useAppSelector } from '@/store/hooks';
+import { WordDetailsPopup } from '@/features/DictionaryPage/components/WordDetailsPopup/WordDetailsPopup';
+import { Word } from '@/types/word';
 
 export const FinishedWordsTab = () => {
+  const [wordDetails, setWordDetails] = useState<Word>();
   const targetLang = useAppSelector(selectCurrentTargetLanguage);
   const response = useGetFinishedWordsQuery(
     { page: 0, targetLang },
     { skip: !Boolean(targetLang) },
   );
   const { data, isLoading } = response;
+
+  const onHidePopup = useCallback(() => {
+    setWordDetails(undefined);
+  }, [setWordDetails]);
   return (
     <Fragment>
       {isLoading && (
@@ -33,6 +40,7 @@ export const FinishedWordsTab = () => {
                 'flex cursor-pointer items-center justify-between px-2 py-2 sm:pr-10',
                 index % 2 === 0 && 'bg-slate-100',
               )}
+              onClick={() => setWordDetails(word)}
             >
               <div>
                 {index + 1}.&nbsp;
@@ -45,6 +53,13 @@ export const FinishedWordsTab = () => {
             </li>
           ))}
       </ul>
+      {wordDetails && (
+        <WordDetailsPopup
+          visible={!!wordDetails}
+          onHide={onHidePopup}
+          data={wordDetails}
+        />
+      )}
     </Fragment>
   );
 };

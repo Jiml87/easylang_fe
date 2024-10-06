@@ -2,7 +2,7 @@
 import { twMerge } from 'tailwind-merge';
 import { Card } from 'primereact/card';
 import { useGoogleLogin } from '@react-oauth/google';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { useRouter } from 'next/navigation';
 import { initProfilePage, addNewPhrasePage } from '@/config/routes';
 import { ShadowSpinner } from '@/components/ShadowSpinner/ShadowSpinner';
@@ -63,9 +63,9 @@ const LoginPage = () => {
               >
                 Google
               </div>
-              <FacebookLogin
+              {/* <FacebookLogin
                 appId="1257511625239605"
-                callback={(resp: any) => console.log(resp)}
+                callback={(resp: any) => console.log('FacebookLogin', resp)}
                 responseType="code"
                 fields="name,email,picture"
                 render={(renderProps: any) => (
@@ -77,7 +77,7 @@ const LoginPage = () => {
                     Facebook
                   </div>
                 )}
-              />
+              /> */}
             </div>
           </Card>
         </ShadowSpinner>

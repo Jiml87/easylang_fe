@@ -1,20 +1,27 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+import Link from 'next/link';
+import { twMerge } from 'tailwind-merge';
+import { ProgressSpinner } from 'primereact/progressspinner';
+
 import { useAppSelector } from '@/store/hooks';
 import {
   selectLearningWordsForToday,
   selectDictionary,
 } from '@/features/DictionaryPage/dictionarySlice';
-import Link from 'next/link';
-import { twMerge } from 'tailwind-merge';
-import { ProgressSpinner } from 'primereact/progressspinner';
-
+import { WordDetailsPopup } from '@/features/DictionaryPage/components/WordDetailsPopup/WordDetailsPopup';
 import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
 import { learningPage } from '@/config/routes';
+import { Word } from '@/types/word';
 
 export const LearnTodayTab = () => {
+  const [wordDetails, setWordDetails] = useState<Word>();
   const learningWordsForToday = useAppSelector(selectLearningWordsForToday);
   const { status } = useAppSelector(selectDictionary);
   const isLoading = status === 'pending';
+
+  const onHideWordDetailsPopup = () => {
+    setWordDetails(undefined);
+  };
 
   return (
     <Fragment>
@@ -34,6 +41,7 @@ export const LearnTodayTab = () => {
               'flex cursor-pointer items-center justify-between px-2 py-2 sm:pr-10',
               index % 2 === 0 && 'bg-slate-100',
             )}
+            onClick={() => setWordDetails(word)}
           >
             <div>
               {index + 1}.&nbsp;
@@ -55,6 +63,13 @@ export const LearnTodayTab = () => {
             Upload To The Brain
           </Link>
         </div>
+      )}
+      {wordDetails && (
+        <WordDetailsPopup
+          visible={!!wordDetails}
+          onHide={onHideWordDetailsPopup}
+          data={wordDetails}
+        />
       )}
     </Fragment>
   );

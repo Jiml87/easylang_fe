@@ -86,6 +86,9 @@ const dictionarySlice = createSlice({
           state.numberLearningWordsForToday - 1;
       }
     },
+    increaseNumberLearningWordsSoon: (state) => {
+      state.numberLearningWordsSoon = state.numberLearningWordsSoon + 1;
+    },
   },
   extraReducers(builder) {
     builder
@@ -142,6 +145,7 @@ export const selectNumberLearningWordsForToday = createSelector(
   },
 );
 
-export const { removeById } = dictionarySlice.actions;
+export const { removeById, increaseNumberLearningWordsSoon } =
+  dictionarySlice.actions;
 
 export default dictionarySlice.reducer;

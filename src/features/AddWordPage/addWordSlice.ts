@@ -10,6 +10,7 @@ import {
   selectNativeLanguage,
   selectCurrentTargetLanguage,
 } from '@/features/InitProfilePage/userProfileSlice';
+import { increaseNumberLearningWordsSoon } from '@/features/DictionaryPage/dictionarySlice';
 
 type CreatePhraseValues = {
   nativeText: string;
@@ -31,6 +32,7 @@ export const createPhrase = createAsyncThunk(
       dispatch as AppDispatch,
       async () => {
         const response = await axios.post('/v1/words', body);
+        dispatch(increaseNumberLearningWordsSoon());
         dispatch(
           addSuccessMessage({
             detail: 'The phrase is saved',

@@ -19,10 +19,6 @@ export const LearnSoonTab = () => {
   );
   const { data, isLoading } = response;
 
-  const onShowWordDetails = (word: Word) => {
-    setWordDetails(word);
-  };
-
   const onHidePopup = useCallback(() => {
     setWordDetails(undefined);
   }, [setWordDetails]);
@@ -46,7 +42,7 @@ export const LearnSoonTab = () => {
                 'list-item',
                 index % 2 === 0 && 'bg-slate-100',
               )}
-              onClick={() => onShowWordDetails(word)}
+              onClick={() => setWordDetails(word)}
             >
               <div className="gr-align-center text">
                 {index + 1}.&nbsp;
