@@ -56,16 +56,16 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
         </div>
       </header>
       <div className="grow">{children}</div>
-      <nav className="flex justify-between border-t bg-white px-6 py-1 text-slate-500 sm:hidden">
+      <nav className="flex justify-between border-t bg-white px-6 text-slate-500 sm:hidden">
         <Button
+          onClick={() => router.push(dictionaryPage.path)}
+          className="mobile-navigation-button"
           icon="pi pi-list text-xl"
           rounded
           text
           severity="secondary"
           aria-label="Dictionary"
           link
-          onClick={() => router.push(dictionaryPage.path)}
-          className="relative"
         >
           {!!countLearningWords && (
             <Badge
@@ -74,25 +74,32 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
               className="notifications"
             />
           )}
+          <span className="btn-text">Dictionary</span>
         </Button>
         <Button
+          onClick={() => router.push(addNewPhrasePage.path)}
+          className="mobile-navigation-button"
           icon="pi pi-plus text-xl"
           rounded
           text
           severity="secondary"
           aria-label="Add"
           link
-          onClick={() => router.push(addNewPhrasePage.path)}
-        />
+        >
+          <span className="btn-text">Add Word</span>
+        </Button>
         <Button
+          onClick={handleOpenMobileFooterPopup}
+          className="mobile-navigation-button"
           icon="pi pi-chevron-up text-xl"
           rounded
           text
           severity="secondary"
           aria-label="Open"
           link
-          onClick={handleOpenMobileFooterPopup}
-        />
+        >
+          <span className="btn-text">More</span>
+        </Button>
       </nav>
       <MobileBottomBar opened={openedMobileBar} setOpen={setOpenedMobileBar} />
     </section>

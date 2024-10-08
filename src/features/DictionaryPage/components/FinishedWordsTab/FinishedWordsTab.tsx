@@ -29,7 +29,7 @@ export const FinishedWordsTab = () => {
         </div>
       )}
       {!isLoading && data && !data.length && (
-        <div className="empty-list">There&apos;s not finished words yet</div>
+        <div className="empty-list">There are no finished words yet</div>
       )}
       <ul>
         {data &&

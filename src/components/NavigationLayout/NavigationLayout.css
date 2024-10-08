@@ -4,3 +4,13 @@
   top: 6px;
   right: 6px;
 }
+
+.mobile-navigation-button {
+  color: var(--brand-color);
+
+  @apply relative flex flex-col items-center justify-center;
+
+  & .btn-text {
+    @apply pt-1 text-xs;
+  }
+}

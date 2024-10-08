@@ -44,8 +44,7 @@ const InitProfileForm = () => {
     <div className="flex justify-center">
       <div className="max-w-4xl">
         <h1 className="flex-wrap pt-6">
-          <span>Welcome!</span>
-          <span>Let&apos;s set up your profile.</span>
+          <span>Welcome!</span> <span>Let&apos;s set up your profile.</span>
         </h1>
         <Form<InitialValues>
           onSubmit={onSubmit}

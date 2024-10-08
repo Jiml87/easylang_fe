@@ -7,7 +7,10 @@ export type AvailableLangs =
   | 'es'
   | 'it'
   | 'ar'
-  | 'ja';
+  | 'ja'
+  | 'cs'
+  | 'zh-CN'
+  | 'zh-TW';
 // Supported langs: https://cloud.google.com/translate/docs/languages
 
 export type UserTargetLang = {

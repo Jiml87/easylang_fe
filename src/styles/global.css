@@ -20,6 +20,7 @@
 
 :root {
   color-scheme: light only;
+  --brand-color: #087f38;
 }
 
 @media (prefers-color-scheme: light) {
