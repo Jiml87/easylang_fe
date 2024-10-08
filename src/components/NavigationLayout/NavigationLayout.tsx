@@ -56,7 +56,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
         </div>
       </header>
       <div className="grow">{children}</div>
-      <nav className="flex justify-between border-t bg-white px-6 text-slate-500 sm:hidden">
+      <nav className="mobile-navigation-bar">
         <Button
           onClick={() => router.push(dictionaryPage.path)}
           className="mobile-navigation-button"

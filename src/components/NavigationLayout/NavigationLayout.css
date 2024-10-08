@@ -4,7 +4,9 @@
   top: 6px;
   right: 6px;
 }
-
+.mobile-navigation-bar {
+  @apply flex justify-between border-t bg-white px-6 text-slate-500 sm:hidden;
+}
 .mobile-navigation-button {
   color: var(--brand-color);
 
