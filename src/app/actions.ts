@@ -15,7 +15,6 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
   const data = await fetchAuthInfo();
   const headerList = headers();
   const pathname = headerList.get('x-current-path');
-  console.log('data', data);
 
   // no response from api server
   if (!data) {
