@@ -1,0 +1,18 @@
+services:
+  ui_service:
+    container_name: ui_service
+    env_file: '../../easylang_fe/.env'
+    build:
+      context: ../
+      dockerfile: ../easylang_fe/deploy/ui.production.Dockerfile
+    environment:
+      OAUTH_GOOGLE_ID: ${OAUTH_GOOGLE_ID}
+      OAUTH_FACEBOOK_ID: ${OAUTH_FACEBOOK_ID}
+    # volumes:
+    #   - ./nextjs-app:/app
+    ports:
+      - '3000:3000'
+    networks:
+      - mynetwork
+    depends_on:
+      - postgres
