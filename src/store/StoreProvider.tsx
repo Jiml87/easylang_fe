@@ -18,8 +18,9 @@ export default function StoreProvider({ children, authInfo }: ProvidersProps) {
     // Create the store instance the first time this renders
     storeRef.current = makeStore();
     setupListeners(storeRef.current.dispatch);
-
-    storeRef.current.dispatch(userProfileInfo(authInfo));
+    if (authInfo?.id) {
+      storeRef.current.dispatch(userProfileInfo(authInfo));
+    }
   }
 
   return <Provider store={storeRef.current}>{children}</Provider>;

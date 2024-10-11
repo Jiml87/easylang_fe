@@ -4,28 +4,23 @@ import { headers } from 'next/headers';
 
 import fetchAuthInfo from '@/api/authInfo';
 import { UserProfile } from '@/types/auth';
-import {
-  initProfilePage,
-  addNewPhrasePage,
-  rootPage,
-  loginPage,
-} from '@/config/routes';
+import { initProfilePage, addNewPhrasePage, loginPage } from '@/config/routes';
 
 export async function getAuthInfo(): Promise<UserProfile | null> {
   const data = await fetchAuthInfo();
   const headerList = headers();
   const pathname = headerList.get('x-current-path');
+  console.log('data', data);
 
-  // no response from api server
-  if (!data) {
-    if (pathname?.indexOf('/myapp/') === 0) {
-      redirect(rootPage.path);
-    }
-    return null;
+  // TODO: no response from api server
+
+  // user is eady
+  if (data?.id && data.nativeLang) {
+    return data;
   }
 
   //  User is valid
-  if (data.id && data.nativeLang) {
+  if (data?.id && data.nativeLang) {
     // User tries opening initial user account page
     if (pathname === initProfilePage.path) {
       redirect(addNewPhrasePage.path);
@@ -33,18 +28,14 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
     return data;
   }
 
-  // User is not registered
-  if (!data.id) {
-    // User is not unauthorized
-    if (data.statusCode === 401 && pathname?.indexOf('/myapp/') === 0) {
-      redirect(loginPage.path);
-    }
-    return null;
+  // User is not unauthorized
+  if (data?.statusCode === 401 && pathname?.indexOf('/myapp/') === 0) {
+    redirect(loginPage.path);
   }
 
   // User is registered but profile has not been finished
   if (
-    data.id &&
+    data?.id &&
     !data.nativeLang &&
     pathname?.indexOf('/myapp/') === 0 &&
     pathname !== initProfilePage.path
@@ -52,5 +43,5 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
     redirect(initProfilePage.path);
   }
 
-  return data;
+  return null;
 }

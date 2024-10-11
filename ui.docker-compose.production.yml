@@ -8,8 +8,9 @@ services:
     environment:
       OAUTH_GOOGLE_ID: ${OAUTH_GOOGLE_ID}
       OAUTH_FACEBOOK_ID: ${OAUTH_FACEBOOK_ID}
+      API_HOST: http://api_service:8000
     # volumes:
-    #   - ./nextjs-app:/app
+    #   - ./src:/app
     ports:
       - '3000:3000'
     networks:
