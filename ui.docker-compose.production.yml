@@ -16,4 +16,4 @@ services:
     networks:
       - mynetwork
     depends_on:
-      - postgres
+      - postgres_db
