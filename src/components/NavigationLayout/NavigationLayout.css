@@ -1,9 +1,18 @@
-.notifications {
+.header-count-words {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  min-width: 1rem;
+  height: 1rem;
+}
+
+.footer-count-words {
   @apply absolute;
 
-  top: 6px;
-  right: 6px;
+  top: 8px;
+  right: 10px;
 }
+
 .mobile-navigation-bar {
   @apply flex justify-between border-t bg-white px-6 text-slate-500 sm:hidden;
 }

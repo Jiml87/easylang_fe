@@ -47,9 +47,16 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
             </Link>
             <Link
               href={dictionaryPage.path}
-              className="px-5 py-2 text-slate-600 hover:underline"
+              className="relative px-5 py-2 text-slate-600 hover:underline"
             >
               Dictionary
+              {!!countLearningWords && (
+                <Badge
+                  value={countLearningWords}
+                  severity="danger"
+                  className="header-count-words"
+                />
+              )}
             </Link>
           </div>
           <HeaderMenuProfile />
@@ -60,7 +67,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
         <Button
           onClick={() => router.push(dictionaryPage.path)}
           className="mobile-navigation-button"
-          icon="pi pi-list text-xl"
+          icon="pi pi-list text-base"
           rounded
           text
           severity="secondary"
@@ -71,7 +78,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
             <Badge
               value={countLearningWords}
               severity="danger"
-              className="notifications"
+              className="footer-count-words"
             />
           )}
           <span className="btn-text">Dictionary</span>
@@ -79,7 +86,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
         <Button
           onClick={() => router.push(addNewPhrasePage.path)}
           className="mobile-navigation-button"
-          icon="pi pi-plus text-xl"
+          icon="pi pi-plus text-base"
           rounded
           text
           severity="secondary"
@@ -91,7 +98,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
         <Button
           onClick={handleOpenMobileFooterPopup}
           className="mobile-navigation-button"
-          icon="pi pi-chevron-up text-xl"
+          icon="pi pi-chevron-up text-base"
           rounded
           text
           severity="secondary"
