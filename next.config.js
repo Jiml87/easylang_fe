@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const path = require('path');
 
-const API_HOST = process.env.API_HOST || '';
+const API_HOST =
+  process.env.NODE_ENV === 'development' ? 'localhost' : 'api_service';
+
+const API_URL = `http://${API_HOST}:8000`;
 
 const nextConfig = {
   env: {
@@ -22,7 +25,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `${API_HOST}/api/:path*`,
+        destination: `${API_URL}/api/:path*`,
       },
     ];
   },

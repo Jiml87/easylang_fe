@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Form, Field, FormSpy } from 'react-final-form';
 import { Button } from 'primereact/button';
 import { twMerge } from 'tailwind-merge';
@@ -40,6 +40,16 @@ const AddWordForm = () => {
       }
     });
   };
+
+  const TranslationComponent = useCallback(
+    (props: { values: InitialValues }) => (
+      <AutoTranslation
+        targetText={props.values.targetText}
+        setLoading={setTranslationLoading}
+      />
+    ),
+    [setTranslationLoading],
+  );
 
   const isLoading = newPhraseState.status === 'loading';
 
@@ -92,13 +102,9 @@ const AddWordForm = () => {
               subscription={{
                 values: true,
               }}
+              component={TranslationComponent}
             >
-              {(props: { values: InitialValues }) => (
-                <AutoTranslation
-                  targetText={props.values.targetText}
-                  setLoading={setTranslationLoading}
-                />
-              )}
+              {/* {TranslationComponent} */}
             </FormSpy>
           </div>
           <ShadowSpinner isLoading={isLoading} className="w-full sm:w-auto">

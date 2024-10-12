@@ -1,11 +1,10 @@
-import { memo, useEffect, useCallback, useRef } from 'react';
+import { memo, useEffect, useCallback } from 'react';
 import { useForm } from 'react-final-form';
 import debounce from 'lodash.debounce';
 
 import axios from '@/api/axiosInstance';
 import { useAppSelector } from '@/store/hooks';
 import { selectUserLangs } from '@/features/InitProfilePage/userProfileSlice';
-import { isDevelopment } from '@/constants/env';
 
 const AutoTranslation = memo(function Transl({
   targetText,
@@ -14,7 +13,6 @@ const AutoTranslation = memo(function Transl({
   targetText: string;
   setLoading(_loading: boolean): void;
 }) {
-  const { current: controller } = useRef(new AbortController());
   const form = useForm();
 
   const { nativeLang, targetLang } = useAppSelector(selectUserLangs);
@@ -27,20 +25,20 @@ const AutoTranslation = memo(function Transl({
       }
       try {
         setLoading(true);
-        const results = await axios.post(
-          `/v1/translate`,
-          { q: targetText.trim(), target: nativeLang, source: targetLang },
-          { signal: controller.signal },
-        );
-        setLoading(false);
+        const results = await axios.post(`/v1/translate`, {
+          q: targetText.trim(),
+          target: nativeLang,
+          source: targetLang,
+        });
 
+        setLoading(false);
         if (results.data.translatedText) {
           form.change('nativeText', results.data.translatedText);
           form.change('nativeCustomText', results.data.translatedText);
         }
       } catch (error) {
-        setLoading(false);
         console.error(error);
+        setLoading(false);
       }
     }, 600),
     [],
@@ -48,10 +46,6 @@ const AutoTranslation = memo(function Transl({
 
   useEffect(() => {
     debouncedChangeHandler(targetText);
-
-    return () => {
-      !isDevelopment && controller.abort();
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetText]);
 
