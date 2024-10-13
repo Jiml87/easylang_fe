@@ -8,6 +8,10 @@ export const PrivacyPolicy = () => {
         <h1>Privacy Policy</h1>
 
         <p>
+          <strong>https://mywords.pro</strong> is free tool!
+        </p>
+
+        <p>
           At <strong>https://mywords.pro</strong>, we are committed to
           protecting your privacy and ensuring the security of your personal
           information. This privacy policy outlines how we collect, use, and
