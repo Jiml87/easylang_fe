@@ -22,7 +22,6 @@ export const MobileBottomBar: FC<MobileBottomBarProps> = ({
   });
   const handlers = useSwipeable({
     onSwiped: (_eventData) => {
-      console.log('useSwipeable _eventData', _eventData);
       setOpen(false);
     },
   });

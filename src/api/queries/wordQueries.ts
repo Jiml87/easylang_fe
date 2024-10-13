@@ -14,8 +14,6 @@ export const wordApi = createApi({
       query: ({ page, targetLang }) =>
         `/words/learning-words?targetLang=${targetLang}&page=${page}&limit=50&practice=true`,
       transformResponse: (learningWords: Word[]): Word[] => {
-        console.log('learningWords', learningWords);
-
         return learningWords.map((word) => {
           const date = new Date(word.nextLearningDate);
           date.setDate(date.getDate() + 1);

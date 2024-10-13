@@ -10,7 +10,6 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
   const data = await fetchAuthInfo();
   const headerList = headers();
   const pathname = headerList.get('x-current-path');
-  console.log('data', data);
 
   // TODO: no response from api server
 
