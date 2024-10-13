@@ -13,7 +13,7 @@ import { googleLoginRequest, selectLoginState } from './loginSlice';
 
 import './login.css';
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { isLoading } = useAppSelector(selectLoginState);
@@ -85,5 +85,3 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export default LoginPage;
