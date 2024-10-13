@@ -6,7 +6,7 @@ import { rootPage } from '@/config/routes';
 
 const MainPageHeader = () => {
   return (
-    <header className="flex items-center justify-between px-4 py-4">
+    <header className="flex items-center justify-between border-b p-4">
       <div>
         <Logo />
       </div>

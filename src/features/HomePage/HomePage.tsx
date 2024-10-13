@@ -1,8 +1,8 @@
 'use client';
-import MainPageHeader from '@/components/MainPageHeader/MainPageHeader';
 import Image from 'next/image';
 import { addNewPhrasePage } from '@/config/routes';
 import bannerImage from '@/assets/images/banner/home_banner_v1.svg';
+import Logo from '@/components/Logo/Logo';
 
 import './HomePage.css';
 
@@ -11,7 +11,9 @@ const HomePage = () => {
     <div className="HomePage">
       <div className="glass-container">
         <div>
-          <MainPageHeader />
+          <header className="p-4">
+            <Logo />
+          </header>
           <main className="px-4 py-2 sm:py-4 md:grid md:grid-cols-2">
             <div className="justify-center md:flex md:flex-col">
               <div className="text-green-800 md:max-w-lg">
