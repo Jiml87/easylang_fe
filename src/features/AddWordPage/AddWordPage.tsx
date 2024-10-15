@@ -112,7 +112,7 @@ const AddWordForm = () => {
               label="Save"
               disabled={isLoading}
               className={twMerge(
-                'w-full pb-6 sm:w-auto sm:self-center sm:px-14',
+                'p-button-raised w-full pb-6 sm:w-auto sm:self-center sm:px-14',
                 isLoading && 'pointer-events-none',
               )}
             />

@@ -90,7 +90,7 @@ const InitProfileForm = () => {
                 <Button
                   label="Save"
                   loading={isLoading}
-                  className="w-full md:w-64"
+                  className="p-button-raised w-full md:w-64"
                 />
               </div>
             </form>

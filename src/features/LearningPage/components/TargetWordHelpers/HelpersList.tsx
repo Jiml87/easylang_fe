@@ -105,7 +105,7 @@ export const HelpersList: FC<HelpersListProps> = ({ data }) => {
               onClick={() => onShowHelper(item, index)}
               size="small"
               severity="info"
-              className="mr-3"
+              className="p-button-raised mr-3"
             />
           ))}
         </div>

@@ -107,7 +107,7 @@ const LearningPage: FC = () => {
             onClick={saveResult}
             disabled={isPending || validateAnswer()}
             label="Save"
-            className="w-full pb-6 sm:w-auto sm:self-center sm:px-24"
+            className="p-button-raised w-full pb-6 sm:w-auto sm:self-center sm:px-24"
           />
         </ShadowSpinner>
       </div>
