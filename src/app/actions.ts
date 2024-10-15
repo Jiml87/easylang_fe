@@ -33,13 +33,11 @@ export async function getAuthInfo(): Promise<UserProfile | null> {
   }
 
   // User is registered but profile has not been finished
-  if (
-    data?.id &&
-    !data.nativeLang &&
-    pathname?.indexOf('/myapp/') === 0 &&
-    pathname !== initProfilePage.path
-  ) {
-    redirect(initProfilePage.path);
+  if (data?.id && !data.nativeLang && pathname?.indexOf('/myapp/') === 0) {
+    if (pathname !== initProfilePage.path) {
+      redirect(initProfilePage.path);
+    }
+    return data;
   }
 
   return null;

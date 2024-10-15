@@ -2,7 +2,6 @@
 import { twMerge } from 'tailwind-merge';
 import { Card } from 'primereact/card';
 import { useGoogleLogin } from '@react-oauth/google';
-// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { useRouter } from 'next/navigation';
 import { initProfilePage, addNewPhrasePage } from '@/config/routes';
 import { ShadowSpinner } from '@/components/ShadowSpinner/ShadowSpinner';
@@ -63,21 +62,12 @@ export const LoginPage = () => {
               >
                 Google
               </div>
-              {/* <FacebookLogin
-                appId="1257511625239605"
-                callback={(resp: any) => console.log('FacebookLogin', resp)}
-                responseType="code"
-                fields="name,email,picture"
-                render={(renderProps: any) => (
-                  <div
-                    role="button"
-                    onClick={renderProps.onClick}
-                    className="socialBtn facebookBtn mt-4 flex w-full justify-center p-2 align-middle"
-                  >
-                    Facebook
-                  </div>
-                )}
-              /> */}
+              {/* <a
+                href="/api/v1/auth/facebook/login"
+                className="socialBtn facebookBtn mt-4 flex w-full justify-center p-2 align-middle"
+              >
+                Facebook
+              </a> */}
             </div>
           </Card>
         </ShadowSpinner>
