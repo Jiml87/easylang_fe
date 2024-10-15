@@ -58,7 +58,7 @@ export const LearnTodayTab = () => {
         <div className="sticky bottom-0 mt-5 flex sm:justify-center">
           <Link
             href={learningPage.path}
-            className="p-button w-full justify-center font-bold sm:w-auto sm:px-20"
+            className="p-button p-button-raised w-full justify-center font-bold sm:w-auto sm:px-20"
           >
             Upload To The Brain
           </Link>

@@ -28,7 +28,7 @@ export const FormTextArea: FC<FormInputTextProps> = ({
       <label
         className="text-sm text-gray-500"
         htmlFor={input.name}
-        id={`input-${name}`}
+        id={`input-${input.name}`}
       >
         {label}
         {subLabel}

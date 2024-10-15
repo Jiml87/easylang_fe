@@ -16,7 +16,7 @@ const DictionaryPage = () => {
   } = useAppSelector(selectWordCounts);
 
   return (
-    <div className="h-full">
+    <div className="flex grow flex-col">
       <h1 className="hidden sm:block">Dictionary</h1>
       <TabView className="DictionaryPage">
         <TabPanel header={`Learn Today (${numberLearningWordsForToday})`}>
