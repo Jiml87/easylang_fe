@@ -4,7 +4,6 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { ProgressSpinner } from 'primereact/progressspinner';
 
 type FormInputTextProps = FieldRenderProps<string, HTMLElement> & {
-  name: string;
   label: string;
   subLabel?: string | ReactElement;
   inputClassName?: string;
@@ -19,7 +18,6 @@ export const FormTextArea: FC<FormInputTextProps> = ({
   label,
   subLabel,
   inputClassName,
-  name,
   rows = 2,
   autoResize = true,
   loading,
@@ -27,7 +25,11 @@ export const FormTextArea: FC<FormInputTextProps> = ({
 }) => {
   return (
     <div className="mt-2">
-      <label className="text-sm text-gray-500" htmlFor={name}>
+      <label
+        className="text-sm text-gray-500"
+        htmlFor={input.name}
+        id={`input-${name}`}
+      >
         {label}
         {subLabel}
       </label>
@@ -42,9 +44,9 @@ export const FormTextArea: FC<FormInputTextProps> = ({
           name={input.name}
           value={input.value}
           onChange={input.onChange}
-          id={name}
+          id={input.name}
           invalid={meta.submitFailed && meta.invalid}
-          aria-labelledby={label}
+          // aria-labelledby={`input-${name}`}
           rows={rows}
           autoResize={autoResize}
           {...rest}

@@ -3,7 +3,6 @@ import { FieldRenderProps } from 'react-final-form';
 import { InputText } from 'primereact/inputtext';
 
 type FormInputTextProps = FieldRenderProps<string, HTMLElement> & {
-  name: string;
   label: string;
   subLabel?: string | ReactElement;
   inputClassName?: string;
@@ -16,13 +15,12 @@ const FormInputText: FC<FormInputTextProps> = ({
   label,
   subLabel,
   inputClassName,
-  name,
   type = 'text',
   ...rest
 }) => {
   return (
     <div className="mt-2">
-      <label className="text-sm text-gray-500" htmlFor={name}>
+      <label className="text-sm text-gray-500" htmlFor={input.name}>
         {label}
         {subLabel}
       </label>
@@ -32,7 +30,7 @@ const FormInputText: FC<FormInputTextProps> = ({
         value={input.value}
         onChange={input.onChange}
         type={type}
-        id={name}
+        id={input.name}
         invalid={meta.submitFailed && meta.invalid}
         aria-labelledby={label}
         {...rest}
