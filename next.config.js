@@ -13,6 +13,7 @@ const nextConfig = {
     AUTH_JWT_SECRET: process.env.AUTH_JWT_SECRET,
     API_HOST: API_HOST,
   },
+  compress: true,
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
