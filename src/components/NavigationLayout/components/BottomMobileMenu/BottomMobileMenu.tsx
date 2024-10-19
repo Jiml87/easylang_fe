@@ -8,11 +8,21 @@ import { useAppSelector } from '@/store/hooks';
 import { selectNumberLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import { MobileBottomBar } from '../MobileBottomBar/MobileBottomBar';
 
+const CountNotification = () => {
+  const countLearningWords = useAppSelector(selectNumberLearningWordsForToday);
+  return countLearningWords ? (
+    <Badge
+      value={countLearningWords}
+      severity="danger"
+      className="footer-count-words"
+    />
+  ) : null;
+};
+
 export const BottomMobileMenu = () => {
   const router = useRouter();
   const [openedMobileBar, setOpenedMobileBar] = useState<boolean>(false);
   const handleOpenMobileFooterPopup = () => setOpenedMobileBar(true);
-  const countLearningWords = useAppSelector(selectNumberLearningWordsForToday);
 
   return (
     <>
@@ -27,14 +37,8 @@ export const BottomMobileMenu = () => {
           aria-label="Dictionary"
           link
         >
-          {!!countLearningWords && (
-            <Badge
-              value={countLearningWords}
-              severity="danger"
-              className="footer-count-words"
-            />
-          )}
           <span className="btn-text">Dictionary</span>
+          <CountNotification />
         </Button>
         <Button
           onClick={() => router.push(addNewPhrasePage.path)}
