@@ -35,8 +35,9 @@ jobs:
           ccontext: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: user/ui_service:latest
+          # tags: ${{ steps.meta.outputs.tags }}
+          # labels: ${{ steps.meta.outputs.labels }}
 
       # - name: Build and push Docker image
       #   id: push
