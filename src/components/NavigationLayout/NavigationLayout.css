@@ -25,3 +25,9 @@
     @apply pt-1 text-xs;
   }
 }
+
+@media (display-mode: standalone) {
+  .mobile-navigation-bar {
+    @apply pb-3;
+  }
+}

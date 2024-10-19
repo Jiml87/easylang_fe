@@ -33,4 +33,4 @@ export const LANG_BY_CODE: Record<AvailableLangs, string> = {
 export const AVAILABLE_LANGS_OPTIONS = AVAILABLE_LANGS_LIST.map((lang) => ({
   value: lang,
   label: LANG_BY_CODE[lang],
-}));
+})).filter(({ value }) => value !== 'zh-CN' && value !== 'zh-TW');
