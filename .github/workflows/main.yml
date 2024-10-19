@@ -9,6 +9,8 @@ on:
 
 env:
   API_HOST: ${{ vars.API_HOST }}
+  OAUTH_GOOGLE_ID: ${{ vars.OAUTH_GOOGLE_ID }}
+  NODE_ENV: ${{ vars.NODE_ENV }}
 
 permissions:
   contents: read
