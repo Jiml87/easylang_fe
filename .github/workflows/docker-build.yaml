@@ -35,7 +35,7 @@ jobs:
           ccontext: .
           file: ./Dockerfile
           push: true
-          tags: user/ui_service:latest
+          tags: mywords/ui_service:latest
           # tags: ${{ steps.meta.outputs.tags }}
           # labels: ${{ steps.meta.outputs.labels }}
 

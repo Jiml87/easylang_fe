@@ -43,7 +43,7 @@ export const LearnTodayTab = () => {
             )}
             onClick={() => setWordDetails(word)}
           >
-            <div>
+            <div className="text-sm sm:text-base">
               {index + 1}.&nbsp;
               {word.targetWord.targetText}
             </div>
