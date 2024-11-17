@@ -28,7 +28,7 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
           <HeaderMenuProfile />
         </div>
       </header>
-      <div className="flex grow flex-col">{children}</div>
+      <div className="flex grow flex-col overflow-hidden">{children}</div>
       <BottomMobileMenu />
     </section>
   );

@@ -1,14 +1,12 @@
 import { Fragment, useState, useCallback } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import { twMerge } from 'tailwind-merge';
 
 import { useGetLearningSoonWordsQuery } from '@/api/queries/wordQueries';
-import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
 import { selectCurrentTargetLanguage } from '@/features/InitProfilePage/userProfileSlice';
 import { useAppSelector } from '@/store/hooks';
 import { Word } from '@/types/word';
-import './LearnSoonTab.css';
 import { WordDetailsPopup } from '@/features/DictionaryPage/components/WordDetailsPopup/WordDetailsPopup';
+import { WordItem } from '../WordItem/WordItem';
 
 export const LearnSoonTab = () => {
   const [wordDetails, setWordDetails] = useState<Word>();
@@ -36,28 +34,14 @@ export const LearnSoonTab = () => {
       <ul className="LearnSoonTab">
         {data &&
           data.map((word, index) => (
-            <li
+            <WordItem
               key={word.id}
-              className={twMerge(
-                'list-item',
-                index % 2 === 0 && 'bg-slate-100',
-              )}
-              onClick={() => setWordDetails(word)}
-            >
-              <div className="gr-align-center text">
-                {index + 1}.&nbsp;
-                {word.targetWord.targetText}
-              </div>
-              <div className="gr-align-center gr-justify-end date">
-                {word.localNextLearningDate}
-              </div>
-              <div className="gr-align-center gr-justify-end">
-                <WordIconStatus
-                  status={word.passedLearningDay}
-                  isOverdue={word.nextLearningDate < new Date()}
-                />
-              </div>
-            </li>
+              data={word}
+              index={index}
+              onSelectWord={setWordDetails}
+              isLearningStatus
+              isLearnDate
+            />
           ))}
       </ul>
       {wordDetails && (

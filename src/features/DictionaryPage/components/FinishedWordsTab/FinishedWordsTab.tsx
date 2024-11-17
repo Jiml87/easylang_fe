@@ -1,13 +1,12 @@
 import { Fragment, useCallback, useState } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import { twMerge } from 'tailwind-merge';
 
 import { useGetFinishedWordsQuery } from '@/api/queries/wordQueries';
-import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
 import { selectCurrentTargetLanguage } from '@/features/InitProfilePage/userProfileSlice';
 import { useAppSelector } from '@/store/hooks';
 import { WordDetailsPopup } from '@/features/DictionaryPage/components/WordDetailsPopup/WordDetailsPopup';
 import { Word } from '@/types/word';
+import { WordItem } from '../WordItem/WordItem';
 
 export const FinishedWordsTab = () => {
   const [wordDetails, setWordDetails] = useState<Word>();
@@ -34,23 +33,12 @@ export const FinishedWordsTab = () => {
       <ul>
         {data &&
           data.map((word, index) => (
-            <li
+            <WordItem
               key={word.id}
-              className={twMerge(
-                'flex cursor-pointer items-center justify-between px-2 py-2 sm:pr-10',
-                index % 2 === 0 && 'bg-slate-100',
-              )}
-              onClick={() => setWordDetails(word)}
-            >
-              <div>
-                {index + 1}.&nbsp;
-                {word.targetWord.targetText}
-              </div>
-              <WordIconStatus
-                status={word.passedLearningDay}
-                isOverdue={word.nextLearningDate < new Date()}
-              />
-            </li>
+              data={word}
+              index={index}
+              onSelectWord={setWordDetails}
+            />
           ))}
       </ul>
       {wordDetails && (
