@@ -1,6 +1,5 @@
 import { Fragment, useState } from 'react';
 import Link from 'next/link';
-import { twMerge } from 'tailwind-merge';
 import { ProgressSpinner } from 'primereact/progressspinner';
 
 import { useAppSelector } from '@/store/hooks';
@@ -9,9 +8,9 @@ import {
   selectDictionary,
 } from '@/features/DictionaryPage/dictionarySlice';
 import { WordDetailsPopup } from '@/features/DictionaryPage/components/WordDetailsPopup/WordDetailsPopup';
-import WordIconStatus from '@/components/WordIconStatus/WordIconStatus';
 import { learningPage } from '@/config/routes';
 import { Word } from '@/types/word';
+import { WordItem } from '../WordItem/WordItem';
 
 export const LearnTodayTab = () => {
   const [wordDetails, setWordDetails] = useState<Word>();
@@ -22,6 +21,10 @@ export const LearnTodayTab = () => {
   const onHideWordDetailsPopup = () => {
     setWordDetails(undefined);
   };
+
+  // const data = learningWordsForToday.length
+  //   ? new Array(50).fill(learningWordsForToday[0])
+  //   : [];
 
   return (
     <Fragment>
@@ -35,23 +38,13 @@ export const LearnTodayTab = () => {
       )}
       <ul>
         {learningWordsForToday.map((word, index) => (
-          <li
+          <WordItem
             key={word.id}
-            className={twMerge(
-              'flex cursor-pointer items-center justify-between px-2 py-2 sm:pr-10',
-              index % 2 === 0 && 'bg-slate-100',
-            )}
-            onClick={() => setWordDetails(word)}
-          >
-            <div className="text-sm sm:text-base">
-              {index + 1}.&nbsp;
-              {word.targetWord.targetText}
-            </div>
-            <WordIconStatus
-              status={word.passedLearningDay}
-              isOverdue={word.nextLearningDate < new Date()}
-            />
-          </li>
+            data={word}
+            index={index}
+            onSelectWord={setWordDetails}
+            learningStep="learnToday"
+          />
         ))}
       </ul>
       {!!learningWordsForToday.length && (

@@ -6,11 +6,13 @@ export const wordApi = createApi({
   reducerPath: 'wordApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api/v1' }),
   keepUnusedDataFor: 60,
+  tagTypes: ['LearnSoon', 'Finished'],
   endpoints: (builder) => ({
     getLearningSoonWords: builder.query<
       Word[],
       { page: number; targetLang: AvailableLangs | null }
     >({
+      providesTags: ['LearnSoon'],
       query: ({ page, targetLang }) =>
         `/words/learning-words?targetLang=${targetLang}&page=${page}&limit=50&practice=true`,
       transformResponse: (learningWords: Word[]): Word[] => {
@@ -35,6 +37,7 @@ export const wordApi = createApi({
       Word[],
       { page: number; targetLang: AvailableLangs | null }
     >({
+      providesTags: ['Finished'],
       query: ({ page, targetLang }) =>
         `/words/finished-words?targetLang=${targetLang}&page=${page}&limit=50`,
     }),

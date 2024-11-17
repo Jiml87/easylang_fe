@@ -35,7 +35,7 @@ const WordIconStatus: FC<WordIconStatusProps> = ({
   const borderColor = isOverdue ? 'border-red-600' : 'border-emerald-400';
   return (
     <div
-      className={twMerge('roundStatusIcon', borderColor)}
+      className={twMerge('roundStatusIcon', 'ml-2', borderColor)}
       title={getTitleByStatus(status)}
     >
       {status === 30 && (

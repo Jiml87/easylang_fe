@@ -1,6 +1,6 @@
 {
-  "name": "mywords",
-  "version": "1.0.2",
+  "name": "mywords_ui",
+  "version": "0.1.0",
   "private": true,
   "author": "Viacheslav Semenenko",
   "scripts": {
