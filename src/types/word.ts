@@ -57,3 +57,5 @@ export type LearningWordForToday = Word & {
   sentencesWithHiddenTarget?: string[];
   // examples: Array<{ s: string }>;
 };
+
+export type LearningStep = 'learnToday' | 'learnSoon' | 'finished';

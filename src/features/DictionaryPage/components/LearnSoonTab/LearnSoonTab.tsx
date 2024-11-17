@@ -39,8 +39,7 @@ export const LearnSoonTab = () => {
               data={word}
               index={index}
               onSelectWord={setWordDetails}
-              isLearningStatus
-              isLearnDate
+              learningStep="learnSoon"
             />
           ))}
       </ul>

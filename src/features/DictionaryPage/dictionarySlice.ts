@@ -10,6 +10,7 @@ import { RootState, AppDispatch } from '@/store/store';
 import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { selectCurrentTargetLanguage } from '@/features/InitProfilePage/userProfileSlice';
 import { LearningWordForToday } from '@/types/word';
+import { wordApi } from '@/api/queries/wordQueries';
 
 import { generateAdditionalData } from './utils/generateAdditionalData';
 
@@ -48,6 +49,7 @@ export const getNumberWords = createAsyncThunk(
     );
   },
 );
+
 interface InitialState {
   learningWordsForToday: LearningWordForToday[];
   numberLearningWordsForToday: number;
@@ -86,8 +88,23 @@ const dictionarySlice = createSlice({
           state.numberLearningWordsForToday - 1;
       }
     },
+    increaseNumberLearningWordsForToday: (state) => {
+      state.numberLearningWordsForToday = state.numberLearningWordsForToday + 1;
+    },
+    decreaseNumberLearningWordsForToday: (state) => {
+      state.numberLearningWordsForToday = state.numberLearningWordsForToday - 1;
+    },
     increaseNumberLearningWordsSoon: (state) => {
       state.numberLearningWordsSoon = state.numberLearningWordsSoon + 1;
+    },
+    decreaseNumberLearningWordsSoon: (state) => {
+      state.numberLearningWordsSoon = state.numberLearningWordsSoon - 1;
+    },
+    increaseNumberFinishedWords: (state) => {
+      state.numberFinishedWords = state.numberFinishedWords + 1;
+    },
+    decreaseNumberFinishedWords: (state) => {
+      state.numberFinishedWords = state.numberFinishedWords - 1;
     },
   },
   extraReducers(builder) {
@@ -115,6 +132,44 @@ const dictionarySlice = createSlice({
 });
 
 export const selectDictionary = (state: RootState) => state.dictionary;
+
+export const deleteWord = createAsyncThunk(
+  'words/delete',
+  async (
+    {
+      id,
+      isFinished,
+      isLearnToday,
+      isLearnSoon,
+    }: {
+      id: string;
+      isFinished?: boolean;
+      isLearnToday?: boolean;
+      isLearnSoon?: boolean;
+    },
+    { rejectWithValue, dispatch },
+  ) => {
+    return catchErrorInAsyncAction(
+      rejectWithValue,
+      dispatch as AppDispatch,
+      async () => {
+        const response = await axios.delete(`/v1/words/delete?id=${id}`);
+        if (isFinished) {
+          dispatch(dictionarySlice.actions.decreaseNumberFinishedWords());
+          dispatch(wordApi.util.invalidateTags(['Finished']));
+        }
+        if (isLearnToday) {
+          dispatch(dictionarySlice.actions.removeById({ id }));
+        }
+        if (isLearnSoon) {
+          dispatch(dictionarySlice.actions.decreaseNumberLearningWordsSoon());
+          dispatch(wordApi.util.invalidateTags(['LearnSoon']));
+        }
+        return response.data;
+      },
+    );
+  },
+);
 
 export const selectLearningWordsForToday = createSelector(
   selectDictionary,

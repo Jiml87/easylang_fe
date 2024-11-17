@@ -38,6 +38,7 @@ export const FinishedWordsTab = () => {
               data={word}
               index={index}
               onSelectWord={setWordDetails}
+              learningStep="finished"
             />
           ))}
       </ul>
