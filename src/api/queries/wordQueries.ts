@@ -5,7 +5,7 @@ import type { AvailableLangs } from '@/types/langs';
 export const wordApi = createApi({
   reducerPath: 'wordApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api/v1' }),
-  keepUnusedDataFor: 60,
+  keepUnusedDataFor: 180,
   tagTypes: ['LearnSoon', 'Finished'],
   endpoints: (builder) => ({
     getLearningSoonWords: builder.query<
