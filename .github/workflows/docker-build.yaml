@@ -49,13 +49,10 @@ jobs:
           script: |
             echo "Pulling the latest image..."
             docker pull mywords/ui_service:latest
-
             echo "Restarting the service..."
             cd ~/mywords/easylang_api
             docker-compose up -d --no-deps ui_service
-
             echo "Deployment complete."
-            EOF
 
       # - name: Generate artifact attestation
       #   uses: actions/attest-build-provenance@v1
