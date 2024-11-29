@@ -11,6 +11,7 @@ import {
   selectCurrentTargetLanguage,
 } from '@/features/InitProfilePage/userProfileSlice';
 import { increaseNumberLearningWordsSoon } from '@/features/DictionaryPage/dictionarySlice';
+import { wordApi } from '@/api/queries/wordQueries';
 
 type CreatePhraseValues = {
   nativeText: string;
@@ -33,6 +34,7 @@ export const createPhrase = createAsyncThunk(
       async () => {
         const response = await axios.post('/v1/words', body);
         dispatch(increaseNumberLearningWordsSoon());
+        dispatch(wordApi.util.invalidateTags(['LearnSoon']));
         dispatch(
           addSuccessMessage({
             detail: 'The phrase is saved',

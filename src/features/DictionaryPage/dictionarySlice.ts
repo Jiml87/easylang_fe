@@ -79,7 +79,7 @@ const dictionarySlice = createSlice({
     resetStatus: (state) => {
       state.status = 'idle';
     },
-    removeById: (state, { payload }: { payload: { id: string } }) => {
+    removeTodayWordById: (state, { payload }: { payload: { id: string } }) => {
       if (state.learningWordsForToday.length) {
         state.learningWordsForToday = state.learningWordsForToday.filter(
           ({ id }) => id !== payload.id,
@@ -159,7 +159,7 @@ export const deleteWord = createAsyncThunk(
           dispatch(wordApi.util.invalidateTags(['Finished']));
         }
         if (isLearnToday) {
-          dispatch(dictionarySlice.actions.removeById({ id }));
+          dispatch(dictionarySlice.actions.removeTodayWordById({ id }));
         }
         if (isLearnSoon) {
           dispatch(dictionarySlice.actions.decreaseNumberLearningWordsSoon());
@@ -200,7 +200,10 @@ export const selectNumberLearningWordsForToday = createSelector(
   },
 );
 
-export const { removeById, increaseNumberLearningWordsSoon } =
-  dictionarySlice.actions;
+export const {
+  removeTodayWordById,
+  increaseNumberLearningWordsSoon,
+  increaseNumberFinishedWords,
+} = dictionarySlice.actions;
 
 export default dictionarySlice.reducer;

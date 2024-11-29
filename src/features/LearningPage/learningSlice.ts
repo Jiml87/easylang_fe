@@ -9,7 +9,12 @@ import { ApiRequestStatusV2 } from '@/types/general';
 import { RootState, AppDispatch } from '@/store/store';
 import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { WordLearningDay } from '@/types/word';
-import { removeById } from '@/features/DictionaryPage/dictionarySlice';
+import {
+  removeTodayWordById,
+  increaseNumberLearningWordsSoon,
+  increaseNumberFinishedWords,
+} from '@/features/DictionaryPage/dictionarySlice';
+import { wordApi } from '@/api/queries/wordQueries';
 
 interface InitialState {
   status: ApiRequestStatusV2;
@@ -36,7 +41,16 @@ export const learnWordForToday = createAsyncThunk(
           prevDay,
         });
 
-        dispatch(removeById({ id }));
+        dispatch(removeTodayWordById({ id }));
+        // last learning day
+        if (prevDay === 7) {
+          dispatch(increaseNumberFinishedWords());
+          dispatch(wordApi.util.invalidateTags(['Finished']));
+        } else {
+          dispatch(increaseNumberLearningWordsSoon());
+          dispatch(wordApi.util.invalidateTags(['LearnSoon']));
+        }
+
         return response.data;
       },
     );
