@@ -1,12 +1,12 @@
 .DictionaryPage {
-  @apply flex grow flex-col overflow-hidden;
+  @apply flex grow flex-col overflow-y-hidden;
 
   &.p-tabview .p-tabview-panels {
     @apply relative flex max-h-full grow flex-col overflow-y-auto;
   }
 
   &.p-tabview .p-tabview-panel {
-    @apply flex grow flex-col justify-between;
+    @apply flex grow flex-col justify-between sm:justify-normal;
   }
 
   & .empty-list {

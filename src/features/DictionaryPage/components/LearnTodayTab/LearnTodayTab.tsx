@@ -48,7 +48,7 @@ export const LearnTodayTab = () => {
         ))}
       </ul>
       {!!learningWordsForToday.length && (
-        <div className="sticky bottom-0 mt-5 flex sm:justify-center">
+        <div className="sticky bottom-0 mt-5 flex sm:mt-20 sm:justify-center">
           <Link
             href={learningPage.path}
             className="p-button p-button-raised w-full justify-center font-bold sm:w-auto sm:px-20"
