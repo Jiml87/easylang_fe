@@ -44,7 +44,8 @@ jobs:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
           port: ${{ secrets.VM_PORT }}
-          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          # key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          password: ${{ secrets.VM_SSH_PASSWORD }}
           script: |
             echo "Pulling the latest image..."
             docker pull mywords/ui_service:latest
