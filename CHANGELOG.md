@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.4...mywords_ui-v1.0.5) (2024-11-29)
+
+
+### Bug Fixes
+
+* use password for vm ([bd6d176](https://github.com/Jiml87/easylang_fe/commit/bd6d17650b4b509b9332a9854fe67f4292e643ee))
+
 ## [1.0.4](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.3...mywords_ui-v1.0.4) (2024-11-29)
 
 
