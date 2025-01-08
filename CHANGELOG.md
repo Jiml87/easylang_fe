@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.6...mywords_ui-v1.0.7) (2025-01-08)
+
+
+### Bug Fixes
+
+* change message ([9e274d4](https://github.com/Jiml87/easylang_fe/commit/9e274d4db46697dffe43b729dae2a79ac01ff46e))
+
 ## [1.0.6](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.5...mywords_ui-v1.0.6) (2024-11-29)
 
 
