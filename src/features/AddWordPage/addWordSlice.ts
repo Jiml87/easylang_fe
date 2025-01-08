@@ -37,7 +37,7 @@ export const createPhrase = createAsyncThunk(
         dispatch(wordApi.util.invalidateTags(['LearnSoon']));
         dispatch(
           addSuccessMessage({
-            detail: 'The phrase is saved',
+            detail: 'Tomorrow is the first day of learning this',
           }),
         );
         return response.data;
