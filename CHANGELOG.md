@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.12](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.11...mywords_ui-v1.0.12) (2025-01-09)
+
+
+### Bug Fixes
+
+* add envs as secrets ([4c176d6](https://github.com/Jiml87/easylang_fe/commit/4c176d67d1f118d7b078c81c0d250afcbf24bc77))
+* add envs as secrets ([7575601](https://github.com/Jiml87/easylang_fe/commit/75756015cb01ae06b772a93e11f7598941bc9d4f))
+
 ## [1.0.11](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.10...mywords_ui-v1.0.11) (2025-01-09)
 
 
