@@ -12,6 +12,7 @@ interface ProvidersProps {
 
 export default function Providers({ children }: ProvidersProps) {
   console.log('OAUTH_GOOGLE_ID', process.env.OAUTH_GOOGLE_ID);
+  console.log('API_HOST', process.env.API_HOST);
 
   return (
     <StoreProvider>
