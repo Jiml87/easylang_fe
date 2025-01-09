@@ -39,6 +39,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            API_HOST=${{ vars.API_HOST }}
+            OAUTH_GOOGLE_ID=${{ vars.OAUTH_GOOGLE_ID }}
 
       - name: Deploy to VM
         uses: appleboy/ssh-action@v1.2.0
