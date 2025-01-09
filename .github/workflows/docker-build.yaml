@@ -25,14 +25,17 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        uses: docker/metadata-action@v4
         with:
           images: mywords/ui_service
+          tags: |
+            type=ref,event=release
+            type=raw,value=${{ github.event.release.tag_name }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          ccontext: .
+          context: .
           file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
@@ -48,15 +51,9 @@ jobs:
           password: ${{ secrets.VM_SSH_PASSWORD }}
           script: |
             echo "Pulling the latest image..."
-            docker pull mywords/ui_service:latest
+            docker pull mywords/ui_service:${{ github.event.release.tag_name }}
+            echo "Updating Docker Compose..."
+            sed -i "s|image: mywords/ui_service:.*|image: mywords/ui_service:${{ github.event.release.tag_name }}|g" docker-compose.yml
             echo "Restarting the service..."
-            cd ~/mywords/easylang_api
             docker-compose up -d --no-deps ui_service
             echo "Deployment complete."
-
-      # - name: Generate artifact attestation
-      #   uses: actions/attest-build-provenance@v1
-      #   with:
-      #     subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
-      #     subject-digest: ${{ steps.push.outputs.digest }}
-      #     push-to-registry: true
