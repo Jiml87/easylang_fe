@@ -1,11 +1,11 @@
-name: Publish Docker image easylang_api
+name: Publish Docker image easylang_ui
 
 on:
   release:
     types: [published]
 
 jobs:
-  easylang_api:
+  easylang_ui:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     permissions:
@@ -29,7 +29,6 @@ jobs:
         with:
           images: mywords/ui_service
           tags: |
-            type=ref,event=release
             type=raw,value=${{ github.event.release.tag_name }}
 
       - name: Build and push
