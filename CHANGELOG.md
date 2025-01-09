@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.11](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.10...mywords_ui-v1.0.11) (2025-01-09)
+
+
+### Bug Fixes
+
+* add envs ([e813bc3](https://github.com/Jiml87/easylang_fe/commit/e813bc3a104e633d5f27654fdd240a464475db15))
+
 ## [1.0.10](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.9...mywords_ui-v1.0.10) (2025-01-09)
 
 
