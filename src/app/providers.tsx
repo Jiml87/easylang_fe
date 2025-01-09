@@ -11,6 +11,8 @@ interface ProvidersProps {
 }
 
 export default function Providers({ children }: ProvidersProps) {
+  console.log('OAUTH_GOOGLE_ID', process.env.OAUTH_GOOGLE_ID);
+
   return (
     <StoreProvider>
       <PrimeReactProvider
