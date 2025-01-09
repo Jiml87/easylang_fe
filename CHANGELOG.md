@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.7...mywords_ui-v1.0.8) (2025-01-09)
+
+
+### Bug Fixes
+
+* log OAUTH_GOOGLE_ID ([1db82ef](https://github.com/Jiml87/easylang_fe/commit/1db82efe5cb4bfafaac6e49955a6373bcb8b7ff9))
+
 ## [1.0.7](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.6...mywords_ui-v1.0.7) (2025-01-08)
 
 
