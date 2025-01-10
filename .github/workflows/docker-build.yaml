@@ -61,4 +61,6 @@ jobs:
             sed -i "s|image: mywords/ui_service:.*|image: mywords/ui_service:${{ github.event.release.tag_name }}|g" docker-compose.yml
             echo "Restarting the service..."
             docker compose up -d --no-deps ui_service
+            echo "Remove unused images..."
+            docker rmi $(docker images mywords/ui_service -q)
             echo "Deployment complete."
