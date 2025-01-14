@@ -15,7 +15,10 @@ Any new features should not negatively impact this capability!!!
 
 
 
-https://github.com/user-attachments/assets/446ef8a8-83ae-4f78-828e-8ab836b6dfa7
+
+https://github.com/user-attachments/assets/942c7901-4183-4cc5-8a78-90e052452964
+
+
 
 
 
@@ -27,10 +30,6 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
