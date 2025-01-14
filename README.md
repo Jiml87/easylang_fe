@@ -9,8 +9,8 @@ understand.
 
 ## Motivation
 
-* A user should be able to save a new word very quickly without long loading times of the app.
-The page [Add Word](https://mywords.pro/myapp/add-word) has  First Contentful Paint (FCP) of 1.1s on desctop and 1.3s on mobile.
+* User should be able to save a new word very quickly without long loading times of the app.
+The page [Add Word](https://mywords.pro/myapp/add-word) has  First Contentful Paint (FCP) of 1.1s on desktop and 1.3s on mobile.
 Any new features should not negatively impact this capability!!!
 * Always keep an eye on mobile version.
 
