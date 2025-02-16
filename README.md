@@ -9,13 +9,17 @@ understand.
 
 ## Motivation
 
-* A user should be able to save a new word very quickly without long loading times of the application.
+* User should be able to save a new word very quickly without long loading times of the app.
+The page [Add Word](https://mywords.pro/myapp/add-word) has  First Contentful Paint (FCP) of 1.1s on desktop and 1.3s on mobile.
 Any new features should not negatively impact this capability!!!
-* Keep an eye on mobile version
+* Always keep an eye on mobile version.
 
 
 
-https://github.com/user-attachments/assets/446ef8a8-83ae-4f78-828e-8ab836b6dfa7
+
+https://github.com/user-attachments/assets/942c7901-4183-4cc5-8a78-90e052452964
+
+
 
 
 
@@ -27,10 +31,6 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
