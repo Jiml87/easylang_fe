@@ -5,6 +5,7 @@ import { selectCurrentTargetLanguage } from '@/features/InitProfilePage/userProf
 import { useAppSelector } from '@/store/hooks';
 
 import { Word } from '@/types/word';
+import { LANG_BY_CODE } from '@/constants/langs';
 
 interface WordDetailsPopupProps {
   visible: boolean;
@@ -46,6 +47,16 @@ export const WordDetailsPopup: FC<WordDetailsPopupProps> = ({
       breakpoints={{ '10000px': '550px', '641px': '90vw' }}
     >
       <div>
+        <div>
+          <a
+            href={`https://youglish.com/pronounce/${data.targetWord.targetText}/${LANG_BY_CODE[targetLang].toLowerCase()}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline hover:no-underline"
+          >
+            Pronunciation on YouTube
+          </a>
+        </div>
         <h3 className="mt-0">Definition:</h3>
         <div className="text-sm text-zinc-700">
           {data.targetWord.practice.description?.text}
