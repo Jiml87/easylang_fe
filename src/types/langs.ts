@@ -1,6 +1,8 @@
 export type AvailableLangs =
   | 'en'
   | 'uk'
+  | 'ru'
+  | 'ro'
   | 'de'
   | 'fr'
   | 'pl'

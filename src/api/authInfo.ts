@@ -1,9 +1,14 @@
 import { cookies } from 'next/headers';
 import { API_URL } from '@/constants/env';
 
-const getCookie = async (name: string) => {
-  return cookies().get(name)?.value ?? '';
-};
+// const getCookie = async (name: string) => {
+//   return cookies().get(name)?.value ?? '';
+// };
+
+async function getCookie(name: string) {
+  const cookieData = cookies().get(name)?.value ?? '';
+  return new Promise((resolve) => resolve(cookieData));
+}
 
 export default async function getAuthInfo() {
   try {

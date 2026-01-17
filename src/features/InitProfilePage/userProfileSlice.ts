@@ -8,7 +8,7 @@ import axios from '@/api/axiosInstance';
 import { RootState } from '@/store/store';
 import { catchErrorInAsyncAction } from '@/store/storeUtils';
 import { CreateAsyncThunkOptions } from '@/store/store';
-import { AvailableLangs } from '@/types/langs';
+import { AvailableLangs, UserTargetLang } from '@/types/langs';
 import { UserProfile } from '@/types/auth';
 import { rootPage } from '@/config/routes';
 
@@ -130,15 +130,28 @@ export const selectNativeLanguage = createSelector(
   },
 );
 
+export const selectTargetLangs = createSelector(
+  selectUserProfile,
+  (user: UserProfile | null): UserTargetLang[] | null => {
+    const targetLangs = user?.targetLangs;
+    if (!targetLangs) {
+      return null;
+    }
+    return targetLangs;
+  },
+);
+
 export const selectCurrentTargetLanguage = (state: RootState) =>
   state.userProfile.currentTargetLang;
 
 export const selectUserLangs = createSelector(
   selectNativeLanguage,
   selectCurrentTargetLanguage,
-  (nativeLang, targetLang) => ({
+  selectTargetLangs,
+  (nativeLang, targetLang, targetLangs) => ({
     nativeLang,
     targetLang,
+    targetLangs,
   }),
 );
 
