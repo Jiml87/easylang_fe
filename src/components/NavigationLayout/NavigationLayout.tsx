@@ -6,6 +6,7 @@ import { HeaderMenuProfile } from '@/components/HeaderMenuProfile/HeaderMenuProf
 
 import { BottomMobileMenu } from './components/BottomMobileMenu/BottomMobileMenu';
 import { HeaderMainMenu } from './components/HeaderMainMenu/HeaderMainMenu';
+import { SelectCurrentLanguage } from '@/components/SelectCurrentLanguage/SelectCurrentLanguage';
 import './NavigationLayout.css';
 
 interface NavigationLayoutProps {
@@ -25,6 +26,26 @@ const NavigationLayout = ({ children }: NavigationLayoutProps) => {
         <Logo />
         <div className="flex items-center">
           <HeaderMainMenu />
+          <SelectCurrentLanguage
+            className="mr-3"
+            pt={{
+              root: { style: { border: 'none', background: 'transparent' } },
+              input: {
+                style: {
+                  border: 'none',
+                  background: 'transparent',
+                  paddingRight: '0',
+                },
+              },
+              trigger: {
+                style: {
+                  border: 'none',
+                  background: 'transparent',
+                  width: '2.5rem',
+                },
+              },
+            }}
+          />
           <HeaderMenuProfile />
         </div>
       </header>

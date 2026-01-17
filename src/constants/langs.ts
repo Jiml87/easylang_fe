@@ -3,6 +3,8 @@ import { AvailableLangs } from '@/types/langs';
 export const AVAILABLE_LANGS_LIST: AvailableLangs[] = [
   'en',
   'uk',
+  'ru',
+  'ro',
   'de',
   'fr',
   'pl',
@@ -18,6 +20,8 @@ export const AVAILABLE_LANGS_LIST: AvailableLangs[] = [
 export const LANG_BY_CODE: Record<AvailableLangs, string> = {
   en: 'English',
   uk: 'Ukrainian',
+  ro: 'Romanian',
+  ru: 'Russian',
   de: 'German',
   fr: 'French',
   pl: 'Polish',
