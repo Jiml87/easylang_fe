@@ -6,6 +6,7 @@ import { useAppSelector } from '@/store/hooks';
 
 import { Word } from '@/types/word';
 import { LANG_BY_CODE } from '@/constants/langs';
+import { AvailableLangs } from '@/types/langs';
 
 interface WordDetailsPopupProps {
   visible: boolean;
@@ -49,7 +50,7 @@ export const WordDetailsPopup: FC<WordDetailsPopupProps> = ({
       <div>
         <div>
           <a
-            href={`https://youglish.com/pronounce/${data.targetWord.targetText}/${LANG_BY_CODE[targetLang].toLowerCase()}`}
+            href={`https://youglish.com/pronounce/${data.targetWord.targetText}/${LANG_BY_CODE[targetLang as AvailableLangs].toLowerCase()}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 underline hover:no-underline"
