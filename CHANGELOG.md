@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.17](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.16...mywords_ui-v1.0.17) (2026-01-17)
+
+
+### Bug Fixes
+
+* add ro ([3e0eaa8](https://github.com/Jiml87/easylang_fe/commit/3e0eaa875fe51fc80c4299574ca4b44b327024c2))
+* add ro ([f8af424](https://github.com/Jiml87/easylang_fe/commit/f8af4249db979230d45f15d49ae87ee289628031))
+* add youtube ([990bf46](https://github.com/Jiml87/easylang_fe/commit/990bf46989444c77fa1975eebc7467e7ea253421))
+* and ro ([a10904a](https://github.com/Jiml87/easylang_fe/commit/a10904aac5a39645ad5aaf2ece5d43b4d60dd390))
+* fix github actions ([85285db](https://github.com/Jiml87/easylang_fe/commit/85285db0e2cb3b028d921382b77b0283be0137be))
+* fix github actions ([4ef0d31](https://github.com/Jiml87/easylang_fe/commit/4ef0d31c0147dfb452fb41f763821edf99357d80))
+
 ## [1.0.16](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.15...mywords_ui-v1.0.16) (2025-01-10)
 
 
