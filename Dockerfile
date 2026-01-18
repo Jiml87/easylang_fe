@@ -12,7 +12,7 @@ ENV API_HOST ${API_HOST}
 WORKDIR /app
 
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --production
+RUN yarn install --frozen-lockfile
 
 COPY . .
 RUN yarn build
