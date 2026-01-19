@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { addNewPhrasePage } from '@/config/routes';
 import bannerImage from '@/assets/images/banner/home_banner_v1.svg';
 import Logo from '@/components/Logo/Logo';
+import { APP_VERSION } from '@/constants/env';
 
 import './HomePage.css';
 
@@ -63,6 +64,9 @@ const HomePage = () => {
               </a>
             </div>
           </footer>
+        </div>
+        <div className="fixed bottom-0 right-0 z-10 p-4 text-xs text-gray-400">
+          v: {APP_VERSION}
         </div>
       </div>
     </div>
