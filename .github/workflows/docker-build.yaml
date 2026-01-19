@@ -42,6 +42,7 @@ jobs:
           build-args: |
             API_HOST=${{ vars.API_HOST }}
             OAUTH_GOOGLE_ID=${{ vars.OAUTH_GOOGLE_ID }}
+            APP_VERSION=${{ github.event.release.tag_name }}
           # script: |
           #   echo "OAUTH_GOOGLE_ID - ${{ vars.OAUTH_GOOGLE_ID  }}"
 
