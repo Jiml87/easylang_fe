@@ -65,7 +65,7 @@ const HomePage = () => {
             </div>
           </footer>
         </div>
-        <div className="fixed bottom-0 right-0 z-10 p-4 text-xs text-gray-400">
+        <div className="fixed bottom-0 right-0 z-10 p-2 text-xs text-gray-400">
           v: {APP_VERSION}
         </div>
       </div>
