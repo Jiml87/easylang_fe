@@ -13,7 +13,10 @@ import {
   maxLen,
 } from '@/utils/validators';
 import { AvailableLangs } from '@/types/langs';
-import { AVAILABLE_LANGS_OPTIONS } from '@/constants/langs';
+import {
+  AVAILABLE_NATIVE_LANGS_OPTIONS,
+  AVAILABLE_LEARNING_LANGS_OPTIONS,
+} from '@/constants/langs';
 import { addNewPhrasePage } from '@/config/routes';
 import {
   selectUserProfile,
@@ -69,14 +72,14 @@ const InitProfileForm = () => {
                   label="What language are you learning?"
                   disabled={isLoading || submitting}
                   validate={composeValidators(required)}
-                  options={AVAILABLE_LANGS_OPTIONS}
+                  options={AVAILABLE_LEARNING_LANGS_OPTIONS}
                 />
                 <FormGroupRadioButtons
                   name="nativeLang"
                   label="What's your native language?"
                   disabled={isLoading || submitting}
                   validate={composeValidators(required)}
-                  options={AVAILABLE_LANGS_OPTIONS.map((o) => ({
+                  options={AVAILABLE_NATIVE_LANGS_OPTIONS.map((o) => ({
                     ...o,
                     disabled: values.targetLang === o.value,
                   }))}

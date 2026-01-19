@@ -17,6 +17,33 @@ export const AVAILABLE_LANGS_LIST: AvailableLangs[] = [
   'zh-TW',
 ].sort() as AvailableLangs[];
 
+export const AVAILABLE_LEARNING_LANGS_LIST: AvailableLangs[] = [
+  'en',
+  'uk',
+  'ro',
+  'de',
+  'fr',
+  'pl',
+  'es',
+  'it',
+  'cs',
+].sort() as AvailableLangs[];
+
+export const AVAILABLE_NATIVE_LANGS_LIST: AvailableLangs[] = [
+  'en',
+  'uk',
+  'ru',
+  'ro',
+  'de',
+  'fr',
+  'pl',
+  'es',
+  'it',
+  'ar',
+  'ja',
+  'cs',
+].sort() as AvailableLangs[];
+
 export const LANG_BY_CODE: Record<AvailableLangs, string> = {
   en: 'English',
   uk: 'Ukrainian',
@@ -34,7 +61,15 @@ export const LANG_BY_CODE: Record<AvailableLangs, string> = {
   'zh-TW': 'Chinese (Traditional)',
 };
 
-export const AVAILABLE_LANGS_OPTIONS = AVAILABLE_LANGS_LIST.map((lang) => ({
-  value: lang,
-  label: LANG_BY_CODE[lang],
-})).filter(({ value }) => value !== 'zh-CN' && value !== 'zh-TW');
+export const AVAILABLE_LEARNING_LANGS_OPTIONS =
+  AVAILABLE_LEARNING_LANGS_LIST.map((lang) => ({
+    value: lang,
+    label: LANG_BY_CODE[lang],
+  }));
+
+export const AVAILABLE_NATIVE_LANGS_OPTIONS = AVAILABLE_NATIVE_LANGS_LIST.map(
+  (lang) => ({
+    value: lang,
+    label: LANG_BY_CODE[lang],
+  }),
+).filter(({ value }) => value !== 'zh-CN' && value !== 'zh-TW');
