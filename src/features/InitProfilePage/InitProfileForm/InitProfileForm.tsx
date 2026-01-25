@@ -53,7 +53,7 @@ const InitProfileForm = () => {
           onSubmit={onSubmit}
           initialValues={{
             firstName: userProfile?.firstName,
-            targetLang: 'en',
+            targetLang: 'en-US',
             nativeLang: undefined,
           }}
           render={({ handleSubmit, submitting, values, form }) => (
