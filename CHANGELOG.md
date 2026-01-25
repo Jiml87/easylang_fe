@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.21](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.20...mywords_ui-v1.0.21) (2026-01-25)
+
+
+### Bug Fixes
+
+* fix input ([ef1d4d6](https://github.com/Jiml87/easylang_fe/commit/ef1d4d67a4508e7d6720a1a00488848523597b61))
+* fix langs and input ([331f2df](https://github.com/Jiml87/easylang_fe/commit/331f2df68f9d88056aa3f91fcaa8e3028ae1bf7c))
+* fix ts ([b9844e5](https://github.com/Jiml87/easylang_fe/commit/b9844e550951af223085426706cfca4fb37447fc))
+
 ## [1.0.20](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.19...mywords_ui-v1.0.20) (2026-01-19)
 
 
