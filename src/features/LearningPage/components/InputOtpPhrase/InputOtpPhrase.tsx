@@ -45,6 +45,34 @@ export const InputOtpPhrase = ({
     previousTokensRef.current = newTokens;
   };
 
+  const handleBackspaceWhenEmpty = (index: number) => {
+    if (index === 0) return;
+
+    const prevValue = tokens[index - 1] || '';
+    if (prevValue.length > 0) {
+      const newPrevValue = prevValue.slice(0, -1);
+      setTokens({
+        ...tokens,
+        [index - 1]: newPrevValue,
+      });
+    }
+
+    setTimeout(() => {
+      const prevInputOtp = inputRefs.current[index - 1];
+      if (prevInputOtp) {
+        const prevInputs = prevInputOtp.querySelectorAll('input');
+        const lastInput = prevInputs[prevInputs.length - 1] as HTMLInputElement;
+        if (lastInput) {
+          lastInput.focus();
+          requestAnimationFrame(() => {
+            const length = lastInput.value.length;
+            lastInput.setSelectionRange(length, length);
+          });
+        }
+      }
+    }, 0);
+  };
+
   const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
     if (e.key === 'Backspace') {
       const currentValue = tokens[index] || '';
@@ -57,27 +85,7 @@ export const InputOtpPhrase = ({
       if (currentValue.length === 0 || (isFirstInput && isFirstInputEmpty)) {
         if (index > 0) {
           e.preventDefault();
-          const prevValue = tokens[index - 1] || '';
-          if (prevValue.length > 0) {
-            const newPrevValue = prevValue.slice(0, -1);
-            setTokens({
-              ...tokens,
-              [index - 1]: newPrevValue,
-            });
-          }
-
-          setTimeout(() => {
-            const prevInputOtp = inputRefs.current[index - 1];
-            if (prevInputOtp) {
-              const prevInputs = prevInputOtp.querySelectorAll('input');
-              const lastInput = prevInputs[
-                prevInputs.length - 1
-              ] as HTMLInputElement;
-              if (lastInput) {
-                lastInput.focus();
-              }
-            }
-          }, 0);
+          handleBackspaceWhenEmpty(index);
         }
       }
     }
@@ -100,7 +108,12 @@ export const InputOtpPhrase = ({
             }}
             length={item.text.length}
             inputTemplate={(props: any) => (
-              <CustomInput {...props} originalText={item.text} />
+              <CustomInput
+                {...props}
+                originalText={item.text}
+                onBackspaceWhenEmpty={() => handleBackspaceWhenEmpty(index)}
+                wordValue={tokens[index]}
+              />
             )}
             style={{ gap: 6 }}
           />
