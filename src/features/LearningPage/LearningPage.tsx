@@ -1,10 +1,9 @@
 import { FC, useState, useMemo } from 'react';
-import { InputOtp } from 'primereact/inputotp';
 import { Button } from 'primereact/button';
 
 import { selectLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import { generateRandomKey } from '@/utils/generateRandomKey';
-import { CustomInput } from './components/CustomInput/CustomInput';
+import { InputOtpPhrase } from './components/InputOtpPhrase/InputOtpPhrase';
 import { HelpersList } from './components/TargetWordHelpers/HelpersList';
 import { learnWordForToday, selectLearningWordStatus } from './learningSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -25,8 +24,9 @@ const LearningPage: FC = () => {
     : null;
 
   const splitText = useMemo(() => {
-    const targetText =
-      oneLearningItem?.targetWord.targetText || ''.toLowerCase();
+    const targetText = (
+      oneLearningItem?.targetWord.targetText || ''
+    ).toLowerCase();
     const splitText = targetText.split(' ');
     const reduced = splitText.reduce(
       (acc, _item, index) => {
@@ -79,27 +79,11 @@ const LearningPage: FC = () => {
         </div>
         {oneLearningItem && <HelpersList data={oneLearningItem} />}
         <h5>Enter the answer:</h5>
-        <div className="answer-wrapper">
-          {splitText.map((item, index) => (
-            <div
-              className={!!splitText.length ? 'mb-5 mr-8' : ''}
-              key={item.key}
-            >
-              <InputOtp
-                key={item.key}
-                value={tokens[index]}
-                onChange={(e) => {
-                  setTokens({ ...tokens, [index]: e.value as string });
-                }}
-                length={item.text.length}
-                inputTemplate={(props: any) => (
-                  <CustomInput {...props} originalText={item.text} />
-                )}
-                style={{ gap: 6 }}
-              />
-            </div>
-          ))}
-        </div>
+        <InputOtpPhrase
+          splitText={splitText}
+          setTokens={setTokens}
+          tokens={tokens}
+        />
       </div>
       <div className="flex justify-center sm:mt-10">
         <ShadowSpinner isLoading={isPending} className="w-full sm:w-auto">

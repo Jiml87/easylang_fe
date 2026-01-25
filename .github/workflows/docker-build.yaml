@@ -31,6 +31,13 @@ jobs:
           tags: |
             type=raw,value=${{ github.event.release.tag_name }}
 
+      - name: Extract version number
+        id: version
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          VERSION="${VERSION#*-v}"
+          echo "number=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -42,7 +49,7 @@ jobs:
           build-args: |
             API_HOST=${{ vars.API_HOST }}
             OAUTH_GOOGLE_ID=${{ vars.OAUTH_GOOGLE_ID }}
-            APP_VERSION=${{ github.event.release.tag_name }}
+            APP_VERSION=${{ steps.version.outputs.number }}
           # script: |
           #   echo "OAUTH_GOOGLE_ID - ${{ vars.OAUTH_GOOGLE_ID  }}"
 

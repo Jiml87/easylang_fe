@@ -1,43 +1,47 @@
 import { AvailableLangs } from '@/types/langs';
 
 export const AVAILABLE_LANGS_LIST: AvailableLangs[] = [
+  'en-US',
+  'en-GB',
   'en',
+  'ro',
   'uk',
   'ru',
-  'ro',
   'de',
-  'fr',
+  'fr-FR',
   'pl',
-  'es',
+  'es-ES',
   'it',
   'ar',
   'ja',
   'cs',
-  'zh-CN',
-  'zh-TW',
+  'zh-Hans',
+  'zh-Hant',
 ].sort() as AvailableLangs[];
 
 export const AVAILABLE_LEARNING_LANGS_LIST: AvailableLangs[] = [
-  'en',
+  'en-US',
+  'en-GB',
   'uk',
   'ro',
   'de',
-  'fr',
+  'fr-FR',
   'pl',
-  'es',
+  'es-ES',
   'it',
   'cs',
 ].sort() as AvailableLangs[];
 
 export const AVAILABLE_NATIVE_LANGS_LIST: AvailableLangs[] = [
-  'en',
+  'en-US',
+  'en-GB',
   'uk',
   'ru',
   'ro',
   'de',
-  'fr',
+  'fr-FR',
   'pl',
-  'es',
+  'es-ES',
   'it',
   'ar',
   'ja',
@@ -45,20 +49,21 @@ export const AVAILABLE_NATIVE_LANGS_LIST: AvailableLangs[] = [
 ].sort() as AvailableLangs[];
 
 export const LANG_BY_CODE: Record<AvailableLangs, string> = {
-  en: 'English',
+  'en-US': 'English (US)',
+  'en-GB': 'English (UK)',
   uk: 'Ukrainian',
   ro: 'Romanian',
   ru: 'Russian',
   de: 'German',
-  fr: 'French',
+  'fr-FR': 'French',
   pl: 'Polish',
-  es: 'Spanish',
+  'es-ES': 'Spanish',
   it: 'Italian',
   ar: 'Arabic',
   ja: 'Japanese',
   cs: 'Czech',
-  'zh-CN': 'Chinese (Simplified)',
-  'zh-TW': 'Chinese (Traditional)',
+  'zh-Hans': 'Chinese (Simplified)',
+  'zh-Hant': 'Chinese (Traditional)',
 };
 
 export const AVAILABLE_LEARNING_LANGS_OPTIONS =
@@ -72,4 +77,4 @@ export const AVAILABLE_NATIVE_LANGS_OPTIONS = AVAILABLE_NATIVE_LANGS_LIST.map(
     value: lang,
     label: LANG_BY_CODE[lang],
   }),
-).filter(({ value }) => value !== 'zh-CN' && value !== 'zh-TW');
+);

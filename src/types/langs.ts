@@ -1,18 +1,19 @@
 export type AvailableLangs =
-  | 'en'
+  | 'en-US'
+  | 'en-GB'
+  | 'ro'
   | 'uk'
   | 'ru'
-  | 'ro'
   | 'de'
-  | 'fr'
+  | 'fr-FR'
   | 'pl'
-  | 'es'
+  | 'es-ES'
   | 'it'
   | 'ar'
   | 'ja'
   | 'cs'
-  | 'zh-CN'
-  | 'zh-TW';
+  | 'zh-Hans'
+  | 'zh-Hant';
 // Supported langs: https://cloud.google.com/translate/docs/languages
 
 export type UserTargetLang = {
