@@ -17,6 +17,7 @@ Spaced-repetition frontend: users add a word/phrase and review it on days 1, 3, 
 ```bash
 yarn dev
 yarn lint
+yarn format
 yarn typecheck
 yarn build
 ```
@@ -51,5 +52,5 @@ Do not add npm/pnpm lockfiles. Do not commit unless asked.
 
 - Match neighboring files. Do not add libraries unless asked.
 - Do not add comments to code.
-- Prettier: single quotes, semicolons, trailing commas, 2-space indent.
+- Biome: single quotes, semicolons, trailing commas, 2-space indent.
 - After UI changes, exercise the flow in the browser (desktop and a mobile viewport). A screenshot is not enough.
