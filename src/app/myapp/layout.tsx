@@ -1,8 +1,9 @@
-'use server';
 import { ReactNode } from 'react';
 
 import { InitAuthInfo } from '@/features/InitAuthInfo/InitAuthInfo';
 import { getAuthInfo } from '../actions';
+
+export const dynamic = 'force-dynamic';
 
 export default async function Layout({ children }: { children: ReactNode }) {
   const authInfo = await getAuthInfo();

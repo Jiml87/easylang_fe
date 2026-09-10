@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const path = require('path');
-
 const API_URL = process.env.API_HOST;
 
 const nextConfig = {
@@ -10,13 +8,8 @@ const nextConfig = {
     API_URL: API_URL,
   },
   compress: true,
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(path.resolve(), './src'),
-    };
-
-    return config;
+  experimental: {
+    useTypeScriptCli: true,
   },
   async rewrites() {
     return [

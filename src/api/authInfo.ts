@@ -6,8 +6,8 @@ import { API_URL } from '@/constants/env';
 // };
 
 async function getCookie(name: string) {
-  const cookieData = cookies().get(name)?.value ?? '';
-  return new Promise((resolve) => resolve(cookieData));
+  const cookieStore = await cookies();
+  return cookieStore.get(name)?.value ?? '';
 }
 
 export default async function getAuthInfo() {

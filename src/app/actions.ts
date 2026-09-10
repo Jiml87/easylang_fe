@@ -8,7 +8,7 @@ import { initProfilePage, addNewPhrasePage, loginPage } from '@/config/routes';
 
 export async function getAuthInfo(): Promise<UserProfile | null> {
   const data = await fetchAuthInfo();
-  const headerList = headers();
+  const headerList = await headers();
   const pathname = headerList.get('x-current-path');
 
   // TODO: no response from api server
