@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 ARG OAUTH_GOOGLE_ID
 ARG API_HOST
@@ -19,7 +19,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 RUN yarn build
 
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 
 
 WORKDIR /app

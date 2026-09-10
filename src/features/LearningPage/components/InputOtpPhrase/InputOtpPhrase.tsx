@@ -97,7 +97,9 @@ export const InputOtpPhrase = ({
         <div
           className={!!splitText.length ? 'mb-5 mr-8' : ''}
           key={item.key}
-          ref={(el) => (inputRefs.current[index] = el)}
+          ref={(el) => {
+            inputRefs.current[index] = el;
+          }}
           onKeyDown={(e) => handleKeyDown(index, e)}
         >
           <InputOtp

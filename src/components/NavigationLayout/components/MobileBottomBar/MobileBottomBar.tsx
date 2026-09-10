@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, RefObject, useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useClickOutside } from 'primereact/hooks';
 import { useSwipeable } from 'react-swipeable';
@@ -16,8 +16,8 @@ export const MobileBottomBar: FC<MobileBottomBarProps> = ({
   opened,
   setOpen,
 }) => {
-  const overlayRef = useRef(null);
-  useClickOutside(overlayRef, () => {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  useClickOutside(overlayRef as RefObject<Element>, () => {
     setOpen(false);
   });
   const handlers = useSwipeable({
