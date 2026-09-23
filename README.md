@@ -40,3 +40,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## Notes
 
 [Fix css warnings for tailwind](https://batchnepal.com/topic/fix-unknown-at-rule-warning-in-vscode)
+
+## MCP UI
+```bash
+npx @modelcontextprotocol/inspector@latest
+```
