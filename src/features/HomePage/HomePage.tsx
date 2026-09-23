@@ -41,7 +41,11 @@ const HomePage = () => {
               </div>
             </div>
             <div className="flex justify-center pt-6">
-              <Image src={bannerImage} alt="Banner image" />
+              <Image
+                src={bannerImage}
+                alt="Banner image"
+                style={{ maxHeight: '600px' }}
+              />
             </div>
           </main>
           <footer className="p-4 text-xs text-gray-400">
