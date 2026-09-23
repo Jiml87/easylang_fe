@@ -1,10 +1,12 @@
 import { useRef } from 'react';
+import Link from 'next/link';
 import { Avatar } from 'primereact/avatar';
 import { Menu } from 'primereact/menu';
 
 import { useAppSelector } from '@/store/hooks';
 import { selectUserProfile } from '@/features/InitProfilePage/userProfileSlice';
 import { LogOutButton } from '@/components/LogOutButton/LogOutButton';
+import { connectAiPage } from '@/config/routes';
 import './HeaderMenuProfile.css';
 
 export const HeaderMenuProfile = () => {
@@ -12,6 +14,14 @@ export const HeaderMenuProfile = () => {
   const menuRef = useRef(null);
 
   const menuItems = [
+    {
+      template: (
+        <Link href={connectAiPage.path} className="menu-button">
+          <i className="pi pi-comments pr-2" />
+          Connect AI
+        </Link>
+      ),
+    },
     {
       template: <LogOutButton />,
     },

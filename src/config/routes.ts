@@ -28,3 +28,4 @@ export const initProfilePage = new RouterPath('/myapp/init-profile');
 export const addNewPhrasePage = new RouterPath('/myapp/add-word');
 export const dictionaryPage = new RouterPath('/myapp/dictionary');
 export const learningPage = new RouterPath('/myapp/learning');
+export const connectAiPage = new RouterPath('/myapp/connect-ai');

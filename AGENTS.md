@@ -8,7 +8,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# easylang_fe (MyWords)
+# frontend application easylang_fe (MyWords)
 
 Spaced-repetition frontend: users add a word/phrase and review it on days 1, 3, 7, and 30. Product site: https://mywords.pro. Package manager is Yarn. Node >= 20.9.
 
