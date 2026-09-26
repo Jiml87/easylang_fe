@@ -9,9 +9,7 @@ interface FormGroupRadioButtonsProps {
   disabled: boolean;
   subLabel?: string | ReactElement;
   options: Array<{ value: string; label: string; disabled?: boolean }>;
-  // eslint-disable-next-line no-unused-vars
   customOnChange?: (value: string) => void;
-  // eslint-disable-next-line no-unused-vars
   validate?: (value: any) => string | undefined;
 }
 

@@ -16,7 +16,6 @@ Spaced-repetition frontend: users add a word/phrase and review it on days 1, 3, 
 
 ```bash
 yarn dev
-yarn lint
 yarn format
 yarn typecheck
 yarn build

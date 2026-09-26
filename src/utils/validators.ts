@@ -6,7 +6,6 @@ export const minLen = (minNumber: number) => (value: string) =>
 export const maxLen = (maxNumber: number) => (value: string) =>
   value.length > maxNumber ? `Max length is ${maxNumber} symbols` : undefined;
 
-// eslint-disable-next-line no-unused-vars
 type Validator = ((value: any) => undefined | string)[];
 
 export const composeValidators =

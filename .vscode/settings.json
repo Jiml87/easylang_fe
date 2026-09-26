@@ -1,9 +1,6 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "biomejs.biome",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
   "css.lint.unknownAtRules": "ignore",
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"
