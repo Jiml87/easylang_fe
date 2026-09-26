@@ -17,7 +17,6 @@ const AutoTranslation = memo(function Transl({
 
   const { nativeLang, targetLang } = useAppSelector(selectUserLangs);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChangeHandler = useCallback(
     debounce(async (targetText: string) => {
       if (!targetText || targetText.length < 2) {
@@ -46,7 +45,6 @@ const AutoTranslation = memo(function Transl({
 
   useEffect(() => {
     debouncedChangeHandler(targetText);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetText]);
 
   return null;

@@ -6,7 +6,6 @@ import { twMerge } from 'tailwind-merge';
 
 interface FormRadioButtonProps extends FieldRenderProps<string, HTMLElement> {
   label: string;
-  // eslint-disable-next-line no-unused-vars
   customOnChange?: (value: string) => void;
   disabled?: boolean;
 }
