@@ -18,10 +18,7 @@
   },
   "lint-staged": {
     "*": "biome format --write --no-errors-on-unmatched --files-ignore-unknown=true",
-    "**/*.{ts,tsx}": [
-      "eslint --fix",
-      "bash -c 'tsc --noEmit'"
-    ]
+    "**/*.{ts,tsx}": ["eslint --fix", "bash -c 'tsc --noEmit'"]
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
