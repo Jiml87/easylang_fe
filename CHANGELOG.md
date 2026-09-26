@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.22...mywords_ui-v1.1.0) (2026-09-26)
+
+
+### New Features
+
+* remove eslint ([33f06bb](https://github.com/Jiml87/easylang_fe/commit/33f06bb3131b7072e7f5e081d1277fd04d2d61a8))
+* remove eslint ([1c227aa](https://github.com/Jiml87/easylang_fe/commit/1c227aacb25f27c43127a518cf684eae817b7d8e))
+
+
+### Bug Fixes
+
+* mcp auth ([c61a78f](https://github.com/Jiml87/easylang_fe/commit/c61a78fe4b18d27cb2604fab1cea49e68959ad0c))
+
 ## [1.0.22](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.21...mywords_ui-v1.0.22) (2026-09-23)
 
 
