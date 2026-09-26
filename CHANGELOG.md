@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.23](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.22...mywords_ui-v1.0.23) (2026-09-26)
+
+
+### Bug Fixes
+
+* mcp auth ([c61a78f](https://github.com/Jiml87/easylang_fe/commit/c61a78fe4b18d27cb2604fab1cea49e68959ad0c))
+
 ## [1.0.22](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.21...mywords_ui-v1.0.22) (2026-09-23)
 
 

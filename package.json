@@ -1,6 +1,6 @@
 {
   "name": "mywords_ui",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "private": true,
   "author": "Viacheslav Semenenko",
   "engines": {
@@ -18,7 +18,10 @@
   },
   "lint-staged": {
     "*": "biome format --write --no-errors-on-unmatched --files-ignore-unknown=true",
-    "**/*.{ts,tsx}": ["eslint --fix", "bash -c 'tsc --noEmit'"]
+    "**/*.{ts,tsx}": [
+      "eslint --fix",
+      "bash -c 'tsc --noEmit'"
+    ]
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
