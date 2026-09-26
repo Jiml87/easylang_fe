@@ -24,6 +24,7 @@ class RouterPath extends ProtoRouterPath {
 // /myapp/ - is privet route
 export const rootPage = new RouterPath('/');
 export const loginPage = new RouterPath('/login');
+export const mcpConsentPage = new RouterPath('/oauth/consent');
 export const initProfilePage = new RouterPath('/myapp/init-profile');
 export const addNewPhrasePage = new RouterPath('/myapp/add-word');
 export const dictionaryPage = new RouterPath('/myapp/dictionary');
