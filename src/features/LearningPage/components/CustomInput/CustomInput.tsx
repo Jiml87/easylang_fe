@@ -14,6 +14,10 @@ export const CustomInput = ({
 }) => {
   const value = props.value;
   const inputRef = useRef<HTMLInputElement>(null);
+  const domProps = { ...props };
+  delete domProps.invalid;
+  delete domProps.unstyled;
+  delete domProps.variant;
 
   useEffect(() => {
     const input = inputRef.current;
@@ -46,7 +50,7 @@ export const CustomInput = ({
   return (
     <input
       {...events}
-      {...props}
+      {...domProps}
       ref={inputRef}
       key={props.key}
       type="text"

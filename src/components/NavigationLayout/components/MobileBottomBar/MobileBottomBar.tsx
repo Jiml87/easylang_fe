@@ -40,7 +40,7 @@ export const MobileBottomBar: FC<MobileBottomBarProps> = ({
       <div>
         <Link
           href={chatPage.path}
-          className="menu-button separated"
+          className="menu-button separated mb-2"
           onClick={() => setOpen(false)}
         >
           <i className="pi pi-comment mr-2" />
@@ -48,7 +48,7 @@ export const MobileBottomBar: FC<MobileBottomBarProps> = ({
         </Link>
         <Link
           href={connectAiPage.path}
-          className="menu-button separated"
+          className="menu-button separated mb-2"
           onClick={() => setOpen(false)}
         >
           <i className="pi pi-comments mr-2" />

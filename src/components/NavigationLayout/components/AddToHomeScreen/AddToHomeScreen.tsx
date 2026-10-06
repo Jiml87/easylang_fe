@@ -44,7 +44,7 @@ export const AddToHomeScreen = () => {
 
   return (
     <div
-      className="menu-button separated"
+      className="menu-button separated mb-2"
       role="button"
       onClick={handleAddToHomeScreenClick}
     >

@@ -109,9 +109,10 @@ export const InputOtpPhrase = ({
               handleChange(index, e.value?.toString() || '');
             }}
             length={item.text.length}
-            inputTemplate={(props: any) => (
+            inputTemplate={(templateProps: any) => (
               <CustomInput
-                {...props}
+                key={templateProps?.props?.key}
+                {...templateProps}
                 originalText={item.text}
                 onBackspaceWhenEmpty={() => handleBackspaceWhenEmpty(index)}
                 wordValue={tokens[index]}
