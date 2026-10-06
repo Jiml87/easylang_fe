@@ -6,6 +6,8 @@
   }
 
   & .input {
+    text-transform: lowercase;
+
     &.valid {
       @apply border-green-500;
     }

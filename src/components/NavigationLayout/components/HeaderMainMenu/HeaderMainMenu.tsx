@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import { Badge } from 'primereact/badge';
 
-import { addNewPhrasePage, dictionaryPage, rootPage } from '@/config/routes';
+import {
+  addNewPhrasePage,
+  chatPage,
+  dictionaryPage,
+  rootPage,
+} from '@/config/routes';
 import { useAppSelector } from '@/store/hooks';
 import { selectNumberLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 
@@ -30,6 +35,12 @@ export const HeaderMainMenu = () => {
         className="px-5 py-2 text-slate-600 hover:underline"
       >
         Add word
+      </Link>
+      <Link
+        href={chatPage.path}
+        className="px-5 py-2 text-slate-600 hover:underline"
+      >
+        Chat
       </Link>
       <Link
         href={dictionaryPage.path}

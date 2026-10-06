@@ -50,6 +50,9 @@ export const CustomInput = ({
       ref={inputRef}
       key={props.key}
       type="text"
+      autoCapitalize="none"
+      autoCorrect="off"
+      spellCheck={false}
       className={twMerge(
         'p-inputotp-input p-inputtext p-component p-filled input',
         value && value !== originalText[props.id] ? 'invalid' : '',
