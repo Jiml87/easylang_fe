@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.1.0...mywords_ui-v1.2.0) (2026-10-06)
+
+
+### New Features
+
+* add chat ([a26bf8f](https://github.com/Jiml87/easylang_fe/commit/a26bf8f022d90d13473dc5416f8220e4fe6e3360))
+* Add chat agent ([d0a50c0](https://github.com/Jiml87/easylang_fe/commit/d0a50c0b7ea61a57dbd65e666dc39d9bfdef4ee0))
+* Merge pull request [#62](https://github.com/Jiml87/easylang_fe/issues/62) from Jiml87/add-chat-agent ([d0a50c0](https://github.com/Jiml87/easylang_fe/commit/d0a50c0b7ea61a57dbd65e666dc39d9bfdef4ee0))
+
+
+### Bug Fixes
+
+* fix input bug ([8dea05b](https://github.com/Jiml87/easylang_fe/commit/8dea05b63c35bbfaa0686f32a5b7d7889e298cef))
+
 ## [1.1.0](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.0.22...mywords_ui-v1.1.0) (2026-09-26)
 
 
