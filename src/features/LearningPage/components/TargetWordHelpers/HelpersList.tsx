@@ -95,7 +95,7 @@ export const HelpersList: FC<HelpersListProps> = ({ data }) => {
   return (
     <div>
       <div>
-        <h5>Help:</h5>
+        <h5>Hint:</h5>
         <div className="flex">
           {helpers?.map((item, index) => (
             <Button
@@ -115,6 +115,7 @@ export const HelpersList: FC<HelpersListProps> = ({ data }) => {
           header={showedHelper.header}
           visible={!!showedHelper}
           onHide={onHidePopup}
+          dismissableMask
           breakpoints={{ '10000px': '550px', '641px': '90vw' }}
         >
           {HelperPopupContent && <HelperPopupContent data={data} />}

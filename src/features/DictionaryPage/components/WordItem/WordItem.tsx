@@ -32,6 +32,12 @@ export const WordItem: FC<WordItemProps> = ({
   const isLearnSoon = learningStep === 'learnSoon';
   const isFinished = learningStep === 'finished';
 
+  const today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+  const isOverdue = Boolean(
+    data.nextLearningDate && new Date(data.nextLearningDate) < today,
+  );
+
   const onSelectMenuItem = () => {
     dispatch(
       deleteWord({
@@ -71,7 +77,7 @@ export const WordItem: FC<WordItemProps> = ({
         {(isLearnToday || isLearnSoon) && (
           <WordIconStatus
             status={data.passedLearningDay}
-            isOverdue={data.nextLearningDate < new Date()}
+            isOverdue={isOverdue}
           />
         )}
         <Button
