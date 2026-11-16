@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.2.0...mywords_ui-v1.3.0) (2026-11-16)
+
+
+### New Features
+
+* add page about ([bbfff98](https://github.com/Jiml87/easylang_fe/commit/bbfff98677119727019dde68903a2652a1077af8))
+* add page about ([b71a2bb](https://github.com/Jiml87/easylang_fe/commit/b71a2bba084975bd343bc77f19da695dedadccc4))
+
 ## [1.2.0](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.1.0...mywords_ui-v1.2.0) (2026-10-06)
 
 
