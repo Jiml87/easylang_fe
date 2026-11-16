@@ -1,5 +1,4 @@
 import { AvailableLangs } from './langs';
-import { Override } from './utils';
 
 export type WordLearningDay = 0 | 1 | 3 | 7 | 30;
 
@@ -43,14 +42,9 @@ export type UserWordFromAPI = {
   nativeLang: AvailableLangs;
 };
 
-export type Word = Override<
-  UserWordFromAPI,
-  {
-    lastLearningDate: Date;
-    nextLearningDate: Date;
-    localNextLearningDate: string;
-  }
->;
+export type Word = UserWordFromAPI & {
+  localNextLearningDate?: string;
+};
 
 export type LearningWordForToday = Word & {
   descriptionWithHiddenTarget?: string;

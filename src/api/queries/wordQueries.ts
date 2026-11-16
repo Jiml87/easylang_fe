@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { Word } from '@/types/word';
+import type { UserWordFromAPI, Word } from '@/types/word';
 import type { AvailableLangs } from '@/types/langs';
 
 export const wordApi = createApi({
@@ -15,7 +15,7 @@ export const wordApi = createApi({
       providesTags: ['LearnSoon'],
       query: ({ page, targetLang }) =>
         `/words/learning-words?targetLang=${targetLang}&page=${page}&limit=50&practice=true`,
-      transformResponse: (learningWords: Word[]): Word[] => {
+      transformResponse: (learningWords: UserWordFromAPI[]): Word[] => {
         return learningWords.map((word) => {
           const date = new Date(word.nextLearningDate);
           date.setDate(date.getDate() + 1);
@@ -27,7 +27,6 @@ export const wordApi = createApi({
           });
           return {
             ...word,
-            nextLearningDate: date,
             localNextLearningDate: formattedDate,
           };
         });
