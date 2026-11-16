@@ -6,7 +6,7 @@ import { Menu } from 'primereact/menu';
 import { useAppSelector } from '@/store/hooks';
 import { selectUserProfile } from '@/features/InitProfilePage/userProfileSlice';
 import { LogOutButton } from '@/components/LogOutButton/LogOutButton';
-import { connectAiPage } from '@/config/routes';
+import { aboutPage, connectAiPage } from '@/config/routes';
 import './HeaderMenuProfile.css';
 
 export const HeaderMenuProfile = () => {
@@ -14,6 +14,14 @@ export const HeaderMenuProfile = () => {
   const menuRef = useRef(null);
 
   const menuItems = [
+    {
+      template: (
+        <Link href={aboutPage.path} className="menu-button">
+          <i className="pi pi-info-circle pr-2" />
+          How it works
+        </Link>
+      ),
+    },
     {
       template: (
         <Link href={connectAiPage.path} className="menu-button">

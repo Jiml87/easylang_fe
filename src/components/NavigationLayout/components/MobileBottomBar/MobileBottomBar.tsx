@@ -6,7 +6,7 @@ import { useSwipeable } from 'react-swipeable';
 
 import { LogOutButton } from '@/components/LogOutButton/LogOutButton';
 import { AddToHomeScreen } from '@/components/NavigationLayout/components/AddToHomeScreen/AddToHomeScreen';
-import { chatPage, connectAiPage } from '@/config/routes';
+import { aboutPage, chatPage, connectAiPage } from '@/config/routes';
 import './MobileBottomBar.css';
 
 interface MobileBottomBarProps {
@@ -34,9 +34,7 @@ export const MobileBottomBar: FC<MobileBottomBarProps> = ({
       className={twMerge('MobileBottomBar', opened && 'opened')}
       ref={overlayRef}
     >
-      <div>
-        <AddToHomeScreen />
-      </div>
+      <AddToHomeScreen />
       <div>
         <Link
           href={chatPage.path}
@@ -53,6 +51,14 @@ export const MobileBottomBar: FC<MobileBottomBarProps> = ({
         >
           <i className="pi pi-comments mr-2" />
           <span>Connect AI</span>
+        </Link>
+        <Link
+          href={aboutPage.path}
+          className="menu-button separated mb-2"
+          onClick={() => setOpen(false)}
+        >
+          <i className="pi pi-info-circle mr-2" />
+          <span>How it works</span>
         </Link>
       </div>
       <div>
