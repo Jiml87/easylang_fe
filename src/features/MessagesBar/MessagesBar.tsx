@@ -23,7 +23,7 @@ const MessagesBar = () => {
   }, [messages, dispatch]);
 
   return (
-    <div className="fixed left-0 right-0 top-0 flex justify-center px-4">
+    <div className="pointer-events-none fixed left-0 right-0 top-14 z-50 flex justify-center px-4 [&_.p-message]:pointer-events-auto">
       <Messages ref={msg} />
     </div>
   );

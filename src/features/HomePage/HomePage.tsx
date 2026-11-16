@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
-import { addNewPhrasePage } from '@/config/routes';
+import Link from 'next/link';
+import { aboutPage, addNewPhrasePage } from '@/config/routes';
 import bannerImage from '@/assets/images/banner/home_banner_v1.svg';
 import Logo from '@/components/Logo/Logo';
 import { APP_VERSION } from '@/constants/env';
@@ -12,8 +13,14 @@ const HomePage = () => {
     <div className="HomePage">
       <div className="wrapper-glass-container">
         <div className="glass-container">
-          <header className="p-4">
+          <header className="flex items-center justify-between p-4">
             <Logo />
+            <Link
+              href={aboutPage.path}
+              className="rounded-full border border-white/70 bg-white/30 px-3.5 py-1.5 text-sm font-semibold text-green-900 backdrop-blur-sm transition hover:bg-white/50"
+            >
+              How it works
+            </Link>
           </header>
           <main className="px-4 py-2 sm:py-4 md:grid md:grid-cols-2">
             <div className="justify-center md:flex md:flex-col">

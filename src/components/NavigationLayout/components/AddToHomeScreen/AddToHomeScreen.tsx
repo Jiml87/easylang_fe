@@ -1,14 +1,30 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
+const checkIsIOS = () =>
+  /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+  (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
 
 export const AddToHomeScreen = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [isIOS, setIsIOS] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
 
-  const handleBeforeInstallPrompt = useCallback((e: any) => {
+  const handleBeforeInstallPrompt = useCallback((e: Event) => {
     e.preventDefault();
-    setDeferredPrompt(e);
+    setDeferredPrompt(e as BeforeInstallPromptEvent);
   }, []);
 
   useEffect(() => {
+    if (checkIsIOS()) {
+      setIsIOS(true);
+      return;
+    }
+
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
     return () => {
@@ -20,12 +36,8 @@ export const AddToHomeScreen = () => {
   }, [handleBeforeInstallPrompt]);
 
   const handleAddToHomeScreenClick = async () => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-
     if (deferredPrompt) {
-      // @ts-ignore
       deferredPrompt.prompt();
-      // @ts-ignore
       const choiceResult = await deferredPrompt.userChoice;
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the install prompt');
@@ -33,26 +45,28 @@ export const AddToHomeScreen = () => {
         console.log('User dismissed the install prompt');
       }
       setDeferredPrompt(null);
-    } else if (isIOS) {
-      console.log(
-        "To add this web app to your Home Screen, open this app in Safari and tap the Share button, then select 'Add to Home Screen'.",
-      );
     } else {
       console.log('Install prompt is not available');
     }
   };
 
+  if (isIOS) {
+    return null;
+  }
+
   return (
-    <div
-      className="menu-button separated mb-2"
-      role="button"
-      onClick={handleAddToHomeScreenClick}
-    >
-      <i className="pi pi-thumbtack mr-2"></i>
-      <span>
-        Add&nbsp;
-        <span className="text-gray-700">My Words</span>&nbsp; to Home Screen
-      </span>
+    <div>
+      <div
+        className="menu-button separated mb-2"
+        role="button"
+        onClick={handleAddToHomeScreenClick}
+      >
+        <i className="pi pi-thumbtack mr-2"></i>
+        <span>
+          Add&nbsp;
+          <span className="text-gray-700">My Words</span>&nbsp; to Home Screen
+        </span>
+      </div>
     </div>
   );
 };

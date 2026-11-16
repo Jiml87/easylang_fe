@@ -1,0 +1,76 @@
+.AboutPage {
+  background: linear-gradient(75deg, #83f7f8 0%, #6bdd52 100%);
+  min-height: 100dvh;
+  @apply relative flex flex-col items-center overflow-x-hidden px-3 py-4 sm:px-6 sm:py-8;
+
+  &::after {
+    content: '';
+    background: linear-gradient(0deg, #fab7ef 12%, rgba(255, 255, 255, 0) 45%);
+    pointer-events: none;
+    @apply fixed bottom-0 left-0 right-0 top-0;
+  }
+
+  & .wrapper-glass-container {
+    width: 100%;
+    max-width: 56rem;
+    @apply relative z-10;
+
+    &::before {
+      content: '';
+      height: 24vh;
+      width: 24vh;
+      border-radius: 50%;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(
+        290deg,
+        rgba(255, 255, 255, 0.5) 24%,
+        rgba(255, 255, 255, 0.3) 73%
+      );
+      transform: translate(-25%, -10%);
+      pointer-events: none;
+      @apply fixed left-4 top-6 -z-20;
+    }
+
+    &::after {
+      content: '';
+      height: 28vh;
+      width: 28vh;
+      border-radius: 50%;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(
+        130deg,
+        rgba(255, 255, 255, 0.6) 24%,
+        rgba(255, 255, 255, 0.1) 73%
+      );
+      transform: translate(15%, 15%);
+      pointer-events: none;
+      @apply fixed bottom-6 right-4 -z-20;
+    }
+  }
+
+  & .glass-container {
+    background-color: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    box-shadow: -15px 17px 24px rgba(10, 10, 10, 0.2);
+    border-radius: 24px;
+    @apply relative z-10 flex flex-col justify-between;
+  }
+
+  & .glass-section {
+    background-color: rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+  }
+
+  & .glass-tip {
+    background: linear-gradient(
+      135deg,
+      rgba(254, 243, 199, 0.82) 0%,
+      rgba(255, 255, 255, 0.72) 100%
+    );
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    border-radius: 16px;
+  }
+}

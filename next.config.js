@@ -2,6 +2,7 @@
 const API_URL = process.env.API_HOST;
 
 const nextConfig = {
+  allowedDevOrigins: ['dev.mywords.pro'],
   env: {
     APP_VERSION: process.env.APP_VERSION,
     OAUTH_GOOGLE_ID: process.env.OAUTH_GOOGLE_ID,
