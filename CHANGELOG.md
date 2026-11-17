@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.3.1...mywords_ui-v1.4.0) (2026-11-17)
+
+
+### New Features
+
+* add contact page ([4c45670](https://github.com/Jiml87/easylang_fe/commit/4c45670e3372bf940404322e9fe2fb5db3e25821))
+
 ## [1.3.1](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.3.0...mywords_ui-v1.3.1) (2026-11-16)
 
 
