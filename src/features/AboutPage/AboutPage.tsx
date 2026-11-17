@@ -1,6 +1,8 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from 'primereact/button';
+import authorPhoto from '@/assets/images/author-slavik.jpg';
 import Logo from '@/components/Logo/Logo';
 import { addNewPhrasePage, rootPage } from '@/config/routes';
 import { APP_VERSION } from '@/constants/env';
@@ -13,6 +15,7 @@ import { useAppDispatch } from '@/store/hooks';
 import './AboutPage.css';
 
 const MCP_PUBLIC_URL = 'https://mywords.pro/mcp';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/viacheslav-semenenko/';
 const YOUTUBE_WATCH_URL = 'https://youtu.be/jKUV-xsgXEk';
 const YOUTUBE_EMBED_URL = 'https://www.youtube-nocookie.com/embed/jKUV-xsgXEk';
 
@@ -165,7 +168,6 @@ const AboutPage = () => {
                 </div>
               </div>
             </section>
-
             <section className="glass-section p-5 sm:p-7">
               <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-emerald-700/20 bg-emerald-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-950">
                 <i className="pi pi-sparkles text-xs" />
@@ -216,7 +218,6 @@ const AboutPage = () => {
                 From there, the only limit is your imagination!
               </p>
             </section>
-
             <section className="glass-section p-5 sm:p-7">
               <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-emerald-700/20 bg-emerald-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-950">
                 <i className="pi pi-mobile text-xs" />
@@ -285,7 +286,43 @@ const AboutPage = () => {
                 </div>
               </div>
             </section>
+            <section className="glass-section p-5 sm:p-7">
+              <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-emerald-700/20 bg-emerald-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-950">
+                <i className="pi pi-comments text-xs" />
+                <span>Feedback &amp; Contact</span>
+              </div>
 
+              <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={authorPhoto}
+                    alt="Viacheslav Semenenko"
+                    width={80}
+                    height={80}
+                    className="h-16 w-16 shrink-0 rounded-full border-2 border-white/90 object-cover shadow-md ring-2 ring-emerald-600/20 sm:h-20 sm:w-20"
+                  />
+                  <div>
+                    <h2 className="my-1 text-xl font-bold text-green-950 sm:text-2xl">
+                      Have Feedback or Suggestions?
+                    </h2>
+                    <p className="my-0 text-sm leading-relaxed text-emerald-950/90 sm:text-base">
+                      If you have any remarks, ideas, or suggestions for
+                      improving MyWords, feel free to message me on LinkedIn.
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0A66C2] px-4 py-2.5 text-sm font-bold text-white no-underline shadow-sm transition hover:bg-[#004182]"
+                >
+                  <i className="pi pi-linkedin text-base" />
+                  <span>Message on LinkedIn</span>
+                </a>
+              </div>
+            </section>
             <div className="flex flex-col items-center py-2 text-center">
               <a
                 rel="noopener noreferrer"
@@ -302,7 +339,7 @@ const AboutPage = () => {
               Developed by&nbsp;
               <a
                 className="underline underline-offset-2"
-                href="https://www.linkedin.com/in/viacheslav-semenenko/"
+                href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >

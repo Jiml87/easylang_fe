@@ -111,7 +111,7 @@ export const InputOtpPhrase = ({
             length={item.text.length}
             inputTemplate={(templateProps: any) => (
               <CustomInput
-                key={templateProps?.props?.key}
+                key={templateProps?.props?.['data-index']}
                 {...templateProps}
                 originalText={item.text}
                 onBackspaceWhenEmpty={() => handleBackspaceWhenEmpty(index)}
