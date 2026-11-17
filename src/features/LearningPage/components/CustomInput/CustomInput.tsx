@@ -13,6 +13,7 @@ export const CustomInput = ({
   onBackspaceWhenEmpty?: () => void;
 }) => {
   const value = props.value;
+  const charIndex = props['data-index'];
   const inputRef = useRef<HTMLInputElement>(null);
   const domProps = { ...props };
   delete domProps.invalid;
@@ -52,15 +53,14 @@ export const CustomInput = ({
       {...events}
       {...domProps}
       ref={inputRef}
-      key={props.key}
       type="text"
       autoCapitalize="none"
       autoCorrect="off"
       spellCheck={false}
       className={twMerge(
         'p-inputotp-input p-inputtext p-component p-filled input',
-        value && value !== originalText[props.id] ? 'invalid' : '',
-        value && value === originalText[props.id] ? 'valid' : '',
+        value && value !== originalText[charIndex] ? 'invalid' : '',
+        value && value === originalText[charIndex] ? 'valid' : '',
       )}
     />
   );
