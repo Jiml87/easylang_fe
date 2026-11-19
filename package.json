@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@assistant-ui/react": "^0.15.36",
+    "@assistant-ui/react-markdown": "^0.14.26",
     "@react-oauth/google": "^0.13.5",
     "@reduxjs/toolkit": "^2.14.0",
     "autoprefixer": "^10.6.2",
@@ -35,6 +36,7 @@
     "react-final-form": "^6.5.9",
     "react-redux": "^9.3.1",
     "react-swipeable": "^7.0.2",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^2.6.1"
   },
   "devDependencies": {
