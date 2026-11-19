@@ -51,6 +51,7 @@ const HomePage = () => {
               <Image
                 src={bannerImage}
                 alt="Banner image"
+                loading="eager"
                 style={{ maxHeight: '600px' }}
               />
             </div>
