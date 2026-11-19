@@ -42,7 +42,7 @@ export const MobileBottomBar: FC<MobileBottomBarProps> = ({
           onClick={() => setOpen(false)}
         >
           <i className="pi pi-comment mr-2" />
-          <span>Chat</span>
+          <span>AI Assistant</span>
         </Link>
         <Link
           href={connectAiPage.path}

@@ -8,7 +8,7 @@ const Page = () => {
   return (
     <Fragment>
       <Head>
-        <title>Chat</title>
+        <title>AI Assistant</title>
       </Head>
       <ChatPage />
     </Fragment>

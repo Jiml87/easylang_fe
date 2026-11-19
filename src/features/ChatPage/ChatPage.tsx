@@ -27,6 +27,7 @@ import {
   getNumberWords,
 } from '@/features/DictionaryPage/dictionarySlice';
 import { useAppDispatch } from '@/store/hooks';
+import { AgentSettingsDialog } from './components/AgentSettingsDialog';
 import {
   ChatHistoryList,
   MobileChatDrawer,
@@ -151,6 +152,7 @@ const ActiveChatSession = ({
           body: JSON.stringify({
             ...(threadIdRef.current ? { threadId: threadIdRef.current } : {}),
             messages: messages
+              .filter((message) => message.role !== 'system')
               .map((message) => ({
                 role: message.role,
                 content: messageText(message),
@@ -209,6 +211,7 @@ const ActiveChatSession = ({
 
 const ChatPage = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
   const [selectedHistoryThreadId, setSelectedHistoryThreadId] = useState<
     string | null
@@ -320,9 +323,17 @@ const ChatPage = () => {
         >
           <i className="pi pi-bars text-lg" />
         </button>
-        <span className="min-w-0 truncate px-2 text-sm font-medium text-slate-800">
+        <span className="min-w-0 grow truncate px-2 text-sm font-medium text-slate-800">
           {currentTitle}
         </span>
+        <button
+          type="button"
+          aria-label="Settings"
+          onClick={() => setSettingsOpen(true)}
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-600 active:bg-slate-100"
+        >
+          <i className="pi pi-cog text-base" />
+        </button>
         <button
           type="button"
           aria-label="New chat"
@@ -332,6 +343,11 @@ const ChatPage = () => {
           <i className="pi pi-plus text-base" />
         </button>
       </div>
+
+      <AgentSettingsDialog
+        visible={settingsOpen}
+        onHide={() => setSettingsOpen(false)}
+      />
 
       <MobileChatDrawer
         opened={drawerOpen}
@@ -355,6 +371,16 @@ const ChatPage = () => {
           onNewChat={handleNewChat}
           onDeleteThread={handleDeleteThread}
         />
+        <div className="border-t border-slate-200 p-3">
+          <button
+            type="button"
+            onClick={() => setSettingsOpen(true)}
+            className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+          >
+            <i className="pi pi-cog text-sm" />
+            <span>Settings</span>
+          </button>
+        </div>
       </aside>
 
       <div className="flex min-h-0 min-w-0 grow flex-col">
