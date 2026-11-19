@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.4.0...mywords_ui-v1.5.0) (2026-11-19)
+
+
+### New Features
+
+* Merge pull request [#70](https://github.com/Jiml87/easylang_fe/issues/70) from Jiml87/chat-history ([9ff7801](https://github.com/Jiml87/easylang_fe/commit/9ff78014d2eacdc2f517e9dc9823dda90f82f2d8))
+
+
+### Bug Fixes
+
+* fix banner image ([c5366c8](https://github.com/Jiml87/easylang_fe/commit/c5366c83675627c2d3f3dc05bf53d6299455fd85))
+
 ## [1.4.0](https://github.com/Jiml87/easylang_fe/compare/mywords_ui-v1.3.1...mywords_ui-v1.4.0) (2026-11-17)
 
 
