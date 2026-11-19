@@ -3,7 +3,7 @@ import { Button } from 'primereact/button';
 import { useRouter } from 'next/navigation';
 import { Badge } from 'primereact/badge';
 
-import { addNewPhrasePage, dictionaryPage } from '@/config/routes';
+import { addNewPhrasePage, dictionaryPage, chatPage } from '@/config/routes';
 import { useAppSelector } from '@/store/hooks';
 import { selectNumberLearningWordsForToday } from '@/features/DictionaryPage/dictionarySlice';
 import { MobileBottomBar } from '../MobileBottomBar/MobileBottomBar';
@@ -51,6 +51,18 @@ export const BottomMobileMenu = () => {
           link
         >
           <span className="btn-text">Add Word</span>
+        </Button>
+        <Button
+          onClick={() => router.push(chatPage.path)}
+          className="mobile-navigation-button"
+          icon="pi pi-comment text-base"
+          rounded
+          text
+          severity="secondary"
+          aria-label="AI Assistant"
+          link
+        >
+          <span className="btn-text">AI Assistant</span>
         </Button>
         <Button
           onClick={handleOpenMobileFooterPopup}

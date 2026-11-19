@@ -5,6 +5,7 @@ import loginState from '@/features/LoginPage/loginSlice';
 import userProfile from '@/features/InitProfilePage/userProfileSlice';
 import dictionary from '@/features/DictionaryPage/dictionarySlice';
 import learning from '@/features/LearningPage/learningSlice';
+import { chatApi } from '@/api/queries/chatQueries';
 import { wordApi } from '@/api/queries/wordQueries';
 
 export const makeStore = () => {
@@ -17,14 +18,14 @@ export const makeStore = () => {
       dictionary,
       learning,
       [wordApi.reducerPath]: wordApi.reducer,
+      [chatApi.reducerPath]: chatApi.reducer,
     },
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(wordApi.middleware),
+      getDefaultMiddleware().concat(wordApi.middleware, chatApi.middleware),
   });
 };
 
-// Infer the type of makeStore
 export type AppStore = ReturnType<typeof makeStore>;
 
 export type RootState = ReturnType<AppStore['getState']>;

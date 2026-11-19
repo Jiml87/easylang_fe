@@ -40,7 +40,7 @@ export const HeaderMainMenu = () => {
         href={chatPage.path}
         className="px-5 py-2 text-slate-600 hover:underline"
       >
-        Chat
+        AI Assistant
       </Link>
       <Link
         href={dictionaryPage.path}

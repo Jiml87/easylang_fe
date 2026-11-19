@@ -6,7 +6,8 @@ import { useSwipeable } from 'react-swipeable';
 
 import { LogOutButton } from '@/components/LogOutButton/LogOutButton';
 import { AddToHomeScreen } from '@/components/NavigationLayout/components/AddToHomeScreen/AddToHomeScreen';
-import { aboutPage, chatPage, connectAiPage } from '@/config/routes';
+import { ShareSiteButton } from '@/components/NavigationLayout/components/ShareSiteButton/ShareSiteButton';
+import { aboutPage, connectAiPage } from '@/config/routes';
 import './MobileBottomBar.css';
 
 interface MobileBottomBarProps {
@@ -36,14 +37,7 @@ export const MobileBottomBar: FC<MobileBottomBarProps> = ({
     >
       <AddToHomeScreen />
       <div>
-        <Link
-          href={chatPage.path}
-          className="menu-button separated mb-2"
-          onClick={() => setOpen(false)}
-        >
-          <i className="pi pi-comment mr-2" />
-          <span>Chat</span>
-        </Link>
+        <ShareSiteButton onShared={() => setOpen(false)} />
         <Link
           href={connectAiPage.path}
           className="menu-button separated mb-2"

@@ -9,7 +9,7 @@ import 'primereact/resources/themes/lara-light-teal/theme.css';
 import 'primeicons/primeicons.css';
 import '../styles/global.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], preload: false });
 
 export const metadata: Metadata = {
   title: 'MyWords app',
